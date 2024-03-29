@@ -8,7 +8,6 @@ import utilities.API_Utilities.Authentication;
 public class HooksAPI {
     public static RequestSpecification spec;
 
-
     public void setUpApi(String userType) {
         String token;
         if (userType.equals("admin")) {
