@@ -16,18 +16,19 @@ public class Authentication {
         JSONObject reqBody = null;
 
         spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url","api")).build();
+
         switch (user) {
             case "admin":
-                spec.pathParams("pp1", "api", "pp2", "admintoken");
+                spec.pathParams("pp1", "api", "pp2", "login");
                 reqBody = new JSONObject();
-                reqBody.put("username", ConfigReader.getProperty("adminUsername","api"));
+                reqBody.put("username", ConfigReader.getProperty("adminEmail","api"));
                 reqBody.put("password", ConfigReader.getProperty("adminPassword","api"));
                 break;
             case "user":
-                spec.pathParams("pp1", "api", "pp2", "usertoken");
+                spec.pathParams("pp1", "api", "pp2", "login");
                 reqBody = new JSONObject();
-                reqBody.put("username", ConfigReader.getProperty("userUsername","api"));
-                reqBody.put("password", ConfigReader.getProperty("userPassword","api"));
+                reqBody.put("username", ConfigReader.getProperty("customerEmail","api"));
+                reqBody.put("password", ConfigReader.getProperty("customerPassword","api"));
                 break;
 
         }
@@ -43,7 +44,7 @@ public class Authentication {
 
         JsonPath repJP = response.jsonPath();
 
-        String token = repJP.getString("data.access_token");
+        String token = repJP.getString("token");
         System.out.println("token = " + token);
 
         return token;
