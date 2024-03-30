@@ -41,6 +41,7 @@ public class API_Methods {
     public static Response patchResponse(Object requestBody) {
         response = given()
                 .spec(spec)
+                .contentType(ContentType.JSON)
                 .header("Accept", "application/json")
                 .when()
                 .body(requestBody)
@@ -54,6 +55,7 @@ public class API_Methods {
     public static Response deleteResponse(Object requestBody) {
         response = given()
                 .spec(spec)
+                .contentType(ContentType.JSON)
                 .header("Accept", "application/json")
                 .when()
                 .body(requestBody)

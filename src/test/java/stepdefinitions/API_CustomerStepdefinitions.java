@@ -11,27 +11,27 @@ public class API_CustomerStepdefinitions {
 
     JsonPath jsonPath;
 
-    @Given("APi kullanicisi {string} token ile base urli olusturur")
-    public void a_pi_kullanicisi_token_ile_base_urli_olusturur(String userType) {
+    @Given("The api user constructs the base url with the {string} token.")
+    public void the_api_user_constructs_the_base_url_with_the_token(String userType) {
         HooksAPI.setUpApi(userType);
     }
 
-    @Given("Api kullanicisi api customerGetUser endpointinden donen responsei kaydeder")
-    public void api_kullanicisi_api_customer_get_user_endpointinden_donen_responsei_kaydeder() {
+    @Given("The api user saves the response returned from the api customerGetUser endpoint.")
+    public void the_api_user_saves_the_response_returned_from_the_api_customer_get_user_endpoint() {
         API_Methods.getResponse();
     }
 
-    @Given("Api kullanicisi api customerGetUser endpointinden donen responsei kaydeder, status codeun '401' ve error bilgisinin Unauthorized oldugunu dogrular")
-    public void api_kullanicisi_api_customer_get_user_endpointinden_donen_responsei_kaydeder_status_codeun_ve_error_bilgisinin_unauthorized_oldugunu_dogrular() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
-    }
-
-    @Given("Api kullanicisi donen response bodydeki datalarin sisteme giris yapan kullanici bilgileri ile ayni oldugu dogrular")
-    public void api_kullanicisi_donen_response_bodydeki_datalarin_sisteme_giris_yapan_kullanici_bilgileri_ile_ayni_oldugu_dogrular() {
+    @Given("The api user verifies that the data in the returned response body matches the information of the logged in user in the system.")
+    public void the_api_user_verifies_that_the_data_in_the_returned_response_body_matches_the_information_of_the_logged_in_user_in_the_system() {
         jsonPath = API_Methods.response.jsonPath();
 
         assertEquals("aleynadilan", jsonPath.getString("user.first_name"));
         assertEquals("ciftcier", jsonPath.getString("user.last_name"));
         assertEquals("dilannciftcier@buysellcycle.com", jsonPath.getString("user.email"));
+    }
+
+    @Given("The api user saves the response returned from the api customerGetUser endpoint and confirms that the status code is {string} and the error message is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_customer_get_user_endpoint_and_confirms_that_the_status_code_is_and_the_error_message_is_unauthorized(String string) {
+        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
     }
 }

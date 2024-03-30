@@ -16,13 +16,13 @@ public class API_RegisterCustomerStepdefinitions {
     public static String fullPath;
     JSONObject requestBody;
 
-    @Given("APi kullanicisi base urli olusturur")
-    public void a_pi_kullanicisi_base_urli_olusturur() {
+    @Given("The api user creates the base url.")
+    public void the_api_user_creates_the_base_url() {
         spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url", "api")).build();
     }
 
-    @Given("APi kullanicisi {string} path parametrelerini olusturur")
-    public void a_pi_kullanicisi_path_parametrelerini_olusturur(String rawPaths) {
+    @Given("The api user sets {string} path parameters")
+    public void the_api_user_sets_path_parameters(String rawPaths) {
         String[] paths = rawPaths.split("/");
 
         System.out.println(Arrays.toString(paths));
@@ -51,8 +51,8 @@ public class API_RegisterCustomerStepdefinitions {
         System.out.println("sayi : " + sayi);
     }
 
-    @Given("Api kullanicisi api register endpointine gondermek icin gecerli datalardan olusan bir post request hazirlar")
-    public void api_kullanicisi_api_register_endpointine_gondermek_icin_gecerli_datalardan_olusan_bir_post_request_hazirlar() {
+    @Given("The api user prepares a POST request consisting of valid data to send to the api register endpoint.")
+    public void the_api_user_prepares_a_post_request_consisting_of_valid_data_to_send_to_the_api_register_endpoint() {
         requestBody = new JSONObject();
         requestBody.put("first_name", "aleynadilan");
         requestBody.put("last_name", "ciftcier");
@@ -64,18 +64,19 @@ public class API_RegisterCustomerStepdefinitions {
         System.out.println("requestBody : " + requestBody);
     }
 
-    @Given("Api kullanicisi post request gonderir ve api register endpointinden donen responsei kaydeder")
-    public void api_kullanicisi_post_request_gonderir_ve_api_register_endpointinden_donen_responsei_kaydeder() {
+    @Given("The api user sends a POST request and saves the response from the api register endpoint.")
+    public void the_api_user_sends_a_post_request_and_saves_the_response_from_the_api_register_endpoint() {
         API_Methods.postResponse(requestBody.toString());
     }
 
-    @Given("Api kullanicisi status codeun {int} oldugunu dogrular")
-    public void api_kullanicisi_status_codeun_oldugunu_dogrular(int code) {
+    @Given("The api user verifies that the status code is {int}")
+    public void the_api_user_verifies_that_the_status_code_is(int code) {
         API_Methods.statusCodeAssert(code);
     }
 
-    @Given("Api kullanicisi response bodydeki message bilgisinin {string} oldugunu dogrular")
-    public void api_kullanicisi_response_bodydeki_message_bilgisinin_oldugunu_dogrular(String message) {
+    @Given("The api user verifies that the message information in the response body is {string}")
+    public void the_api_user_verifies_that_the_message_information_in_the_response_body_is(String message) {
         API_Methods.messageAssert(message);
     }
+
 }
