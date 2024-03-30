@@ -8,15 +8,14 @@ import utilities.API_Utilities.Authentication;
 public class HooksAPI {
     public static RequestSpecification spec;
 
-
-    public void setUpApi(String userType) {
+    public static void setUpApi(String userType) {
         String token;
         if (userType.equals("admin")) {
             token = Authentication.generateToken(userType);
-        } else if (userType.equals("user")) {
+        } else if (userType.equals("customer")) {
             token = Authentication.generateToken(userType);
         } else {
-            token = ConfigReader.getProperty(userType, "api");
+            token = ConfigReader.getProperty("invalidToken", "api");
         }
 
         spec = new RequestSpecBuilder()

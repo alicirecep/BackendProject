@@ -9,8 +9,8 @@ public class ConfigReader {
     private static Properties dbProperties;
 
     static {
-        apiProperties = loadPropertiesFile("src/test/java/gerekliBelgeler/api.properties");
-        dbProperties = loadPropertiesFile("src/test/java/gerekliBelgeler/db.properties");
+        apiProperties = loadPropertiesFile("src/test/java/config_Requirements/api.properties");
+        dbProperties = loadPropertiesFile("src/test/java/config_Requirements/db.properties");
     }
 
     private static Properties loadPropertiesFile(String fileName) {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="1.019">
+    <testcase classname="As a user, I should be able to access detailed information about the user who logged into the" name="/api/customerGetUser endpoint'ine gecersiz authorization bilgileri ile bir GET request gönderildiginde" time="0.304">
+        <failure message="The scenario has pending or undefined step(s)" type="java.lang.Exception"><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
+* The api user sets "api/customerGetUser" path parameters...................passed
+* The API user saves the response returned from the api customerGetUser endpoint and confirms that the status code is '401' and the error message is Unauthorized..undefined
+]]></failure>
+    </testcase>
+</testsuite>
