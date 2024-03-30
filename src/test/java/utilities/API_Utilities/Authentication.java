@@ -21,13 +21,13 @@ public class Authentication {
             case "admin":
                 spec.pathParams("pp1", "api", "pp2", "login");
                 reqBody = new JSONObject();
-                reqBody.put("username", ConfigReader.getProperty("adminEmail","api"));
+                reqBody.put("email", ConfigReader.getProperty("adminEmail","api"));
                 reqBody.put("password", ConfigReader.getProperty("adminPassword","api"));
                 break;
-            case "user":
+            case "customer":
                 spec.pathParams("pp1", "api", "pp2", "login");
                 reqBody = new JSONObject();
-                reqBody.put("username", ConfigReader.getProperty("customerEmail","api"));
+                reqBody.put("email", ConfigReader.getProperty("customerEmail","api"));
                 reqBody.put("password", ConfigReader.getProperty("customerPassword","api"));
                 break;
 

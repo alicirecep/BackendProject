@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="8.876">
+    <testcase classname="Bir kullanici olarak API baglantisi üzerinden sisteme giriş yapan kullanıcıya ait detaylı" name="/api/customerGetUser endpoint'ine gecerli authorization bilgileri ile bir GET request gönderildiginde" time="8.33">
+        <system-out><![CDATA[* APi kullanicisi "customer" token ile base urli olusturur..................passed
+* APi kullanicisi "api/customerGetUser" path parametrelerini olusturur......passed
+* Api kullanicisi api customerGetUser endpointinden donen responsei kaydeder.passed
+* Api kullanicisi donen response bodydeki datalarin sisteme giris yapan kullanici bilgileri ile ayni oldugu dogrular.passed
+]]></system-out>
+    </testcase>
+</testsuite>
