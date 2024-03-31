@@ -26,12 +26,12 @@ Feature: As a user, I should be able to access detailed information about the us
     * The api user verifies that the data in the returned response body matches the information of the logged in user in the system.
     # Api kullanicisi donen response bodydeki datalarin sisteme giris yapan kullanici bilgileri ile ayni oldugu dogrular
 
-  @API
+
   Scenario: /api/customerGetUser endpoint'ine gecersiz authorization bilgileri ile bir GET request gönderildiginde
   dönen status code'in 401 ve response body'deki message bilgisinin "Unauthenticated."
   oldugu dogrulanmali.
 
     * The api user constructs the base url with the "invalid" token.
     * The api user sets "api/customerGetUser" path parameters
-    * The API user saves the response returned from the api customerGetUser endpoint and confirms that the status code is '401' and the error message is Unauthorized.
+    * The api user saves the response returned from the api customerGetUser endpoint and confirms that the status code is '401' and the error message is Unauthorized.
     # Api kullanicisi api customerGetUser endpointinden donen responsei kaydeder, status codeun '401' ve error bilgisinin Unauthorized oldugunu dogrular
