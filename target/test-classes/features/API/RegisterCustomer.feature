@@ -109,7 +109,7 @@ Feature: As a user/administrator, I should be able to create a new customer reco
     * The api user verifies that the message information in the response body is "The password confirmation does not match."
     # Api kullanicisi response bodydeki message bilgisinin "The password confirmation does not match." oldugunu dogrular
 
-  @API
+
   Scenario: When a POST body containing a password with fewer than 8 characters is sent to the /api/register endpoint
   (first_name, last_name, email, password, password_confirmation, user_type, referral_code), the expected status
   code returned should be 422, and the response message should confirm:

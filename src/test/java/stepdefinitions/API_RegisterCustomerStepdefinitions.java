@@ -83,11 +83,6 @@ public class API_RegisterCustomerStepdefinitions {
         API_Methods.messageAssert(message);
     }
 
-    @Given("The api user saves the response returned from the api get users endpoint.")
-    public void the_api_user_saves_the_response_returned_from_the_api_get_users_endpoint() {
-        API_Methods.getResponse();
-    }
-
     @Given("The api user confirms that the customer record has been created.")
     public void the_api_user_confirms_that_the_customer_record_has_been_created() { //195
         jsonPath = API_Methods.response.jsonPath();

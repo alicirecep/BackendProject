@@ -33,5 +33,5 @@ Feature: As a user, I should be able to access detailed information about the us
 
     * The api user constructs the base url with the "invalid" token.
     * The api user sets "api/customerGetUser" path parameters
-    * The api user saves the response returned from the api customerGetUser endpoint and confirms that the status code is '401' and the error message is Unauthorized.
-    # Api kullanicisi api customerGetUser endpointinden donen responsei kaydeder, status codeun '401' ve error bilgisinin Unauthorized oldugunu dogrular
+    * The api user saves the response returned from the api customerGetUser endpoint and confirms that the status code is '401' and the message is Unauthorized.
+    # Api kullanicisi api customerGetUser endpointinden donen responsei kaydeder, status codeun '401' ve message bilgisinin Unauthorized oldugunu dogrular

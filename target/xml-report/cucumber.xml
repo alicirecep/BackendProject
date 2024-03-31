@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="8.355">
-    <testcase classname="As a user/administrator, I should be able to create a new customer record in the system via API connection." name="When a POST body containing a password with fewer than 8 characters is sent to the /api/register endpoint" time="7.304">
-        <system-out><![CDATA[* The api user creates the base url.........................................passed
-* The api user sets "api/register" path parameters..........................passed
-* The api user prepares a POST request with a password containing fewer than '8' characters to send to the api register endpoint..passed
-* The api user sends a POST request and saves the response from the api register endpoint..passed
-* The api user verifies that the status code is 422.........................passed
-* The api user verifies that the message information in the response body is "The password field minimum 8 character.".passed
-]]></system-out>
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="0.914">
+    <testcase classname="As a user, I should be able to access the financial information of the customer via API connection." name="When a GET request is sent to the /api/profile/get-customer-data endpoint with invalid authorization credentials," time="0.167">
+        <failure message="The scenario has pending or undefined step(s)" type="java.lang.Exception"><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
+* The api user sets "api/profile/get-customer-data" path parameters.........passed
+* The api user saves the response returned from the api profile get customer data endpoint and confirms that the status code is '401' and the message is Unauthorized..undefined
+* The api user saves the response returned from the api profile get customer data endpoint and confirms that the status code is '401' and the error message is 'Unauthorized'..skipped
+]]></failure>
     </testcase>
 </testsuite>
