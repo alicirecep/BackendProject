@@ -1,1 +1,1 @@
-file:src/test/resources/features/API/CustomerDetails/CustomerCustomerDetails/ApiCustomerGetUser.feature:30
+file:src/test/resources/features/API/CustomerDetails/CustomerCustomerDetails/CustomerFinansData.feature:29
