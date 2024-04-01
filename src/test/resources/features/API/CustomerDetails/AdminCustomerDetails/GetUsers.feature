@@ -34,5 +34,5 @@ Feature: As an administrator, I should be able to access all registered user inf
 
     * The api user constructs the base url with the "invalid" token.
     * The api user sets "api/get-users" path parameters
-    * The api user saves the response returned from the api get users endpoint and confirms that the status code is '401' and the message is Unauthorized.
-    # Api kullanicisi api/get-users endpointinden donen responsei kaydeder, status codeun '401' ve message bilgisinin Unauthorized oldugunu dogrular
+    * The api user saves the response returned from the api get users endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
+    # Api kullanicisi api/get-users endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
