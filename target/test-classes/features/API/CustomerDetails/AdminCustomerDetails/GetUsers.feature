@@ -1,6 +1,5 @@
 Feature: As an administrator, I should be able to access all registered user information via API connection.
 
-
   Scenario: When a GET request is sent to the /api/get-users endpoint with valid authorization credentials, the expected
   status code returned should be 200, and the message in the response body should confirm: "success".
 

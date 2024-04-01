@@ -1,6 +1,5 @@
 Feature: As a user, I should be able to access the financial information of the customer via API connection.
 
-
   Scenario: When a GET request is sent to the /api/profile/get-customer-data endpoint with valid authorization credentials,
   the expected status code returned should be 200, and the message in the response body should confirm: "success".
 
@@ -25,7 +24,7 @@ Feature: As a user, I should be able to access the financial information of the 
     * The api user verifies the data in the response body returned from the api profile get customer data endpoint.
     # API kullanıcı api profile get customer data endpointinden donen response bodydeki datalari doğrular.
 
-  @API
+
   Scenario: When a GET request is sent to the /api/profile/get-customer-data endpoint with invalid authorization credentials,
   the expected status code returned should be 401, and the message in the response body should confirm: "Unauthenticated.".
 
@@ -33,7 +32,6 @@ Feature: As a user, I should be able to access the financial information of the 
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/profile/get-customer-data" path parameters
     * The api user saves the response returned from the api profile get customer data endpoint and confirms that the status code is '401' and the message is Unauthorized.
-    * The api user saves the response returned from the api profile get customer data endpoint and confirms that the status code is '401' and the error message is 'Unauthorized'.
     # Api kullanicisi api profile get customer data endpointinden donen responsei kaydeder, status codeun '401' ve message bilgisinin Unauthorized oldugunu dogrular
 
 

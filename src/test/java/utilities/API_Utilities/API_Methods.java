@@ -15,8 +15,20 @@ public class API_Methods {
     public static Response getResponse() {
         response = given()
                 .spec(spec)
-                .header("Accept", "application/json")
                 .when()
+                .get(fullPath);
+
+        response.prettyPrint();
+
+        return response;
+    }
+
+    public static Response getBodyResponse(Object requestBody) {
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .body(requestBody)
                 .get(fullPath);
 
         response.prettyPrint();
@@ -28,7 +40,6 @@ public class API_Methods {
         response = given()
                 .spec(spec)
                 .contentType(ContentType.JSON)
-                .header("Accept", "application/json")
                 .when()
                 .body(requestBody)
                 .post(fullPath);
@@ -42,7 +53,6 @@ public class API_Methods {
         response = given()
                 .spec(spec)
                 .contentType(ContentType.JSON)
-                .header("Accept", "application/json")
                 .when()
                 .body(requestBody)
                 .patch(fullPath);
@@ -56,7 +66,6 @@ public class API_Methods {
         response = given()
                 .spec(spec)
                 .contentType(ContentType.JSON)
-                .header("Accept", "application/json")
                 .when()
                 .body(requestBody)
                 .delete(fullPath);
@@ -71,7 +80,6 @@ public class API_Methods {
         try {
             response = given()
                     .spec(spec)
-                    .header("Accept", "application/json")
                     .when()
                     .get(fullPath);
         } catch (Exception e) {

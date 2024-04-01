@@ -20,6 +20,7 @@ public class HooksAPI {
 
         spec = new RequestSpecBuilder()
                 .setBaseUri(ConfigReader.getProperty("base_url", "api"))
+                .addHeader("Accept", "application/json")
                 .addHeader("Authorization", "Bearer " + token)
                 .build();
     }
