@@ -35,5 +35,5 @@ Feature: As an administrator, I should be able to access holiday data for staff 
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/holidayList" path parameters
-    * The api user saves the response returned from the api holidayList endpoint and confirms that the status code is '401' and the message is Unauthorized.
-    # Api kullanicisi api holidayList endpointinden donen responsei kaydeder, status codeun '401' ve message bilgisinin Unauthorized oldugunu dogrular
+    * The api user saves the response returned from the api holidayList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
+    # Api kullanicisi api holidayList endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular

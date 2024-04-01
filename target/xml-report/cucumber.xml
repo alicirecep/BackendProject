@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="9.862">
-    <testcase classname="As an administrator, I should be able to access detailed information about the holiday with the" name="When a GET request containing valid authorization credentials and the holiday id data for the desired detailed" time="8.71">
-        <failure message="Cannot invoke method getAt() on null object" type="java.lang.IllegalArgumentException"><![CDATA[* The api user constructs the base url with the "admin" token...............passed
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="19.474">
+    <testcase classname="As an administrator, I should be able to access detailed information about the holiday with the" name="When a GET request containing valid authorization credentials and the holiday id data for the desired detailed" time="17.467">
+        <failure message="The parameter &quot;details&quot; was used but not defined. Define parameters using the JsonPath.params(...) function" type="java.lang.IllegalArgumentException"><![CDATA[* The api user constructs the base url with the "admin" token...............passed
 * The api user sets "api/holidayDetails" path parameters....................passed
 * The api user prepares a GET request containing the holiday ids for which details are to be accessed, to send to the api holidayDetails endpoint..passed
 * The api user sends a GET request and saves the response returned from the api holidayDetails endpoint..passed
 * The api user verifies the content of the data 18, "2024", "Ramadan Holiday", 1, "2024-04-10,2024-04-12", "2024-03-23T19:26:18.000000Z", "2024-03-23T19:26:18.000000Z" in the response body..failed
 
 StackTrace:
-java.lang.IllegalArgumentException: Cannot invoke method getAt() on null object
+java.lang.IllegalArgumentException: The parameter "details" was used but not defined. Define parameters using the JsonPath.params(...) function
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
@@ -17,21 +17,17 @@ java.lang.IllegalArgumentException: Cannot invoke method getAt() on null object
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:59)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:286)
-	at io.restassured.internal.path.json.JSONAssertion.getAsJsonObject(JSONAssertion.groovy:57)
+	at io.restassured.internal.path.json.JSONAssertion.getAsJsonObject(JSONAssertion.groovy:50)
 	at io.restassured.internal.path.json.JSONAssertion$getAsJsonObject.callCurrent(Unknown Source)
 	at io.restassured.internal.path.json.JSONAssertion.getResult(JSONAssertion.groovy:28)
 	at io.restassured.path.json.JsonPath.get(JsonPath.java:203)
 	at io.restassured.path.json.JsonPath.getInt(JsonPath.java:237)
-	at stepdefinitions.API_AdminStepdefinitions.the_api_user_verifies_the_content_of_the_data_in_the_response_body(API_AdminStepdefinitions.java:76)
-	at ✽.The api user verifies the content of the data 18, "2024", "Ramadan Holiday", 1, "2024-04-10,2024-04-12", "2024-03-23T19:26:18.000000Z", "2024-03-23T19:26:18.000000Z" in the response body.(file:///C:/Users/ACER/IdeaProjects/buySellCycleBackendProject/src/test/resources/features/API/AdminHoliday/HolidayDetails.feature:31)
-Caused by: java.lang.NullPointerException: Cannot invoke method getAt() on null object
-	at org.codehaus.groovy.runtime.NullObject.invokeMethod(NullObject.java:91)
-	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:44)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
-	at org.codehaus.groovy.runtime.callsite.NullCallSite.call(NullCallSite.java:34)
-	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
-	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139)
+	at stepdefinitions.API_AdminStepdefinitions.the_api_user_verifies_the_content_of_the_data_in_the_response_body(API_AdminStepdefinitions.java:75)
+	at ✽.The api user verifies the content of the data 18, "2024", "Ramadan Holiday", 1, "2024-04-10,2024-04-12", "2024-03-23T19:26:18.000000Z", "2024-03-23T19:26:18.000000Z" in the response body.(file:///C:/Users/ACER/IdeaProjects/buySellCycleBackendProject/src/test/resources/features/API/AdminHoliday/HolidayDetails.feature:30)
+Caused by: groovy.lang.MissingPropertyException: No such property: details for class: Script1
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.unwrap(ScriptBytecodeAdapter.java:65)
+	at org.codehaus.groovy.runtime.callsite.PogoGetPropertySite.getProperty(PogoGetPropertySite.java:51)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callGroovyObjectGetProperty(AbstractCallSite.java:341)
 	at Script1.run(Script1.groovy:1)
 	at groovy.lang.GroovyShell.evaluate(GroovyShell.java:427)
 	at groovy.lang.GroovyShell.evaluate(GroovyShell.java:461)
@@ -54,7 +50,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke method getAt() on null 
 	at io.restassured.internal.path.json.JSONAssertion.getResult(JSONAssertion.groovy:28)
 	at io.restassured.path.json.JsonPath.get(JsonPath.java:203)
 	at io.restassured.path.json.JsonPath.getInt(JsonPath.java:237)
-	at stepdefinitions.API_AdminStepdefinitions.the_api_user_verifies_the_content_of_the_data_in_the_response_body(API_AdminStepdefinitions.java:76)
+	at stepdefinitions.API_AdminStepdefinitions.the_api_user_verifies_the_content_of_the_data_in_the_response_body(API_AdminStepdefinitions.java:75)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
 	at io.cucumber.java.Invoker.doInvoke(Invoker.java:66)

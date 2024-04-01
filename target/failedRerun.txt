@@ -1,1 +1,1 @@
-file:src/test/resources/features/API/AdminHoliday/HolidayDetails.feature:36
+file:src/test/resources/features/API/AdminHoliday/HolidayDetails.feature:35
