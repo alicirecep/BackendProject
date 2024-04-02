@@ -5,13 +5,17 @@ import io.restassured.path.json.JsonPath;
 import org.json.JSONObject;
 import utilities.API_Utilities.API_Methods;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class API_AdminStepdefinitions {
 
     JSONObject requestJsonObject;
+    HashMap<String, Object> requestMap;
     JsonPath jsonPath;
+    HashMap<String, Object> responseMap;
 
     //******************************************* api/get-users ******************************************************
     @Given("The api user saves the response returned from the api get users endpoint.")
@@ -59,7 +63,7 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a GET request containing the holiday ids for which details are to be accessed, to send to the api holidayDetails endpoint.")
     public void the_api_user_prepares_a_get_request_containing_the_holiday_ids_for_which_details_are_to_be_accessed_to_send_to_the_api_holiday_details_endpoint() {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 18);
+        requestJsonObject.put("id", 27);
         System.out.println("requestJsonObject : " + requestJsonObject);
     }
 
@@ -90,12 +94,99 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 404, reason phrase: Not Found"));
     }
 
     @Given("The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 401, reason phrase: Unauthorized"));
+    }
+    // ***************************************************************************************************************
+
+    //******************************************** api/holidayAdd ****************************************************
+    @Given("The api user prepares a POST request containing the necessary holiday data to send to the api holidayAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_necessary_holiday_data_to_send_to_the_api_holiday_add_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("year", "2024");
+        requestMap.put("name", "29 Ekim Cumhuriyet Bayramı");
+        requestMap.put("date", "2024-10-29");
+        System.out.println("requestMap : " + requestMap);
+    }
+
+    @Given("The api user sends the POST request and saves the response returned from the api holidayAdd endpoint.")
+    public void the_api_user_sends_the_post_request_and_saves_the_response_returned_from_the_api_holiday_add_endpoint() {
+        API_Methods.postResponse(requestMap);
+    }
+
+    @Given("The api user prepares a POST request containing the registered holiday data to send to the api holidayAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_registered_holiday_data_to_send_to_the_api_holiday_add_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("year", "2024");
+        requestMap.put("name", "29 Ekim Cumhuriyet Bayramı");
+        requestMap.put("date", "2024-10-29");
+        System.out.println("requestMap : " + requestMap);
+    }
+    // ***************************************************************************************************************
+
+    //******************************************** api/holidayUpdate/{id} ****************************************************
+    @Given("The api user prepares a PATCH request containing the updated holiday data to send to the api holidayUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_updated_holiday_data_to_send_to_the_api_holiday_update_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("year", "2025");
+        requestMap.put("name", "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı");
+        requestMap.put("date", "2025-04-23");
+        System.out.println("requestMap : " + requestMap);
+    }
+
+    @Given("The api user sends the PATCH request and saves the response returned from the api holidayUpdate endpoint.")
+    public void the_api_user_sends_the_patch_request_and_saves_the_response_returned_from_the_api_holiday_update_endpoint() {
+        API_Methods.patchResponse(requestMap);
+    }
+
+    @Given("The api user prepares a PATCH request containing the holiday data that matches the previous records to send to the api holidayUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_holiday_data_that_matches_the_previous_records_to_send_to_the_api_holiday_update_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("year", "2025");
+        requestMap.put("name", "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı");
+        requestMap.put("date", "2025-04-23");
+        System.out.println("requestMap : " + requestMap);
+    }
+    // ***************************************************************************************************************
+
+    //****************************************** api/holidayDelete ***************************************************
+    @Given("The api user prepares a DELETE request containing the holiday ids to be deleted to send to the api holidayDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_to_be_deleted_to_send_to_the_api_holiday_delete_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("id", "37");
+        System.out.println("requestMap : " + requestMap);
+    }
+
+    @Given("The api user sends the DELETE request and saves the response returned from the api holidayDelete endpoint.")
+    public void the_api_user_sends_the_delete_request_and_saves_the_response_returned_from_the_api_holiday_delete_endpoint() {
+        API_Methods.deleteResponse(requestMap);
+    }
+
+    @Given("The api user prepares a DELETE request containing the holiday ids that are not present in the system to send to the api holidayDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_that_are_not_present_in_the_system_to_send_to_the_api_holiday_delete_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("id", "125");
+        System.out.println("requestMap : " + requestMap);
+    }
+
+    @Given("The api user saves the response returned from the api holidayDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_holiday_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+    }
+
+    @Given("The api user verifies that the Deleted id information in the response body is the same as the id information in the request body.")
+    public void the_api_user_verifies_that_the_deleted_id_information_in_the_response_body_is_the_same_as_the_id_information_in_the_request_body() {
+        responseMap = API_Methods.response.as(HashMap.class);
+
+        double responseValue = (double) responseMap.get("Deleted Id");
+        int intValue = (int) responseValue;
+        String deletedId = String.valueOf(intValue);
+
+        assertEquals(requestMap.get("id"),deletedId);
     }
     // ***************************************************************************************************************
 }
