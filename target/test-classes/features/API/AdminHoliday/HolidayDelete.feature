@@ -49,7 +49,7 @@ Feature: As an administrator, I want to be able to delete holiday information fo
     * The api user saves the response returned from the api holidayDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi api holidayDelete endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
-  @API
+
   Scenario: The Deleted Id information in the response body returned from the /api/holidayDelete endpoint should be
   verified to be the same as the 'id' information in the DELETE request body sent to the /api/holidayDelete endpoint.
 
@@ -63,3 +63,17 @@ Feature: As an administrator, I want to be able to delete holiday information fo
     # Api kullanicisi delete request gonderir ve api holidayDelete endpointinden donen responsei kaydeder
     * The api user verifies that the Deleted id information in the response body is the same as the id information in the request body.
     # Api kullanicisi response body icindeki Deleted Id bilgisinin request body icindeki id bilgisi ile ayni oldugu dogrular
+
+
+  Scenario: The deletion of the holiday record via the API should be verified through the API itself.
+  (The deletion of the record can be verified by sending a GET request to the /api/holidayDetails endpoint with the
+  Deleted Id returned in the response body.)
+
+    * The api user constructs the base url with the "admin" token.
+    # APi kullanicisi "admin" token ile base urli olusturur
+    * The api user sets "api/holidayDetails" path parameters
+    * The api user prepares a GET request containing the Deleted id to send to the api holidayDetails endpoint.
+    # Api kullanicisi api holidayDetails endpointine gondermek icin sildiği Deleted Idyi iceren bir get request hazirlar
+    * The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
+    # Api kullanicisi api holidayDetails endpointinden donen responsei kaydeder, status codeun '404' ve reason phrase bilgisinin Not Found oldugunu dogrular
+

@@ -186,7 +186,33 @@ public class API_AdminStepdefinitions {
         int intValue = (int) responseValue;
         String deletedId = String.valueOf(intValue);
 
-        assertEquals(requestMap.get("id"),deletedId);
+        assertEquals(requestMap.get("id"), deletedId);
+    }
+
+    @Given("The api user prepares a GET request containing the Deleted id to send to the api holidayDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_holiday_details_endpoint() {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", 37);
     }
     // ***************************************************************************************************************
+
+    //********************************************* api/faqsList *****************************************************
+    @Given("The api user saves the response returned from the api faqsList endpoint.")
+    public void the_api_user_saves_the_response_returned_from_the_api_faqs_list_endpoint() {
+        API_Methods.getResponse();
+    }
+
+    @Given("The api user verifies the {string} information of the data at index {int} in the response body.")
+    public void the_api_user_verifies_the_information_of_the_data_at_index_in_the_response_body(String title, int dataIndex) {
+        jsonPath = API_Methods.response.jsonPath();
+
+        assertTrue(jsonPath.getString("Faqs[" + dataIndex + "].title").contains(title));
+    }
+
+    @Given("The api user saves the response returned from the api faqsList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_faqs_list_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+    }
+    // ***************************************************************************************************************
+
 }

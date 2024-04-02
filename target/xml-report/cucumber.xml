@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="9.109">
-    <testcase classname="As an administrator, I want to be able to delete holiday information for the specified id number via API connection." name="The Deleted Id information in the response body returned from the /api/holidayDelete endpoint should be" time="8.422">
-        <system-out><![CDATA[* The api user constructs the base url with the "admin" token...............passed
-* The api user sets "api/holidayDelete" path parameters.....................passed
-* The api user prepares a DELETE request containing the holiday ids to be deleted to send to the api holidayDelete endpoint..passed
-* The api user sends the DELETE request and saves the response returned from the api holidayDelete endpoint..passed
-* The api user verifies that the Deleted id information in the response body is the same as the id information in the request body..passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="6.507">
+    <testcase classname="As an administrator, I want to be able to access the FAQ's list via API connection." name="When a GET request containing invalid authorization credentials is sent to the /api/faqsList endpoint, the" time="5.725">
+        <system-out><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
+* The api user sets "api/faqsList" path parameters..........................passed
+* The api user saves the response returned from the api faqsList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized..passed
 ]]></system-out>
     </testcase>
 </testsuite>
