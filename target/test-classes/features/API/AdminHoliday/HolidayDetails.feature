@@ -15,7 +15,7 @@ Feature: As an administrator, I should be able to access detailed information ab
     * The api user verifies that the status code is 200
     * The api user verifies that the message information in the response body is "success"
 
-  @API
+
   Scenario Outline: When a GET request containing valid authorization credentials and the holiday id data for the desired detailed
   information is sent to the /api/holidayDetails endpoint, the data returned in the response body (id, year, name,
   type, date, created_at, updated_at) should be validated.
