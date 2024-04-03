@@ -28,12 +28,9 @@ Feature: As an administrator, I want to be able to delete holiday information fo
     # APi kullanicisi "api/holidayDelete" path parametrelerini olusturur
     * The api user prepares a DELETE request containing the holiday ids that are not present in the system to send to the api holidayDelete endpoint.
     # Api kullanicisi api holidayDelete endpointine gondermek icin sistemde bulunmayan holiday idsini iceren bir delete request hazirlar
-    * The api user sends the DELETE request and saves the response returned from the api holidayDelete endpoint.
-    # Api kullanicisi delete request gonderir ve api holidayDelete endpointinden donen responsei kaydeder
-    * The api user verifies that the status code is 404
-    # Api kullanicisi status codeun 404 oldugunu dogrular
-    * The api user verifies that the message information in the response body is "holiday not found"
-    # Api kullanicisi response bodydeki message bilgisinin "holiday not found" oldugunu dogrular
+    * The api user saves the response returned from the api holidayDelete endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
+    # Api kullanicisi api holidayDelete endpointinden donen responsei kaydeder, status codeun '404' ve reason phrase bilgisinin Not Found oldugunu dogrular
+
 
 
   Scenario: When a DELETE request containing invalid authorization credentials and the holiday id to be deleted is sent to
