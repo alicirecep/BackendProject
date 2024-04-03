@@ -66,6 +66,7 @@ public class API_RegisterCustomerStepdefinitions {
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
         System.out.println("requestBody : " + requestBody);
+        System.out.println("Request Body : " + requestBody);
     }
 
     @Given("The api user sends a POST request and saves the response from the api register endpoint.")
@@ -108,7 +109,7 @@ public class API_RegisterCustomerStepdefinitions {
         requestBody.put("password_confirmation", "123123123");
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
-        System.out.println("requestBody : " + requestBody);
+        System.out.println("Request Body : " + requestBody);
     }
 
     @Given("The api user prepares a POST request with a missing email to send to the api register endpoint.")
@@ -120,7 +121,7 @@ public class API_RegisterCustomerStepdefinitions {
         requestBody.put("password_confirmation", "123123123");
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
-        System.out.println("requestBody : " + requestBody);
+        System.out.println("Request Body : " + requestBody);
     }
 
     @Given("The api user prepares a POST request with a missing password to send to the api register endpoint.")
@@ -132,7 +133,7 @@ public class API_RegisterCustomerStepdefinitions {
         requestBody.put("password_confirmation", "123123123");
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
-        System.out.println("requestBody : " + requestBody);
+        System.out.println("Request Body : " + requestBody);
     }
 
     @Given("The api user prepares a POST request with mismatched password and password confirmation to send to the api register endpoint.")
@@ -145,7 +146,7 @@ public class API_RegisterCustomerStepdefinitions {
         requestBody.put("password_confirmation", "123123123111");
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
-        System.out.println("requestBody : " + requestBody);
+        System.out.println("Request Body : " + requestBody);
     }
 
     @Given("The api user prepares a POST request with a password containing fewer than '8' characters to send to the api register endpoint.")
@@ -158,6 +159,6 @@ public class API_RegisterCustomerStepdefinitions {
         requestBody.put("password_confirmation", "123");
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
-        System.out.println("requestBody : " + requestBody);
+        System.out.println("Request Body : " + requestBody);
     }
 }

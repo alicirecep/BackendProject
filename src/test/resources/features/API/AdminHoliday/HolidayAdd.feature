@@ -18,18 +18,22 @@ Feature: As an administrator, I want to add a new holiday record for staff via A
     # Api kullanicisi response bodydeki message bilgisinin "holiday added successfully" oldugunu dogrular
 
 
-  Scenario: The creation of the new holiday record via the API should be verified through the API itself.
+  Scenario Outline: The creation of the new holiday record via the API should be verified through the API itself.
   (The creation of the new holiday record can be confirmed by sending a GET request to the /api/holidayDetails
   endpoint with the added item id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayDetails" path parameters
-    * The api user prepares a GET request containing the holiday ids for which details are to be accessed, to send to the api holidayDetails endpoint.
+    * The api user prepares a GET request containing the holiday "<id>" for which details are to be accessed, to send to the api holidayDetails endpoint.
     # Api kullanicisi api holidayDetails endpointine gondermek icin detaylarina erisilmek istenen holiday idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api holidayDetails endpoint.
     # Api kullanicisi get request gonderir ve api holidayDetails endpointinden donen responsei kaydeder
     * The api user verifies that the message information in the response body is "success"
+
+    Examples:
+      | id |
+      | 27 |
 
 
   Scenario: When a POST request containing valid authorization credentials and holiday data (year, name, date) already
