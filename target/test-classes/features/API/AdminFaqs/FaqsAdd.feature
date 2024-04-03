@@ -35,7 +35,7 @@ Feature: As an administrator, I want to be able to create a new FAQ record via A
       | id |
       | 17 |
 
-  @API
+
   Scenario: When a POST request containing invalid authorization credentials and necessary information (title, description)
   is sent to the /api/faqsAdd endpoint, the expected status code returned should be 401, and the message in the
   response body should confirm: "Unauthenticated.".
