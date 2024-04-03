@@ -28,12 +28,12 @@ Feature: As an administrator, I want to be able to access the FAQ's list via API
       | dataIndex | title                                |
       | 1         | How do I know when my order is here? |
 
-  @API
+
   Scenario: When a GET request containing invalid authorization credentials is sent to the /api/faqsList endpoint, the
   expected status code returned should be 401, and the message in the response body should confirm: "Unauthenticated.".
 
     * The api user constructs the base url with the "invalid" token.
-    # APi kullanicisi "admin" token ile base urli olusturur
+    # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/faqsList" path parameters
     * The api user saves the response returned from the api faqsList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi api faqsList endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular

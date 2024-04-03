@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="6.507">
-    <testcase classname="As an administrator, I want to be able to access the FAQ's list via API connection." name="When a GET request containing invalid authorization credentials is sent to the /api/faqsList endpoint, the" time="5.725">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="9.696">
+    <testcase classname="As an administrator, I want to be able to create a new FAQ record via API connection" name="When a POST request containing invalid authorization credentials and necessary information (title, description)" time="9.018">
         <system-out><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
-* The api user sets "api/faqsList" path parameters..........................passed
-* The api user saves the response returned from the api faqsList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized..passed
+* The api user sets "api/faqsAdd" path parameters...........................passed
+* The api user prepares a POST request containing the necessary information to send to the api faqsAdd endpoint..passed
+* The api user sends the POST request and saves the response returned from the api faqsAdd endpoint..passed
+* The api user verifies that the status code is 401.........................passed
+* The api user verifies that the message information in the response body is "Unauthenticated.".passed
 ]]></system-out>
     </testcase>
 </testsuite>

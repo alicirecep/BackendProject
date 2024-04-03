@@ -7,8 +7,7 @@ import utilities.API_Utilities.API_Methods;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class API_AdminStepdefinitions {
 
@@ -60,11 +59,11 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //****************************************** api/holidayDetails **************************************************
-    @Given("The api user prepares a GET request containing the holiday ids for which details are to be accessed, to send to the api holidayDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_holiday_ids_for_which_details_are_to_be_accessed_to_send_to_the_api_holiday_details_endpoint() {
+    @Given("The api user prepares a GET request containing the holiday {string} for which details are to be accessed, to send to the api holidayDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_holiday_for_which_details_are_to_be_accessed_to_send_to_the_api_holiday_details_endpoint(String id) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 27);
-        System.out.println("requestJsonObject : " + requestJsonObject);
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
     }
 
     @Given("The api user sends a GET request and saves the response returned from the api holidayDetails endpoint.")
@@ -90,6 +89,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_prepares_a_get_request_containing_the_holiday_ids_that_are_not_present_in_the_system_to_send_to_the_api_holiday_details_endpoint() {
         requestJsonObject = new JSONObject();
         requestJsonObject.put("id", 255);
+        System.out.println("Request Body : " + requestJsonObject);
     }
 
     @Given("The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
@@ -110,7 +110,7 @@ public class API_AdminStepdefinitions {
         requestMap.put("year", "2024");
         requestMap.put("name", "29 Ekim Cumhuriyet Bayramı");
         requestMap.put("date", "2024-10-29");
-        System.out.println("requestMap : " + requestMap);
+        System.out.println("Request Body : " + requestMap);
     }
 
     @Given("The api user sends the POST request and saves the response returned from the api holidayAdd endpoint.")
@@ -124,7 +124,7 @@ public class API_AdminStepdefinitions {
         requestMap.put("year", "2024");
         requestMap.put("name", "29 Ekim Cumhuriyet Bayramı");
         requestMap.put("date", "2024-10-29");
-        System.out.println("requestMap : " + requestMap);
+        System.out.println("Request Body : " + requestMap);
     }
     // ***************************************************************************************************************
 
@@ -135,7 +135,7 @@ public class API_AdminStepdefinitions {
         requestMap.put("year", "2025");
         requestMap.put("name", "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı");
         requestMap.put("date", "2025-04-23");
-        System.out.println("requestMap : " + requestMap);
+        System.out.println("Request Body : " + requestMap);
     }
 
     @Given("The api user sends the PATCH request and saves the response returned from the api holidayUpdate endpoint.")
@@ -149,7 +149,7 @@ public class API_AdminStepdefinitions {
         requestMap.put("year", "2025");
         requestMap.put("name", "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı");
         requestMap.put("date", "2025-04-23");
-        System.out.println("requestMap : " + requestMap);
+        System.out.println("Request Body : " + requestMap);
     }
     // ***************************************************************************************************************
 
@@ -158,7 +158,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_to_be_deleted_to_send_to_the_api_holiday_delete_endpoint() {
         requestMap = new HashMap<>();
         requestMap.put("id", "37");
-        System.out.println("requestMap : " + requestMap);
+        System.out.println("Request Body : " + requestMap);
     }
 
     @Given("The api user sends the DELETE request and saves the response returned from the api holidayDelete endpoint.")
@@ -170,7 +170,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_that_are_not_present_in_the_system_to_send_to_the_api_holiday_delete_endpoint() {
         requestMap = new HashMap<>();
         requestMap.put("id", "125");
-        System.out.println("requestMap : " + requestMap);
+        System.out.println("Request Body : " + requestMap);
     }
 
     @Given("The api user saves the response returned from the api holidayDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
@@ -193,6 +193,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_holiday_details_endpoint() {
         requestJsonObject = new JSONObject();
         requestJsonObject.put("id", 37);
+        System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
 
@@ -215,4 +216,62 @@ public class API_AdminStepdefinitions {
     }
     // ***************************************************************************************************************
 
+    //******************************************* api/faqsDetails ****************************************************
+    @Given("The api user prepares a GET request containing the FAQ {string} for which details are to be accessed, to send to the api faqsDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_faq_for_which_details_are_to_be_accessed_to_send_to_the_api_faqs_details_endpoint(String id) {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user sends a GET request and saves the response returned from the api faqsDetails endpoint.")
+    public void the_api_user_sends_a_get_request_and_saves_the_response_returned_from_the_api_faqs_details_endpoint() {
+        API_Methods.getBodyResponse(requestJsonObject.toString());
+    }
+
+    @Given("The api user verifies the content of the data {int}, {string}, {string}, {int}, {string}, {string} in the response body.")
+    public void the_api_user_verifies_the_content_of_the_data_in_the_response_body(int id, String title, String description, int status, String created_at, String updated_at) {
+        jsonPath = API_Methods.response.jsonPath();
+
+        assertEquals(id, jsonPath.getInt("Faqs details[0].id"));
+        assertNull(jsonPath.get("Faqs details[0].user_id"));
+        assertEquals(title, jsonPath.getString("Faqs details[0].title"));
+        assertTrue(jsonPath.getString("Faqs details[0].description").contains(description));
+        assertEquals(status, jsonPath.getInt("Faqs details[0].status"));
+        assertEquals(created_at, jsonPath.getString("Faqs details[0].created_at"));
+        assertEquals(updated_at, jsonPath.getString("Faqs details[0].updated_at"));
+    }
+
+    @Given("The api user prepares a GET request containing the FAQ ids that are not present in the system to send to the api faqsDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_faq_ids_that_are_not_present_in_the_system_to_send_to_the_api_faqs_details_endpoint() {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", 256);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user saves the response returned from the api faqsDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_faqs_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 404, reason phrase: Not Found"));
+    }
+
+    @Given("The api user saves the response returned from the api faqsDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_faqs_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 401, reason phrase: Unauthorized"));
+    }
+    // ***************************************************************************************************************
+
+    //******************************************* api/faqsDetails ****************************************************
+    @Given("The api user prepares a POST request containing the necessary information to send to the api faqsAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_necessary_information_to_send_to_the_api_faqs_add_endpoint() {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("title","How does the site work?");
+        requestJsonObject.put("description","Select your items, add them to your cart, provide your address and choose the delivery time, then complete the order. There you go, your shopping is done!");
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user sends the POST request and saves the response returned from the api faqsAdd endpoint.")
+    public void the_api_user_sends_the_post_request_and_saves_the_response_returned_from_the_api_faqs_add_endpoint() {
+        API_Methods.postResponse(requestJsonObject.toString());
+    }
+    // ***************************************************************************************************************
 }

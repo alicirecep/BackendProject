@@ -74,7 +74,7 @@ public class API_CustomerStepdefinitions {
         requestBodyMap.put("old_password", ConfigReader.getProperty("customerPassword", "api"));
         requestBodyMap.put("password", "12345678");
         requestBodyMap.put("password_confirmation", "12345678");
-        System.out.println("requestBodyMap : " + requestBodyMap);
+        System.out.println("Request Body : " + requestBodyMap);
     }
 
     @Given("The api user sends the POST request and saves the response returned from the api change password endpoint.")
@@ -88,7 +88,7 @@ public class API_CustomerStepdefinitions {
         requestBodyMap.put("old_password", "123A");
         requestBodyMap.put("password", "12345678");
         requestBodyMap.put("password_confirmation", "12345678");
-        System.out.println("requestBodyMap : " + requestBodyMap);
+        System.out.println("Request Body : " + requestBodyMap);
     }
 
     @Given("The api user prepares a POST request with mismatched password and password confirmation to send to the api change password endpoint.")
@@ -97,7 +97,7 @@ public class API_CustomerStepdefinitions {
         requestBodyMap.put("old_password", ConfigReader.getProperty("customerPassword", "api"));
         requestBodyMap.put("password", "12345678");
         requestBodyMap.put("password_confirmation", "12345678A1");
-        System.out.println("requestBodyMap : " + requestBodyMap);
+        System.out.println("Request Body : " + requestBodyMap);
     }
     // ***************************************************************************************************************
 }
