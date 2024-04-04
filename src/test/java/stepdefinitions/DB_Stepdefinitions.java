@@ -1,10 +1,9 @@
 package stepdefinitions;
 
 import com.github.javafaker.Faker;
+import helperDB.DB_Cons;
 import io.cucumber.java.en.Given;
 import manage.Manage;
-import org.codehaus.groovy.ast.stmt.WhileStatement;
-import org.junit.rules.ExpectedException;
 import utilities.DB_Utilities.JDBCMethods;
 
 import java.sql.PreparedStatement;
@@ -12,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,16 +19,11 @@ import static org.junit.Assert.assertEquals;
 
 public class DB_Stepdefinitions {
     Manage manage = new Manage();
-    Faker faker = new Faker();
+    DB_Cons db=  new DB_Cons();
     String query;
     PreparedStatement preparedStatement;
     ResultSet rs;
-    int id;
-    int query_type;
-    String city;
-    String username;
-    String email;
-    String message;
+
     Instant instant = Instant.now();
 
     @Given("Database connection is established.")
@@ -54,15 +47,15 @@ public class DB_Stepdefinitions {
     public void insert_data_to_the_cities_table() throws SQLException {
         query = manage.getDataOfCity();
         preparedStatement = JDBCMethods.getPraperedStatement(query);
-        id = faker.number().numberBetween(100000,10000000);
-        System.out.println(id);
-        city = faker.address().cityName().toLowerCase();
-        System.out.println(city);
+
+        System.out.println(db.getId());
+       // city = faker.address().cityName().toLowerCase();
+        System.out.println(db.getCity());
 
         // PreparedStatement nesneniz varsa
-        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(1, db.getId());
         //cityName
-        preparedStatement.setString(2, city);
+        preparedStatement.setString(2,db.getCity());
         //state_id
         preparedStatement.setInt(3, 1);
         //status
@@ -96,8 +89,8 @@ public class DB_Stepdefinitions {
     public void delete_city_to_the_cities_table() throws SQLException {
         query= manage.getDeleteDataOfCity();
         preparedStatement=JDBCMethods.getPraperedStatement(query);
-        preparedStatement.setInt(1,id);
-        preparedStatement.setString(2,city);
+        preparedStatement.setInt(1,db.getId());
+        preparedStatement.setString(2,db.getCity());
     }
     /**US_04_05 contacts tablosunda (id,name,email,query_type,message) bilgileri iceren bir veri eklenir. */
     @Given("Insert data to the contacts table")
@@ -105,25 +98,20 @@ public class DB_Stepdefinitions {
 
         query= manage.getInsertDataOfContactsTable();
         preparedStatement=JDBCMethods.getPraperedStatement(query);
-        id=faker.number().numberBetween(900,9000);
-        username=faker.name().firstName();
-        query_type=faker.number().randomDigitNotZero();
-        message=faker.lorem().word();
-        email=faker.internet().emailAddress();
-
-        preparedStatement.setInt(1,id);
-        preparedStatement.setString(2,username);
-        preparedStatement.setString(3,email);
-        preparedStatement.setInt(4,query_type);
-        preparedStatement.setString(5,message);
+       // id=faker.number().numberBetween(900,9000);
+        preparedStatement.setInt(1,db.getId());
+        preparedStatement.setString(2,db.getUsername());
+        preparedStatement.setString(3,db.getEmail());
+        preparedStatement.setInt(4,db.getQuery_type());
+        preparedStatement.setString(5, db.getMessage());
     }
     /**US_04 message bilgisini update ediniz.     */
     @Given("Update message data to the contacts table")
     public void update_message_data_to_the_contacts_table() throws SQLException {
         query= manage.getUpdateDataOfContactsTable();
         preparedStatement=JDBCMethods.getPraperedStatement(query);
-        preparedStatement.setString(1,message);
-        preparedStatement.setInt(2,id);
+        preparedStatement.setString(1,db.getMessage());
+        preparedStatement.setInt(2,db.getId());
     }
 
     /** US_05 contacts tablosunda email bilgisi girerek siliniz */
@@ -132,7 +120,7 @@ public class DB_Stepdefinitions {
     public void delete_data_to_the_contacts_table() throws SQLException {
     query=manage.getDeleteDataOfContactsTable();
     preparedStatement=JDBCMethods.getPraperedStatement(query);
-    preparedStatement.setString(1,email);
+    preparedStatement.setString(1,db.getEmail());
 
     }
 
@@ -143,9 +131,6 @@ public class DB_Stepdefinitions {
         query=manage.getCouponProducts();
         rs=JDBCMethods.getStatement().executeQuery(query);
     }
-    //'1', '9', '321321321', '1210', '2024-03-25 06:19:25', 'Batman Pajama Set'
-    //'4', '14', '1232152', '341', '2024-03-28 13:18:36', 'Belt Patterned Satin Dress'
-    //'5', '19', 'COOL2024', '359', '2024-04-03 02:11:14', 'DROP SHOULDER DENIM JACKET'
     @Given("Verify the data coupon_id groups information Result is obtained.")
     public void verify_the_data_coupon_id_groups_information_Result_is_obtained() throws SQLException {
         List<String> couponID=new ArrayList<String>();
