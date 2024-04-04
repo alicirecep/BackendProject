@@ -7,7 +7,9 @@ import utilities.API_Utilities.API_Methods;
 
 import java.util.HashMap;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
+import static stepdefinitions.API_RegisterCustomerStepdefinitions.id;
 
 public class API_AdminStepdefinitions {
 
@@ -38,7 +40,57 @@ public class API_AdminStepdefinitions {
     }
     // ***************************************************************************************************************
 
-    //****************************************** api/holidayList ****************************************************
+    //******************************************* api/get-user *******************************************************
+    @Given("The api user prepares a GET request containing the customer {string} for which details are to be accessed, to send to the api get User endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_customer_for_which_details_are_to_be_accessed_to_send_to_the_api_get_user_endpoint(String id) {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user sends a GET request and saves the response returned from the api get User endpoint.")
+    public void the_api_user_sends_a_get_request_and_saves_the_response_returned_from_the_api_get_user_endpoint() {
+        API_Methods.getBodyResponse(requestJsonObject.toString());
+    }
+
+    @Given("The api user verifies the content of the data {int}, {string}, {string}, {int}, {string}, {int}, {int}, {string}, {int}, {string}, {string} in the response body.")
+    public void the_api_user_verifies_the_content_of_the_data_in_the_response_body(int id, String first_name, String last_name, int role_id, String email, int is_verified, int is_active, String lang_code, int currency_id, String currency_code, String name) {
+        API_Methods.response
+                .then()
+                .assertThat()
+                .body("user.id", equalTo(id),
+                        "user.first_name", equalTo(first_name),
+                        "user.last_name", equalTo(last_name),
+                        "user.role_id", equalTo(role_id),
+                        "user.email", equalTo(email),
+                        "user.is_verified", equalTo(is_verified),
+                        "user.is_active", equalTo(is_active),
+                        "user.lang_code", equalTo(lang_code),
+                        "user.currency_id", equalTo(currency_id),
+                        "user.currency_code", equalTo(currency_code),
+                        "user.name", equalTo(name));
+    }
+
+    @Given("The api user prepares a GET request containing the incorrect customer id to send to the api get User endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_incorrect_customer_id_to_send_to_the_api_get_user_endpoint() {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", 21587);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user saves the response returned from the api get User endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_get_user_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 404, reason phrase: Not Found"));
+    }
+
+    @Given("The api user saves the response returned from the api get User endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_get_user_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 401, reason phrase: Unauthorized"));
+
+    }
+    // ***************************************************************************************************************
+
+    //****************************************** api/holidayList *****************************************************
     @Given("The api user saves the response returned from the api holidayList endpoint.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_list_endpoint() {
         API_Methods.getResponse();
@@ -157,7 +209,7 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a DELETE request containing the holiday ids to be deleted to send to the api holidayDelete endpoint.")
     public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_to_be_deleted_to_send_to_the_api_holiday_delete_endpoint() {
         requestMap = new HashMap<>();
-        requestMap.put("id", "37");
+        requestMap.put("id", 38);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -169,8 +221,14 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a DELETE request containing the holiday ids that are not present in the system to send to the api holidayDelete endpoint.")
     public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_that_are_not_present_in_the_system_to_send_to_the_api_holiday_delete_endpoint() {
         requestMap = new HashMap<>();
-        requestMap.put("id", "125");
+        requestMap.put("id", 125);
         System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user saves the response returned from the api holidayDelete endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_holiday_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 404, reason phrase: Not Found"));
+
     }
 
     @Given("The api user saves the response returned from the api holidayDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
@@ -183,8 +241,7 @@ public class API_AdminStepdefinitions {
         responseMap = API_Methods.response.as(HashMap.class);
 
         double responseValue = (double) responseMap.get("Deleted Id");
-        int intValue = (int) responseValue;
-        String deletedId = String.valueOf(intValue);
+        int deletedId = (int) responseValue;
 
         assertEquals(requestMap.get("id"), deletedId);
     }
@@ -264,14 +321,102 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a POST request containing the necessary information to send to the api faqsAdd endpoint.")
     public void the_api_user_prepares_a_post_request_containing_the_necessary_information_to_send_to_the_api_faqs_add_endpoint() {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("title","How does the site work?");
-        requestJsonObject.put("description","Select your items, add them to your cart, provide your address and choose the delivery time, then complete the order. There you go, your shopping is done!");
+        requestJsonObject.put("title", "How does the site work?");
+        requestJsonObject.put("description", "Select your items, add them to your cart, provide your address and choose the delivery time, then complete the order. There you go, your shopping is done!");
         System.out.println("Request Body : " + requestJsonObject);
     }
 
     @Given("The api user sends the POST request and saves the response returned from the api faqsAdd endpoint.")
     public void the_api_user_sends_the_post_request_and_saves_the_response_returned_from_the_api_faqs_add_endpoint() {
         API_Methods.postResponse(requestJsonObject.toString());
+    }
+    // ***************************************************************************************************************
+
+    //***************************************** api/faqsUpdate/{id} **************************************************
+    @Given("The api user prepares a PATCH request containing the title information to send to the api faqsUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_title_information_to_send_to_the_api_faqs_update_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("title", "How do I know when my order is here?");
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user sends the PATCH request and saves the response returned from the api faqsUpdate endpoint.")
+    public void the_api_user_sends_the_patch_request_and_saves_the_response_returned_from_the_api_faqs_update_endpoint() {
+        API_Methods.patchResponse(requestMap);
+    }
+
+    @Given("The api user prepares a PATCH request containing the title and description information to send to the api faqsUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_title_and_description_information_to_send_to_the_api_faqs_update_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("title", "How do I know when my order is here?");
+        requestMap.put("description", "A representative will call you as soon as they are at your house to let you know about your delivery.");
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user saves the response returned from the api faqsUpdate endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_faqs_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 404, reason phrase: Not Found"));
+    }
+
+    @Given("The api user saves the response returned from the api faqsUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_faqs_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+
+    }
+
+    @Given("The api user verifies that the updated id information in the response body matches the id path parameter specified in the endpoint.")
+    public void the_api_user_verifies_that_the_updated_id_information_in_the_response_body_matches_the_id_path_parameter_specified_in_the_endpoint() {
+        responseMap = API_Methods.response.as(HashMap.class);
+
+        double responseValue = (double) responseMap.get("updated Id");
+        int updatedId = (int) responseValue;
+
+        assertEquals(id, updatedId);
+    }
+
+    @Given("The api user verifies that the title information in the response body is {string}.")
+    public void the_api_user_verifies_that_the_title_information_in_the_response_body_is(String title) {
+        jsonPath = API_Methods.response.jsonPath();
+
+        assertEquals(title, jsonPath.getString("Faqs details[0].title"));
+    }
+    // ***************************************************************************************************************
+
+    //******************************************** api/faqsDelete ****************************************************
+    @Given("The api user prepares a DELETE request containing the FAQ ids to be deleted to send to the api faqsDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_faq_ids_to_be_deleted_to_send_to_the_api_faqs_delete_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("id", 20);
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user sends the DELETE request and saves the response returned from the api faqsDelete endpoint.")
+    public void the_api_user_sends_the_delete_request_and_saves_the_response_returned_from_the_api_faqs_delete_endpoint() {
+        API_Methods.deleteResponse(requestMap);
+    }
+
+    @Given("The api user prepares a DELETE request containing the FAQ ids that are not present in the system to send to the api faqsDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_faq_ids_that_are_not_present_in_the_system_to_send_to_the_api_faqs_delete_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("id", 256);
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user saves the response returned from the api faqsDelete endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_faqs_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 404, reason phrase: Not Found"));
+    }
+
+    @Given("The api user saves the response returned from the api faqsDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_faqs_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+    }
+
+    @Given("The api user prepares a GET request containing the Deleted id to send to the api faqsDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_faqs_details_endpoint() {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", 20);
+        System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
 }
