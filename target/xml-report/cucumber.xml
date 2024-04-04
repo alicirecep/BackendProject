@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="11.715">
-    <testcase classname="As an administrator, I want to be able to delete the record specified by the FAQ's id via the API connection." name="The deletion of the desired FAQ record via the API should be verified within the API itself." time="10.929">
-        <system-out><![CDATA[* The api user constructs the base url with the "admin" token...............passed
-* The api user sets "api/faqsDetails" path parameters.......................passed
-* The api user prepares a GET request containing the Deleted id to send to the api faqsDetails endpoint..passed
-* The api user saves the response returned from the api faqsDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found..passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="7.551">
+    <testcase classname="As an administrator, I want to access the Refund &amp; Reason List through the API connection." name="When a GET request with invalid authorization information is sent to the /api/refundReasonList endpoint, it" time="6.529">
+        <system-out><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
+* The api user sets "api/refundReasonList" path parameters..................passed
+* The api user saves the response returned from the api refundReasonList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized..passed
 ]]></system-out>
     </testcase>
 </testsuite>

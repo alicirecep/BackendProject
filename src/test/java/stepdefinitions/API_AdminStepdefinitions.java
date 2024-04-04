@@ -419,4 +419,23 @@ public class API_AdminStepdefinitions {
         System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
+
+    //**************************************** api/refundReasonList **************************************************
+    @Given("The api user saves the response returned from the api refundReasonList endpoint.")
+    public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_list_endpoint() {
+        API_Methods.getResponse();
+    }
+
+    @Given("The api user validates the {string} of the response body with index {int}.")
+    public void the_api_user_validates_the_of_the_response_body_with_index(String reason, int dataIndex) {
+        jsonPath = API_Methods.response.jsonPath();
+
+        assertEquals(reason, jsonPath.getString("refund Reason[" + dataIndex + "].reason"));
+    }
+
+    @Given("The api user saves the response returned from the api refundReasonList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_list_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+    }
+    // ***************************************************************************************************************
 }
