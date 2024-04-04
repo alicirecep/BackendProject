@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 public class API_RegisterCustomerStepdefinitions {
 
-    public static int sayi;
+    public static int id;
     public static String fullPath;
     JSONObject requestBody;
     JsonPath jsonPath;
@@ -44,7 +44,7 @@ public class API_RegisterCustomerStepdefinitions {
             tempPath.append(key + "}/{");
 
             if (value.matches("\\d+")) {  // value.matches("\\d+") burada value rakam iceriyorsa dedik
-                sayi = Integer.parseInt(value);
+                id = Integer.parseInt(value);
             }
         }
         tempPath.deleteCharAt(tempPath.lastIndexOf("/"));
@@ -52,7 +52,7 @@ public class API_RegisterCustomerStepdefinitions {
 
         fullPath = tempPath.toString();
         System.out.println("fullPath = " + fullPath);
-        System.out.println("sayi : " + sayi);
+        System.out.println("sayi : " + id);
     }
 
     @Given("The api user prepares a POST request consisting of valid data to send to the api register endpoint.")
