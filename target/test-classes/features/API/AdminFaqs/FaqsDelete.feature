@@ -60,7 +60,7 @@ Feature: As an administrator, I want to be able to delete the record specified b
     * The api user verifies that the Deleted id information in the response body is the same as the id information in the request body.
     # Api kullanicisi response body icindeki Deleted Id bilgisinin request body icindeki id bilgisi ile ayni oldugu dogrular
 
-  @API
+
   Scenario: The deletion of the desired FAQ record via the API should be verified within the API itself.
   (The deletion of the record can be verified by sending a GET request to the /api/faqsDetails endpoint with the
   Deleted Id returned in the response body.)
