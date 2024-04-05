@@ -93,7 +93,7 @@ public class DB_Stepdefinitions {
 
         query= manage.getInsertDataOfContactsTable();
         preparedStatement=JDBCMethods.getPraperedStatement(query);
-       // id=faker.number().numberBetween(900,9000);
+        // id=faker.number().numberBetween(900,9000);
         preparedStatement.setInt(1,db.getId());
         preparedStatement.setString(2,db.getUsername());
         preparedStatement.setString(3,db.getEmail());
@@ -113,14 +113,14 @@ public class DB_Stepdefinitions {
 
     @Given("Delete data to the contacts table")
     public void delete_data_to_the_contacts_table() throws SQLException {
-    query=manage.getDeleteDataOfContactsTable();
-    preparedStatement=JDBCMethods.getPraperedStatement(query);
-    preparedStatement.setString(1,db.getEmail());
+        query=manage.getDeleteDataOfContactsTable();
+        preparedStatement=JDBCMethods.getPraperedStatement(query);
+        preparedStatement.setString(1,db.getEmail());
 
     }
 
     /** US_06coupon_products tablosunu coupon_id'ye göre gruplayarak her kupon için kaç ürün olduğunu bulunuz.
-*/
+     */
     @Given("Query is prepared and executed in the database for coupon_products table by coupon_id groups")
     public void query_is_prepared_and_executed_in_the_database_for_coupon_products_table_by_coupon_id_groups() throws SQLException {
         query=manage.getCouponProducts();
@@ -156,7 +156,7 @@ public class DB_Stepdefinitions {
         }
 
         for (int i = 0; i <processesName.size() ; i++) {
-           assertEquals(expectedName.get(i),processesName.get(i));
+            assertEquals(expectedName.get(i),processesName.get(i));
         }
     }
     @Given("Query is prepared and executed in the database for the log_activity table")
@@ -174,15 +174,15 @@ public class DB_Stepdefinitions {
     /**US_10 order_address_details tablosunda ' shipping_address ' ile ' billing_address' i aynı olmayan kullanicilarin sayisini dogrulayiniz.*/
     @Given("Query is prepared and executed in the database for the order_address_details table")
     public void query_is_prepared_and_executed_in_the_database_for_the_order_address_details_table() throws SQLException {
-       query=manage.getOrder_address_detailsTable();
-       rs=JDBCMethods.getStatement().executeQuery(query);
+        query=manage.getOrder_address_detailsTable();
+        rs=JDBCMethods.getStatement().executeQuery(query);
     }
     @Given("Verify the adresses details aren't the same")
     public void verify_the_adresses_details_aren_t_the_same() throws SQLException {
-       rs.next();
-       int count= rs.getInt(1);
+        rs.next();
+        int count= rs.getInt(1);
         System.out.println(count);
-       //assertEquals(2,count);
+        //assertEquals(2,count);
     }
 
 
