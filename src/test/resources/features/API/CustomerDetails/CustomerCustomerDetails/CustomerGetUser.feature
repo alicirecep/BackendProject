@@ -13,12 +13,12 @@ Feature: As a user, I should be able to access detailed information about the us
     * The api user verifies that the message information in the response body is "success"
 
 
-  Scenario:/api/customerGetUser endpoint'ine gecerli authorization bilgileri ile bir GET request gönderildiginde
-  dönen response body'deki datalarin (first_name, last_name, email) sisteme giris yapan kullanici
-  bilgileri ile ayni oldugu dogrulanmali.
-  (/api/register endpoint'inde register olurken request body'de yazdığımız değerler ile
-  /api/customerGetUser endpoint'inde dönen response body'deki (first_name, last_name, email) kullanici
-  bilgilerinin ayni olduğu doğrulanmali.)
+  Scenario:When a GET request is sent to the /api/customerGetUser endpoint with valid authorization credentials, the
+  data returned in the response body (first_name, last_name, email) should be validated to match the information
+  of the user who logged into the system.
+  (The values provided in the request body during registration at the /api/register endpoint should match the
+  user information (first_name, last_name, email) returned in the response body at the /api/customerGetUser
+  endpoint.).
 
     * The api user constructs the base url with the "customer" token.
     * The api user sets "api/customerGetUser" path parameters
