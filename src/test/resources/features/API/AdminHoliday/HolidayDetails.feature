@@ -8,7 +8,7 @@ Feature: As an administrator, I should be able to access detailed information ab
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayDetails" path parameters
-    * The api user prepares a GET request containing the holiday "<id>" for which details are to be accessed, to send to the api holidayDetails endpoint.
+    * The api user prepares a GET request containing the holiday <id> for which details are to be accessed, to send to the api holidayDetails endpoint.
     # Api kullanicisi api holidayDetails endpointine gondermek icin detaylarina erisilmek istenen holiday idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api holidayDetails endpoint.
     # Api kullanicisi get request gonderir ve api holidayDetails endpointinden donen responsei kaydeder
@@ -27,7 +27,7 @@ Feature: As an administrator, I should be able to access detailed information ab
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayDetails" path parameters
-    * The api user prepares a GET request containing the holiday "<id>" for which details are to be accessed, to send to the api holidayDetails endpoint.
+    * The api user prepares a GET request containing the holiday <id> for which details are to be accessed, to send to the api holidayDetails endpoint.
     # Api kullanicisi api holidayDetails endpointine gondermek icin detaylarina erisilmek istenen holiday idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api holidayDetails endpoint.
     # Api kullanicisi get request gonderir ve api holidayDetails endpointinden donen responsei kaydeder
@@ -59,7 +59,7 @@ Feature: As an administrator, I should be able to access detailed information ab
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/holidayDetails" path parameters
-    * The api user prepares a GET request containing the holiday "<id>" for which details are to be accessed, to send to the api holidayDetails endpoint.
+    * The api user prepares a GET request containing the holiday <id> for which details are to be accessed, to send to the api holidayDetails endpoint.
     # Api kullanicisi api holidayDetails endpointine gondermek icin detaylarina erisilmek istenen holiday idsini iceren bir get request hazirlar
     * The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi api holidayDetails endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular

@@ -71,10 +71,10 @@ Feature: As an administrator, I want to be able to update the information of the
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/faqsUpdate/16" path parameters
+    * The api user sets "api/faqsUpdate/18" path parameters
     # APi kullanicisi "api/faqsUpdate/{id}" path parametrelerini olusturur
-    * The api user prepares a PATCH request containing the title information to send to the api faqsUpdate endpoint.
-    # Api kullanicisi api faqsUpdate endpointine gondermek icin title bilgisini iceren bir patch request hazirlar
+    * The api user prepares a PATCH request containing the title and description information to send to the api faqsUpdate endpoint.
+    # Api kullanicisi api faqsUpdate endpointine gondermek icin title ve description bilgilerini iceren bir patch request hazirlar
     * The api user sends the PATCH request and saves the response returned from the api faqsUpdate endpoint.
     # Api kullanicisi patch request gonderir ve api faqsUpdate endpointinden donen responsei kaydeder
     * The api user verifies that the updated id information in the response body matches the id path parameter specified in the endpoint.
@@ -88,7 +88,7 @@ Feature: As an administrator, I want to be able to update the information of the
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/faqsDetails" path parameters
-    * The api user prepares a GET request containing the FAQ "<id>" for which details are to be accessed, to send to the api faqsDetails endpoint.
+    * The api user prepares a GET request containing the FAQ <id> for which details are to be accessed, to send to the api faqsDetails endpoint.
     # Api kullanicisi api faqsDetails endpointine gondermek icin detaylarina erisilmek istenen faqs idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api faqsDetails endpoint.
     # Api kullanicisi get request gonderir ve api faqsDetails endpointinden donen responsei kaydeder
@@ -97,7 +97,7 @@ Feature: As an administrator, I want to be able to update the information of the
 
 
     Examples:
-      | id | titleValue                                |
+      | id | titleValue                           |
       | 16 | How do I know when my order is here? |
       | 18 | How do I know when my order is here? |
 

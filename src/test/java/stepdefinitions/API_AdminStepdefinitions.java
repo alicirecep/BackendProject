@@ -41,8 +41,8 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //******************************************* api/get-user *******************************************************
-    @Given("The api user prepares a GET request containing the customer {string} for which details are to be accessed, to send to the api get User endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_customer_for_which_details_are_to_be_accessed_to_send_to_the_api_get_user_endpoint(String id) {
+    @Given("The api user prepares a GET request containing the customer {int} for which details are to be accessed, to send to the api get User endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_customer_for_which_details_are_to_be_accessed_to_send_to_the_api_get_user_endpoint(int id) {
         requestJsonObject = new JSONObject();
         requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
@@ -111,8 +111,8 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //****************************************** api/holidayDetails **************************************************
-    @Given("The api user prepares a GET request containing the holiday {string} for which details are to be accessed, to send to the api holidayDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_holiday_for_which_details_are_to_be_accessed_to_send_to_the_api_holiday_details_endpoint(String id) {
+    @Given("The api user prepares a GET request containing the holiday {int} for which details are to be accessed, to send to the api holidayDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_holiday_for_which_details_are_to_be_accessed_to_send_to_the_api_holiday_details_endpoint(int id) {
         requestJsonObject = new JSONObject();
         requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
@@ -134,7 +134,6 @@ public class API_AdminStepdefinitions {
         assertEquals(date, jsonPath.getString("holiday details[0].date"));
         assertEquals(created_at, jsonPath.getString("holiday details[0].created_at"));
         assertEquals(updated_at, jsonPath.getString("holiday details[0].updated_at"));
-
     }
 
     @Given("The api user prepares a GET request containing the holiday ids that are not present in the system to send to the api holidayDetails endpoint.")
@@ -274,8 +273,8 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //******************************************* api/faqsDetails ****************************************************
-    @Given("The api user prepares a GET request containing the FAQ {string} for which details are to be accessed, to send to the api faqsDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_faq_for_which_details_are_to_be_accessed_to_send_to_the_api_faqs_details_endpoint(String id) {
+    @Given("The api user prepares a GET request containing the FAQ {int} for which details are to be accessed, to send to the api faqsDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_faq_for_which_details_are_to_be_accessed_to_send_to_the_api_faqs_details_endpoint(int id) {
         requestJsonObject = new JSONObject();
         requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
@@ -361,7 +360,6 @@ public class API_AdminStepdefinitions {
     @Given("The api user saves the response returned from the api faqsUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_faqs_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
         assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
-
     }
 
     @Given("The api user verifies that the updated id information in the response body matches the id path parameter specified in the endpoint.")
@@ -375,10 +373,10 @@ public class API_AdminStepdefinitions {
     }
 
     @Given("The api user verifies that the title information in the response body is {string}.")
-    public void the_api_user_verifies_that_the_title_information_in_the_response_body_is(String title) {
+    public void the_api_user_verifies_that_the_title_information_in_the_response_body_is(String titleValue) {
         jsonPath = API_Methods.response.jsonPath();
 
-        assertEquals(title, jsonPath.getString("Faqs details[0].title"));
+        assertEquals(titleValue, jsonPath.getString("Faqs details[0].title"));
     }
     // ***************************************************************************************************************
 
@@ -436,6 +434,130 @@ public class API_AdminStepdefinitions {
     @Given("The api user saves the response returned from the api refundReasonList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_list_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
         assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+    }
+    // ***************************************************************************************************************
+
+    //************************************** api/refundReasonDetails *************************************************
+    @Given("The api user prepares a GET request containing the refund reason {int} for which details are to be accessed, to send to the api refundReasonDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_refund_reason_for_which_details_are_to_be_accessed_to_send_to_the_api_refund_reason_details_endpoint(int id) {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user sends a GET request and saves the response returned from the api refundReasonDetails endpoint.")
+    public void the_api_user_sends_a_get_request_and_saves_the_response_returned_from_the_api_refund_reason_details_endpoint() {
+        API_Methods.getBodyResponse(requestJsonObject.toString());
+    }
+
+    @Given("The api user verifies the content of the data {int}, {string}, {string}, {string} in the response body.")
+    public void the_api_user_verifies_the_content_of_the_data_in_the_response_body(int id, String reason, String created_at, String updated_at) {
+        jsonPath = API_Methods.response.jsonPath();
+
+        assertEquals(id, jsonPath.getInt("refund Reason details[0].id"));
+        assertEquals(reason, jsonPath.getString("refund Reason details[0].reason"));
+        assertEquals(created_at, jsonPath.getString("refund Reason details[0].created_at"));
+        assertEquals(updated_at, jsonPath.getString("refund Reason details[0].updated_at"));
+    }
+
+    @Given("The api user prepares a GET request containing the refund reason ids that are not present in the system to send to the api refundReasonDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_refund_reason_ids_that_are_not_present_in_the_system_to_send_to_the_api_refund_reason_details_endpoint() {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", 256);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user saves the response returned from the api refundReasonDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 404, reason phrase: Not Found"));
+    }
+
+    @Given("The api user saves the response returned from the api refundReasonDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 401, reason phrase: Unauthorized"));
+    }
+    // ***************************************************************************************************************
+
+    //****************************************** api/refundReasonAdd *************************************************
+    @Given("The api user prepares a POST request containing the necessary information to send to the api refundReasonAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_necessary_information_to_send_to_the_api_refund_reason_add_endpoint() {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("reason", "product mismatch");
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user sends the POST request and saves the response returned from the api refundReasonAdd endpoint.")
+    public void the_api_user_sends_the_post_request_and_saves_the_response_returned_from_the_api_refund_reason_add_endpoint() {
+        API_Methods.postResponse(requestJsonObject.toString());
+    }
+    // ***************************************************************************************************************
+
+    //************************************** api/refundReasonUpdate/{id} *********************************************
+    @Given("The api user prepares a PATCH request containing the necessary data to send to the api refundReasonUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_necessary_data_to_send_to_the_api_refund_reason_update_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("reason", "Product arrived lately");
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user sends the PATCH request and saves the response returned from the api refundReasonUpdate endpoint.")
+    public void the_api_user_sends_the_patch_request_and_saves_the_response_returned_from_the_api_refund_reason_update_endpoint() {
+        API_Methods.patchResponse(requestMap);
+    }
+
+    @Given("The api user saves the response returned from the api refundReasonUpdate endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 404, reason phrase: Not Found"));
+    }
+
+    @Given("The api user saves the response returned from the api refundReasonUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+    }
+
+    @Given("The api user verifies that the reason information in the response body is {string}.")
+    public void the_api_user_verifies_that_the_reason_information_in_the_response_body_is(String reasonValue) {
+        jsonPath = API_Methods.response.jsonPath();
+
+        assertEquals(reasonValue, jsonPath.getString("refund Reason details[0].reason"));
+    }
+    // ***************************************************************************************************************
+
+    //***************************************** api/refundReasonDelete ***********************************************
+    @Given("The api user prepares a DELETE request containing the refund reason ids to be deleted to send to the api refundReasonDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_refund_reason_ids_to_be_deleted_to_send_to_the_api_refund_reason_delete_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("id", 15);
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user sends the DELETE request and saves the response returned from the api refundReasonDelete endpoint.")
+    public void the_api_user_sends_the_delete_request_and_saves_the_response_returned_from_the_api_refund_reason_delete_endpoint() {
+        API_Methods.deleteResponse(requestMap);
+    }
+
+    @Given("The api user prepares a DELETE request containing the refund reason ids that are not present in the system to send to the api refundReasonDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_refund_reason_ids_that_are_not_present_in_the_system_to_send_to_the_api_refund_reason_delete_endpoint() {
+        requestMap = new HashMap<>();
+        requestMap.put("id", 356);
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user saves the response returned from the api refundReasonDelete endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 404, reason phrase: Not Found"));
+    }
+
+    @Given("The api user saves the response returned from the api refundReasonDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+    }
+
+    @Given("The api user prepares a GET request containing the Deleted id to send to the api refundReasonDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_refund_reason_details_endpoint() {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", 15);
+        System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
 }

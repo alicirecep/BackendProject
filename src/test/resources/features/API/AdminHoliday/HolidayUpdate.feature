@@ -6,7 +6,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/holidayUpdate/26" path parameters
+    * The api user sets "api/holidayUpdate/39" path parameters
     # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the updated holiday data to send to the api holidayUpdate endpoint.
     # Api kullanicisi api holidayUpdate endpointine gondermek icin güncel holiday verilerini iceren bir patch request hazirlar

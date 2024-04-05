@@ -28,7 +28,7 @@ Feature: As an administrator, I want to access the Refund & Reason List through 
       | 1         | Product defactive   |
       | 2         | Order wrong product |
 
-  @API
+
   Scenario: When a GET request with invalid authorization information is sent to the /api/refundReasonList endpoint, it
   should be verified that the returned status code is 401, and the message in the response body is "Unauthenticated.".
 

@@ -7,7 +7,7 @@ Feature: As an administrator, I want to be able to access the details of the FAQ
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/faqsDetails" path parameters
-    * The api user prepares a GET request containing the FAQ "<id>" for which details are to be accessed, to send to the api faqsDetails endpoint.
+    * The api user prepares a GET request containing the FAQ <id> for which details are to be accessed, to send to the api faqsDetails endpoint.
     # Api kullanicisi api faqsDetails endpointine gondermek icin detaylarina erisilmek istenen faqs idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api faqsDetails endpoint.
     # Api kullanicisi get request gonderir ve api faqsDetails endpointinden donen responsei kaydeder
@@ -27,7 +27,7 @@ Feature: As an administrator, I want to be able to access the details of the FAQ
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/faqsDetails" path parameters
-    * The api user prepares a GET request containing the FAQ "<id>" for which details are to be accessed, to send to the api faqsDetails endpoint.
+    * The api user prepares a GET request containing the FAQ <id> for which details are to be accessed, to send to the api faqsDetails endpoint.
     # Api kullanicisi api faqsDetails endpointine gondermek icin detaylarina erisilmek istenen faqs id iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api faqsDetails endpoint.
     # Api kullanicisi get request gonderir ve api faqsDetails endpointinden donen responsei kaydeder
@@ -60,7 +60,7 @@ Feature: As an administrator, I want to be able to access the details of the FAQ
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/faqsDetails" path parameters
-    * The api user prepares a GET request containing the FAQ "<id>" for which details are to be accessed, to send to the api faqsDetails endpoint.
+    * The api user prepares a GET request containing the FAQ <id> for which details are to be accessed, to send to the api faqsDetails endpoint.
     # Api kullanicisi api faqsDetails endpointine gondermek icin detaylarina erisilmek istenen faqs idsini iceren bir get request hazirlar
     * The api user saves the response returned from the api faqsDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi api faqsDetails endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular

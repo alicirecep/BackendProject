@@ -8,7 +8,7 @@ Feature: As an administrator, I should be able to access detailed information of
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/get-user" path parameters
-    * The api user prepares a GET request containing the customer "<id>" for which details are to be accessed, to send to the api get User endpoint.
+    * The api user prepares a GET request containing the customer <id> for which details are to be accessed, to send to the api get User endpoint.
     # Api kullanicisi api get user endpointine gondermek icin detaylarina erisilmek istenen customer idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api get User endpoint.
     # Api kullanicisi get request gonderir ve api get user endpointinden donen responsei kaydeder
@@ -28,7 +28,7 @@ Feature: As an administrator, I should be able to access detailed information of
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/get-user" path parameters
-    * The api user prepares a GET request containing the customer "<id>" for which details are to be accessed, to send to the api get User endpoint.
+    * The api user prepares a GET request containing the customer <id> for which details are to be accessed, to send to the api get User endpoint.
     # Api kullanicisi api get user endpointine gondermek icin detaylarina erisilmek istenen customer idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api get User endpoint.
     # Api kullanicisi get request gonderir ve api get user endpointinden donen responsei kaydeder
@@ -60,7 +60,7 @@ Feature: As an administrator, I should be able to access detailed information of
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/get-user" path parameters
-    * The api user prepares a GET request containing the customer "<id>" for which details are to be accessed, to send to the api get User endpoint.
+    * The api user prepares a GET request containing the customer <id> for which details are to be accessed, to send to the api get User endpoint.
     # Api kullanicisi api get user endpointine gondermek icin detaylarina erisilmek istenen customer idsini iceren bir get request hazirlar
     * The api user saves the response returned from the api get User endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi api get user endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
