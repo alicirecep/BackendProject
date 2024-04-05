@@ -47,11 +47,6 @@ public class DB_Stepdefinitions {
     public void insert_data_to_the_cities_table() throws SQLException {
         query = manage.getDataOfCity();
         preparedStatement = JDBCMethods.getPraperedStatement(query);
-
-        System.out.println(db.getId());
-       // city = faker.address().cityName().toLowerCase();
-        System.out.println(db.getCity());
-
         // PreparedStatement nesneniz varsa
         preparedStatement.setInt(1, db.getId());
         //cityName
