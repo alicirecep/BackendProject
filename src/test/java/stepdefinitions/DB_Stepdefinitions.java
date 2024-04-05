@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import com.github.javafaker.Faker;
+import helperDB.DB_Cons;
 import io.cucumber.java.en.Given;
 import manage.Manage;
 import utilities.DB_Utilities.JDBCMethods;
@@ -17,9 +18,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class DB_Stepdefinitions {
-
     Manage manage = new Manage();
-    //DB_Cons db=  new DB_Cons();
+    DB_Cons db=  new DB_Cons();
     String query;
     PreparedStatement preparedStatement;
     ResultSet rs;
@@ -47,21 +47,16 @@ public class DB_Stepdefinitions {
     public void insert_data_to_the_cities_table() throws SQLException {
         query = manage.getDataOfCity();
         preparedStatement = JDBCMethods.getPraperedStatement(query);
-
-        // System.out.println(db.getId());
-       // city = faker.address().cityName().toLowerCase();
-        //  System.out.println(db.getCity());
-
         // PreparedStatement nesneniz varsa
-        // preparedStatement.setInt(1, db.getId());
+        preparedStatement.setInt(1, db.getId());
         //cityName
-       // preparedStatement.setString(2,db.getCity());
-       // //state_id
-       // preparedStatement.setInt(3, 1);
-       // //status
-       // preparedStatement.setInt(4, 1);
-       // //created_at
-       // preparedStatement.setTimestamp(5, Timestamp.from(instant));
+        preparedStatement.setString(2,db.getCity());
+        //state_id
+        preparedStatement.setInt(3, 1);
+        //status
+        preparedStatement.setInt(4, 1);
+        //created_at
+        preparedStatement.setTimestamp(5, Timestamp.from(instant));
 
     }
 
@@ -89,8 +84,8 @@ public class DB_Stepdefinitions {
     public void delete_city_to_the_cities_table() throws SQLException {
         query= manage.getDeleteDataOfCity();
         preparedStatement=JDBCMethods.getPraperedStatement(query);
-       // preparedStatement.setInt(1,db.getId());
-       // preparedStatement.setString(2,db.getCity());
+        preparedStatement.setInt(1,db.getId());
+        preparedStatement.setString(2,db.getCity());
     }
     /**US_04_05 contacts tablosunda (id,name,email,query_type,message) bilgileri iceren bir veri eklenir. */
     @Given("Insert data to the contacts table")
@@ -98,34 +93,34 @@ public class DB_Stepdefinitions {
 
         query= manage.getInsertDataOfContactsTable();
         preparedStatement=JDBCMethods.getPraperedStatement(query);
-       // id=faker.number().numberBetween(900,9000);
-       // preparedStatement.setInt(1,db.getId());
-       // preparedStatement.setString(2,db.getUsername());
-       // preparedStatement.setString(3,db.getEmail());
-       // preparedStatement.setInt(4,db.getQuery_type());
-       // preparedStatement.setString(5, db.getMessage());
+        // id=faker.number().numberBetween(900,9000);
+        preparedStatement.setInt(1,db.getId());
+        preparedStatement.setString(2,db.getUsername());
+        preparedStatement.setString(3,db.getEmail());
+        preparedStatement.setInt(4,db.getQuery_type());
+        preparedStatement.setString(5, db.getMessage());
     }
     /**US_04 message bilgisini update ediniz.     */
     @Given("Update message data to the contacts table")
     public void update_message_data_to_the_contacts_table() throws SQLException {
         query= manage.getUpdateDataOfContactsTable();
         preparedStatement=JDBCMethods.getPraperedStatement(query);
-       // preparedStatement.setString(1,db.getMessage());
-       // preparedStatement.setInt(2,db.getId());
+        preparedStatement.setString(1,db.getMessage());
+        preparedStatement.setInt(2,db.getId());
     }
 
     /** US_05 contacts tablosunda email bilgisi girerek siliniz */
 
     @Given("Delete data to the contacts table")
     public void delete_data_to_the_contacts_table() throws SQLException {
-    query=manage.getDeleteDataOfContactsTable();
-    preparedStatement=JDBCMethods.getPraperedStatement(query);
-        // preparedStatement.setString(1,db.getEmail());
+        query=manage.getDeleteDataOfContactsTable();
+        preparedStatement=JDBCMethods.getPraperedStatement(query);
+        preparedStatement.setString(1,db.getEmail());
 
     }
 
     /** US_06coupon_products tablosunu coupon_id'ye göre gruplayarak her kupon için kaç ürün olduğunu bulunuz.
-*/
+     */
     @Given("Query is prepared and executed in the database for coupon_products table by coupon_id groups")
     public void query_is_prepared_and_executed_in_the_database_for_coupon_products_table_by_coupon_id_groups() throws SQLException {
         query=manage.getCouponProducts();
@@ -161,7 +156,7 @@ public class DB_Stepdefinitions {
         }
 
         for (int i = 0; i <processesName.size() ; i++) {
-           assertEquals(expectedName.get(i),processesName.get(i));
+            assertEquals(expectedName.get(i),processesName.get(i));
         }
     }
     @Given("Query is prepared and executed in the database for the log_activity table")
@@ -179,15 +174,15 @@ public class DB_Stepdefinitions {
     /**US_10 order_address_details tablosunda ' shipping_address ' ile ' billing_address' i aynı olmayan kullanicilarin sayisini dogrulayiniz.*/
     @Given("Query is prepared and executed in the database for the order_address_details table")
     public void query_is_prepared_and_executed_in_the_database_for_the_order_address_details_table() throws SQLException {
-       query=manage.getOrder_address_detailsTable();
-       rs=JDBCMethods.getStatement().executeQuery(query);
+        query=manage.getOrder_address_detailsTable();
+        rs=JDBCMethods.getStatement().executeQuery(query);
     }
     @Given("Verify the adresses details aren't the same")
     public void verify_the_adresses_details_aren_t_the_same() throws SQLException {
-       rs.next();
-       int count= rs.getInt(1);
+        rs.next();
+        int count= rs.getInt(1);
         System.out.println(count);
-       //assertEquals(2,count);
+        //assertEquals(2,count);
     }
 
 
