@@ -46,8 +46,8 @@ Feature: As an administrator, I want to be able to delete the record specified b
     # Api kullanicisi api faqsDelete endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
 
-  Scenario: The Deleted Id information returned in the response body from the /api/faqsDelete endpoint should be verified to
-  be identical to the id information contained in the DELETE request body sent to the /api/faqsDelete endpoint
+  Scenario: The Deleted_Id information returned in the response body from the /api/faqsDelete endpoint should be verified to
+  be identical to the id information contained in the DELETE request body sent to the /api/faqsDelete endpoint.
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
@@ -60,10 +60,10 @@ Feature: As an administrator, I want to be able to delete the record specified b
     * The api user verifies that the Deleted id information in the response body is the same as the id information in the request body.
     # Api kullanicisi response body icindeki Deleted Id bilgisinin request body icindeki id bilgisi ile ayni oldugu dogrular
 
-  @API
+
   Scenario: The deletion of the desired FAQ record via the API should be verified within the API itself.
   (The deletion of the record can be verified by sending a GET request to the /api/faqsDetails endpoint with the
-  Deleted Id returned in the response body.)
+  Deleted_Id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur

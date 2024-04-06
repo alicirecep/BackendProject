@@ -36,7 +36,7 @@ Feature: As an administrator, I want to be able to access the details of the FAQ
 
     Examples:
       | id | id | title                                | description                                                                 | status | created_at                  | updated_at                  |
-      | 2  | 2  | How do I know when my order is here? | A representative will call you                                              | 1      | 2024-01-22T23:18:58.000000Z | 2024-01-22T23:18:58.000000  |
+      | 2  | 2  | How do I know when my order is here? | A representative will call you                                              | 1      | 2024-01-22T23:18:58.000000Z | 2024-01-22T23:18:58.000000Z |
       | 4  | 4  | What if the item is out of stock?    | We hold our own inventory in our warehouses, so we rarely run out of stock. | 1      | 2024-01-22T23:18:58.000000Z | 2024-01-22T23:18:58.000000Z |
 
 

@@ -6,7 +6,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/holidayUpdate/39" path parameters
+    * The api user sets "api/holidayUpdate/43" path parameters
     # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the updated holiday data to send to the api holidayUpdate endpoint.
     # Api kullanicisi api holidayUpdate endpointine gondermek icin güncel holiday verilerini iceren bir patch request hazirlar
@@ -54,3 +54,42 @@ Feature: As an administrator, I want to be able to update holiday information fo
     # Api kullanicisi status codeun 404 oldugunu dogrular
     * The api user verifies that the message information in the response body is "holiday not found"
     # Api kullanicisi response bodydeki message bilgisinin "holiday not found" oldugunu dogrular
+
+
+  Scenario: When a PATCH request containing invalid authorization credentials, the holiday id to be updated, and the
+  updated holiday data (year, name, date) is sent to the /api/holidayUpdate/{id} endpoint, the expected status
+  code returned should be 401, and the message in the response body should confirm: "Unauthenticated.".
+
+    * The api user constructs the base url with the "invalid" token.
+    # APi kullanicisi "invalid" token ile base urli olusturur
+    * The api user sets "api/holidayUpdate/43" path parameters
+    # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
+    * The api user prepares a PATCH request containing the updated holiday data to send to the api holidayUpdate endpoint.
+    # Api kullanicisi api holidayUpdate endpointine gondermek icin güncel holiday verilerini iceren bir patch request hazirlar
+    * The api user saves the response returned from the api holidayUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
+    # Api kullanicisi api holidayUpdate endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
+
+  @API
+  Scenario: The updated_Id information in the response body returned from the /api/holidayUpdate/{id} endpoint should be
+  verified to be the same as the id path parameter specified in the /api/holidayUpdate/{id} endpoint.
+
+    * The api user constructs the base url with the "admin" token.
+    # APi kullanicisi "admin" token ile base urli olusturur
+    * The api user sets "api/holidayUpdate/43" path parameters
+    # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
+    * The api user prepares a PATCH request containing the updated holiday data to send to the api holidayUpdate endpoint.
+    # Api kullanicisi api holidayUpdate endpointine gondermek icin güncel holiday verilerini iceren bir patch request hazirlar
+    * The api user sends the PATCH request and saves the response returned from the api holidayUpdate endpoint.
+    # Api kullanicisi patch request gonderir ve api holidayUpdate endpointinden donen responsei kaydeder
+    * The api user verifies that the updated id information in the response body matches the id path parameter specified in the endpoint.
+    # Api kullanicisi response body icindeki updated Id bilgisinin endpointde yazan id path parametresi ile ayni oldugu dogrular
+
+
+  Scenario: The update of the holiday record via the API should be confirmed through the API itself.
+  (The update of the record can be verified by sending a GET request to the /api/holidayDetails endpoint with the
+  updated_Id returned in the response body.)
+
+
+
+
+
