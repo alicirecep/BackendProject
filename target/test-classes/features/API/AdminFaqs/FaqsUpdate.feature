@@ -25,7 +25,7 @@ Feature: As an administrator, I want to be able to update the information of the
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/faqsUpdate/22" path parameters
+    * The api user sets "api/faqsUpdate/23" path parameters
     # APi kullanicisi "api/faqsUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the title and description information to send to the api faqsUpdate endpoint.
     # Api kullanicisi api faqsUpdate endpointine gondermek icin title ve description bilgilerini iceren bir patch request hazirlar

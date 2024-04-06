@@ -184,8 +184,8 @@ public class API_AdminStepdefinitions {
     public void the_api_user_prepares_a_patch_request_containing_the_updated_holiday_data_to_send_to_the_api_holiday_update_endpoint() {
         requestMap = new HashMap<>();
         requestMap.put("year", "2025");
-        requestMap.put("name", "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı");
-        requestMap.put("date", "2025-04-23");
+        requestMap.put("name", "Noel");
+        requestMap.put("date", "2025-01-01");
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -198,9 +198,14 @@ public class API_AdminStepdefinitions {
     public void the_api_user_prepares_a_patch_request_containing_the_holiday_data_that_matches_the_previous_records_to_send_to_the_api_holiday_update_endpoint() {
         requestMap = new HashMap<>();
         requestMap.put("year", "2025");
-        requestMap.put("name", "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı");
+        requestMap.put("name", "23 Nisan Ulusal Egemenlik ve Cocuk Bayram");
         requestMap.put("date", "2025-04-23");
         System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user saves the response returned from the api holidayUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_holiday_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
     }
     // ***************************************************************************************************************
 
