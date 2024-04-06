@@ -65,7 +65,6 @@ public class API_RegisterCustomerStepdefinitions {
         requestBody.put("password_confirmation", "123123123");
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
-        System.out.println("requestBody : " + requestBody);
         System.out.println("Request Body : " + requestBody);
     }
 
