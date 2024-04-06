@@ -7,7 +7,7 @@ Feature: As an administrator, I want to be able to update the Refund&Reason info
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/refundReasonUpdate/7" path parameters
+    * The api user sets "api/refundReasonUpdate/18" path parameters
     # APi kullanicisi "api/refundReasonUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the necessary data to send to the api refundReasonUpdate endpoint.
     # Api kullanicisi api refundReasonUpdate endpointine gondermek icin gerekli veriyi iceren bir patch request hazirlar
@@ -41,7 +41,7 @@ Feature: As an administrator, I want to be able to update the Refund&Reason info
 
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
-    * The api user sets "api/refundReasonUpdate/7" path parameters
+    * The api user sets "api/refundReasonUpdate/18" path parameters
     # APi kullanicisi "api/refundReasonUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the necessary data to send to the api refundReasonUpdate endpoint.
     # Api kullanicisi api refundReasonUpdate endpointine gondermek icin gerekli veriyi iceren bir patch request hazirlar
@@ -49,12 +49,12 @@ Feature: As an administrator, I want to be able to update the Refund&Reason info
     # Api kullanicisi api refundReasonUpdate endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
 
-  Scenario: The updated Id information in the response body from the /api/refundReasonUpdate/{id} endpoint should be
-  verified to be identical to the 'id' path parameter specified in the /api/refundReasonUpdate/{id} endpoint.
+  Scenario: The updated_Id information in the response body from the /api/refundReasonUpdate/{id} endpoint should be
+  verified to be identical to the id path parameter specified in the /api/refundReasonUpdate/{id} endpoint.
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/refundReasonUpdate/7" path parameters
+    * The api user sets "api/refundReasonUpdate/18" path parameters
     # APi kullanicisi "api/refundReasonUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the necessary data to send to the api refundReasonUpdate endpoint.
     # Api kullanicisi api refundReasonUpdate endpointine gondermek icin gerekli veriyi iceren bir patch request hazirlar
@@ -66,7 +66,7 @@ Feature: As an administrator, I want to be able to update the Refund&Reason info
 
   Scenario Outline: The update of the desired Refund&Reason record via the API should be validated from the API.
   (The update of the record can be confirmed by sending a GET request to the /api/refundReasonDetails endpoint
-  with the updated Id returned in the response body.)
+  with the updated_Id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
@@ -80,7 +80,7 @@ Feature: As an administrator, I want to be able to update the Refund&Reason info
 
     Examples:
       | id | reasonValue            |
-      | 7  | Product arrived lately |
+      | 18 | Product arrived lately |
 
 
 

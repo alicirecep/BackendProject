@@ -20,7 +20,7 @@ Feature: As an administrator, I want to add a new holiday record for staff via A
 
   Scenario Outline: The creation of the new holiday record via the API should be verified through the API itself.
   (The creation of the new holiday record can be confirmed by sending a GET request to the /api/holidayDetails
-  endpoint with the added item id returned in the response body.)
+  endpoint with the added_item_id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur

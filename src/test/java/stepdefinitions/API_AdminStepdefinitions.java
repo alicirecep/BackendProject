@@ -127,13 +127,13 @@ public class API_AdminStepdefinitions {
     public void the_api_user_verifies_the_content_of_the_data_in_the_response_body(int id, String year, String name, int type, String date, String created_at, String updated_at) {
         jsonPath = API_Methods.response.jsonPath();
 
-        assertEquals(id, jsonPath.getInt("holiday details[0].id"));
-        assertEquals(year, jsonPath.getString("holiday details[0].year"));
-        assertEquals(name, jsonPath.getString("holiday details[0].name"));
-        assertEquals(type, jsonPath.getInt("holiday details[0].type"));
-        assertEquals(date, jsonPath.getString("holiday details[0].date"));
-        assertEquals(created_at, jsonPath.getString("holiday details[0].created_at"));
-        assertEquals(updated_at, jsonPath.getString("holiday details[0].updated_at"));
+        assertEquals(id, jsonPath.getInt("holidayDetails[0].id"));
+        assertEquals(year, jsonPath.getString("holidayDetails[0].year"));
+        assertEquals(name, jsonPath.getString("holidayDetails[0].name"));
+        assertEquals(type, jsonPath.getInt("holidayDetails[0].type"));
+        assertEquals(date, jsonPath.getString("holidayDetails[0].date"));
+        assertEquals(created_at, jsonPath.getString("holidayDetails[0].created_at"));
+        assertEquals(updated_at, jsonPath.getString("holidayDetails[0].updated_at"));
     }
 
     @Given("The api user prepares a GET request containing the holiday ids that are not present in the system to send to the api holidayDetails endpoint.")
@@ -208,7 +208,7 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a DELETE request containing the holiday ids to be deleted to send to the api holidayDelete endpoint.")
     public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_to_be_deleted_to_send_to_the_api_holiday_delete_endpoint() {
         requestMap = new HashMap<>();
-        requestMap.put("id", 38);
+        requestMap.put("id", 42);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -239,7 +239,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_verifies_that_the_deleted_id_information_in_the_response_body_is_the_same_as_the_id_information_in_the_request_body() {
         responseMap = API_Methods.response.as(HashMap.class);
 
-        double responseValue = (double) responseMap.get("Deleted Id");
+        double responseValue = (double) responseMap.get("Deleted_Id");
         int deletedId = (int) responseValue;
 
         assertEquals(requestMap.get("id"), deletedId);
@@ -248,7 +248,7 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a GET request containing the Deleted id to send to the api holidayDetails endpoint.")
     public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_holiday_details_endpoint() {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 37);
+        requestJsonObject.put("id", 42);
         System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
@@ -289,13 +289,13 @@ public class API_AdminStepdefinitions {
     public void the_api_user_verifies_the_content_of_the_data_in_the_response_body(int id, String title, String description, int status, String created_at, String updated_at) {
         jsonPath = API_Methods.response.jsonPath();
 
-        assertEquals(id, jsonPath.getInt("Faqs details[0].id"));
-        assertNull(jsonPath.get("Faqs details[0].user_id"));
-        assertEquals(title, jsonPath.getString("Faqs details[0].title"));
-        assertTrue(jsonPath.getString("Faqs details[0].description").contains(description));
-        assertEquals(status, jsonPath.getInt("Faqs details[0].status"));
-        assertEquals(created_at, jsonPath.getString("Faqs details[0].created_at"));
-        assertEquals(updated_at, jsonPath.getString("Faqs details[0].updated_at"));
+        assertEquals(id, jsonPath.getInt("FaqsDetails[0].id"));
+        assertNull(jsonPath.get("FaqsDetails[0].user_id"));
+        assertTrue(jsonPath.getString("FaqsDetails[0].title").contains(title));
+        assertTrue(jsonPath.getString("FaqsDetails[0].description").contains(description));
+        assertEquals(status, jsonPath.getInt("FaqsDetails[0].status"));
+        assertEquals(created_at, jsonPath.getString("FaqsDetails[0].created_at"));
+        assertEquals(updated_at, jsonPath.getString("FaqsDetails[0].updated_at"));
     }
 
     @Given("The api user prepares a GET request containing the FAQ ids that are not present in the system to send to the api faqsDetails endpoint.")
@@ -366,7 +366,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_verifies_that_the_updated_id_information_in_the_response_body_matches_the_id_path_parameter_specified_in_the_endpoint() {
         responseMap = API_Methods.response.as(HashMap.class);
 
-        double responseValue = (double) responseMap.get("updated Id");
+        double responseValue = (double) responseMap.get("updated_Id");
         int updatedId = (int) responseValue;
 
         assertEquals(id, updatedId);
@@ -376,7 +376,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_verifies_that_the_title_information_in_the_response_body_is(String titleValue) {
         jsonPath = API_Methods.response.jsonPath();
 
-        assertEquals(titleValue, jsonPath.getString("Faqs details[0].title"));
+        assertEquals(titleValue, jsonPath.getString("FaqsDetails[0].title"));
     }
     // ***************************************************************************************************************
 
@@ -384,7 +384,7 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a DELETE request containing the FAQ ids to be deleted to send to the api faqsDelete endpoint.")
     public void the_api_user_prepares_a_delete_request_containing_the_faq_ids_to_be_deleted_to_send_to_the_api_faqs_delete_endpoint() {
         requestMap = new HashMap<>();
-        requestMap.put("id", 20);
+        requestMap.put("id", 22);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -413,7 +413,7 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a GET request containing the Deleted id to send to the api faqsDetails endpoint.")
     public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_faqs_details_endpoint() {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 20);
+        requestJsonObject.put("id", 22);
         System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
@@ -428,7 +428,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_validates_the_of_the_response_body_with_index(String reason, int dataIndex) {
         jsonPath = API_Methods.response.jsonPath();
 
-        assertEquals(reason, jsonPath.getString("refund Reason[" + dataIndex + "].reason"));
+        assertEquals(reason, jsonPath.getString("refundReason[" + dataIndex + "].reason"));
     }
 
     @Given("The api user saves the response returned from the api refundReasonList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
@@ -454,10 +454,10 @@ public class API_AdminStepdefinitions {
     public void the_api_user_verifies_the_content_of_the_data_in_the_response_body(int id, String reason, String created_at, String updated_at) {
         jsonPath = API_Methods.response.jsonPath();
 
-        assertEquals(id, jsonPath.getInt("refund Reason details[0].id"));
-        assertEquals(reason, jsonPath.getString("refund Reason details[0].reason"));
-        assertEquals(created_at, jsonPath.getString("refund Reason details[0].created_at"));
-        assertEquals(updated_at, jsonPath.getString("refund Reason details[0].updated_at"));
+        assertEquals(id, jsonPath.getInt("refundReasonDetails[0].id"));
+        assertEquals(reason, jsonPath.getString("refundReasonDetails[0].reason"));
+        assertEquals(created_at, jsonPath.getString("refundReasonDetails[0].created_at"));
+        assertEquals(updated_at, jsonPath.getString("refundReasonDetails[0].updated_at"));
     }
 
     @Given("The api user prepares a GET request containing the refund reason ids that are not present in the system to send to the api refundReasonDetails endpoint.")
@@ -519,7 +519,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_verifies_that_the_reason_information_in_the_response_body_is(String reasonValue) {
         jsonPath = API_Methods.response.jsonPath();
 
-        assertEquals(reasonValue, jsonPath.getString("refund Reason details[0].reason"));
+        assertEquals(reasonValue, jsonPath.getString("refundReasonDetails[0].reason"));
     }
     // ***************************************************************************************************************
 
@@ -527,7 +527,7 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a DELETE request containing the refund reason ids to be deleted to send to the api refundReasonDelete endpoint.")
     public void the_api_user_prepares_a_delete_request_containing_the_refund_reason_ids_to_be_deleted_to_send_to_the_api_refund_reason_delete_endpoint() {
         requestMap = new HashMap<>();
-        requestMap.put("id", 15);
+        requestMap.put("id", 18);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -556,7 +556,7 @@ public class API_AdminStepdefinitions {
     @Given("The api user prepares a GET request containing the Deleted id to send to the api refundReasonDetails endpoint.")
     public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_refund_reason_details_endpoint() {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 15);
+        requestJsonObject.put("id", 18);
         System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************

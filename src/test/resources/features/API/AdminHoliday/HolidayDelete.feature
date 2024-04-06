@@ -47,7 +47,7 @@ Feature: As an administrator, I want to be able to delete holiday information fo
     # Api kullanicisi api holidayDelete endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
 
-  Scenario: The Deleted Id information in the response body returned from the /api/holidayDelete endpoint should be
+  Scenario: The Deleted_Id information in the response body returned from the /api/holidayDelete endpoint should be
   verified to be the same as the 'id' information in the DELETE request body sent to the /api/holidayDelete endpoint.
 
     * The api user constructs the base url with the "admin" token.
@@ -64,7 +64,7 @@ Feature: As an administrator, I want to be able to delete holiday information fo
 
   Scenario: The deletion of the holiday record via the API should be verified through the API itself.
   (The deletion of the record can be verified by sending a GET request to the /api/holidayDetails endpoint with the
-  Deleted Id returned in the response body.)
+  Deleted_Id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur

@@ -47,8 +47,8 @@ Feature: As an administrator, I want to be able to delete Refund&Reason informat
     # Api kullanicisi api refundReasonDelete endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
 
-  Scenario: The Deleted Id information in the response body from the /api/refundReasonDelete endpoint should be verified
-  to be identical to the 'id' information in the DELETE request body sent to the /api/refundReasonDelete endpoint.
+  Scenario: The Deleted_Id information in the response body from the /api/refundReasonDelete endpoint should be verified
+  to be identical to the id information in the DELETE request body sent to the /api/refundReasonDelete endpoint.
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
@@ -61,10 +61,10 @@ Feature: As an administrator, I want to be able to delete Refund&Reason informat
     * The api user verifies that the Deleted id information in the response body is the same as the id information in the request body.
     # Api kullanicisi response body icindeki Deleted Id bilgisinin request body icindeki id bilgisi ile ayni oldugu dogrular
 
-
+  @API
   Scenario: The deletion of the desired Refund&Reason record via the API should be validated from the API.
   (The deletion of the record can be confirmed by sending a GET request to the /api/refundReasonDetails
-  endpoint with the Deleted Id returned in the response body.)
+  endpoint with the Deleted_Id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur

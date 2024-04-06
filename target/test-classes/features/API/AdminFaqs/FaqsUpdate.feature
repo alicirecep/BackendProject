@@ -25,7 +25,7 @@ Feature: As an administrator, I want to be able to update the information of the
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/faqsUpdate/18" path parameters
+    * The api user sets "api/faqsUpdate/22" path parameters
     # APi kullanicisi "api/faqsUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the title and description information to send to the api faqsUpdate endpoint.
     # Api kullanicisi api faqsUpdate endpointine gondermek icin title ve description bilgilerini iceren bir patch request hazirlar
@@ -58,7 +58,7 @@ Feature: As an administrator, I want to be able to update the information of the
 
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
-    * The api user sets "api/faqsUpdate/18" path parameters
+    * The api user sets "api/faqsUpdate/22" path parameters
     # APi kullanicisi "api/faqsUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the title and description information to send to the api faqsUpdate endpoint.
     # Api kullanicisi api faqsUpdate endpointine gondermek icin title ve description bilgilerini iceren bir patch request hazirlar
@@ -66,12 +66,12 @@ Feature: As an administrator, I want to be able to update the information of the
     # Api kullanicisi api faqsUpdate endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
 
-  Scenario: The updated Id information in the response body from the /api/faqsUpdate/{id} endpoint should be verified to be
+  Scenario: The updated_Id information in the response body from the /api/faqsUpdate/{id} endpoint should be verified to be
   the same as the id path parameter specified in the /api/faqsUpdate/{id} endpoint.
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/faqsUpdate/18" path parameters
+    * The api user sets "api/faqsUpdate/22" path parameters
     # APi kullanicisi "api/faqsUpdate/{id}" path parametrelerini olusturur
     * The api user prepares a PATCH request containing the title and description information to send to the api faqsUpdate endpoint.
     # Api kullanicisi api faqsUpdate endpointine gondermek icin title ve description bilgilerini iceren bir patch request hazirlar
@@ -83,7 +83,7 @@ Feature: As an administrator, I want to be able to update the information of the
 
   Scenario Outline: The update of the FAQ record via the API should be verified through the API itself.
   (The update of the record can be verified by sending a GET request to the /api/faqsDetails endpoint with the
-  updated Id returned in the response body.)
+  updated_Id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
@@ -99,5 +99,5 @@ Feature: As an administrator, I want to be able to update the information of the
     Examples:
       | id | titleValue                           |
       | 16 | How do I know when my order is here? |
-      | 18 | How do I know when my order is here? |
+      | 22 | How do I know when my order is here? |
 
