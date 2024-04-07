@@ -4,15 +4,11 @@ import config_Requirements.ConfigReader;
 import helperDB.*;
 import io.cucumber.java.en.Given;
 import manage.Manage;
-import utilities.DB_Utilities.JDBCMethods;
-
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.*;
-
 import static helperDB.BankAccount.generateBankAccount;
 import static helperDB.BankAccount.setOpening_balance;
 import static helperDB.DeviceToken.generateDeviceTokens;
@@ -117,13 +113,13 @@ public class DB_Stepdefinitions {
         preparedStatement.setString(3, db.getEmail());
         preparedStatement.setInt(4, db.getQuery_type());
 
-        query= manage.getInsertDataOfContactsTable();
-        preparedStatement=JDBCMethods.getPraperedStatement(query);
+        query = manage.getInsertDataOfContactsTable();
+        preparedStatement = getPraperedStatement(query);
         // id=faker.number().numberBetween(900,9000);
-        preparedStatement.setInt(1,db.getId());
-        preparedStatement.setString(2,db.getUsername());
-        preparedStatement.setString(3,db.getEmail());
-        preparedStatement.setInt(4,db.getQuery_type());
+        preparedStatement.setInt(1, db.getId());
+        preparedStatement.setString(2, db.getUsername());
+        preparedStatement.setString(3, db.getEmail());
+        preparedStatement.setInt(4, db.getQuery_type());
 
         preparedStatement.setString(5, db.getMessage());
     }
@@ -157,8 +153,6 @@ public class DB_Stepdefinitions {
 
     /**
      * US_06coupon_products tablosunu coupon_id'ye göre gruplayarak her kupon için kaç ürün olduğunu bulunuz.
-
-   
      */
     @Given("Query is prepared and executed in the database for coupon_products table by coupon_id groups")
     public void query_is_prepared_and_executed_in_the_database_for_coupon_products_table_by_coupon_id_groups() throws SQLException {
@@ -224,6 +218,7 @@ public class DB_Stepdefinitions {
      * US_10 order_address_details tablosunda ' shipping_address ' ile ' billing_address' i aynı olmayan kullanicilarin sayisini dogrulayiniz.
      */
     @Given("Query is prepared and executed in the database for the order_address_details table")
+    public void Query_is_prepared_and_executed_in_the_database_for_the_order_address_details_table() throws SQLException {
 
         query = manage.getOrder_address_detailsTable();
         rs = getStatement().executeQuery(query);
@@ -554,8 +549,8 @@ public class DB_Stepdefinitions {
         query = manage.geteMailTemplateTypes();
         rs = getStatement().executeQuery(query);
 
-=======
-        int count= rs.getInt(1);
+
+        int count = rs.getInt(1);
         System.out.println(count);
         //assertEquals(2,count);
 
@@ -646,10 +641,10 @@ public class DB_Stepdefinitions {
      */
     @Given("Prepare a query that returns data with unique descriptions in the transactions table")
     public void prepare_a_query_that_returns_data_with_unique_descriptions_in_the_transactions_table() throws SQLException {
-     query=manage.getTransactions_distinct_payment_method();
-     rs=getStatement().executeQuery(query);
+        query = manage.getTransactions_distinct_payment_method();
+        rs = getStatement().executeQuery(query);
         List<String> distinctPaymentMethod = new ArrayList<String>();
-        List<String> exp_distinctPaymentMethod = new ArrayList<String>(Arrays.asList("Wallet Recharge by customer" ,"Product Sale" , "ProductWise Tax Inhouse"));
+        List<String> exp_distinctPaymentMethod = new ArrayList<String>(Arrays.asList("Wallet Recharge by customer", "Product Sale", "ProductWise Tax Inhouse"));
         while (rs.next()) {
             String payment_method = rs.getString("description");
             distinctPaymentMethod.add(payment_method);
@@ -659,10 +654,11 @@ public class DB_Stepdefinitions {
         }
 
     }
+
     @Given("Query is prepared listing the unique user_ids of the data")
     public void query_is_prepared_listing_the_unique_user_ids_of_the_data() throws SQLException {
-       query=manage.getSupport_tickets_distince_id();
-       rs=getStatement().executeQuery(query);
+        query = manage.getSupport_tickets_distince_id();
+        rs = getStatement().executeQuery(query);
         List<Integer> Support_tickets_distince = new ArrayList<Integer>();
         while (rs.next()) {
             int user_id = rs.getInt("user_id");
@@ -672,31 +668,32 @@ public class DB_Stepdefinitions {
             assertEquals(18, Support_tickets_distince.size());
         }
     }
-/** Us_29 orders tablosunda ödemesi yapılmış siparişlerin (is_paid =1) ortalama grand_total degerini hesaplayıp dogrulayınız.*/
-@Given("Query is prepared Calculate and verify the average grand_total value of paid orders")
-public void query_is_prepared_calculate_and_verify_the_average_grand_total_value_of_paid_orders() throws SQLException {
-    query=manage.getOrders_is_paid();
-    rs=getStatement().executeQuery(query);
-    //  avg (grand_total)  '179713.22943925235'
-    rs.next();
-    int avgGrandTotal= (int) rs.getDouble("avg(grand_total)");
-    assertEquals(179713,( avgGrandTotal));
-}
-//US_30    carts tablosunda 2024-03-30 tarinden önce  is_buy_now=1 olan ürünlerin toplam bedelini hesaplayınız
-@Given("Query is prepared Calculate and verify the total cost of products")
-public void query_is_prepared_calculate_and_verify_the_total_cost_of_products() throws SQLException {
-   query=manage.getGetOrders_is_buy_now();
-   rs=getStatement().executeQuery(query);
-   rs.next();
-   int sumTotalPrice=rs.getInt("sum(total_price)");
-   assertEquals(9649,sumTotalPrice);
-}
+
+    /**
+     * Us_29 orders tablosunda ödemesi yapılmış siparişlerin (is_paid =1) ortalama grand_total degerini hesaplayıp dogrulayınız.
+     */
+    @Given("Query is prepared Calculate and verify the average grand_total value of paid orders")
+    public void query_is_prepared_calculate_and_verify_the_average_grand_total_value_of_paid_orders() throws SQLException {
+        query = manage.getOrders_is_paid();
+        rs = getStatement().executeQuery(query);
+        //  avg (grand_total)  '179713.22943925235'
+        rs.next();
+        int avgGrandTotal = (int) rs.getDouble("avg(grand_total)");
+        assertEquals(179713, (avgGrandTotal));
+    }
+
+    //US_30    carts tablosunda 2024-03-30 tarinden önce  is_buy_now=1 olan ürünlerin toplam bedelini hesaplayınız
+    @Given("Query is prepared Calculate and verify the total cost of products")
+    public void query_is_prepared_calculate_and_verify_the_total_cost_of_products() throws SQLException {
+        query = manage.getGetOrders_is_buy_now();
+        rs = getStatement().executeQuery(query);
+        rs.next();
+        int sumTotalPrice = rs.getInt("sum(total_price)");
+        assertEquals(9649, sumTotalPrice);
+    }
 
 
-
-
-
- @Given("Database connection is closed")
+    @Given("Database connection is closed")
     public void database_connection_is_closed() {
         closeConnection();
     }
