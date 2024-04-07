@@ -12,7 +12,7 @@ Feature: As a user, I should be able to access the financial information of the 
     * The api user verifies that the message information in the response body is "success"
 
 
-  Scenario: When a GET request is sent to the /api/profile/get-customer-data endpoint with valid authorization credentials,
+  Scenario Outline: When a GET request is sent to the /api/profile/get-customer-data endpoint with valid authorization credentials,
   the data returned in the response body (wallet_running_balance, wallet_pending_balance, total_coupon, total_wishlist,
   total_cancel_order) should be validated.
 
@@ -21,8 +21,12 @@ Feature: As a user, I should be able to access the financial information of the 
     * The api user sets "api/profile/get-customer-data" path parameters
     * The api user saves the response returned from the api profile get customer data endpoint.
     # Api kullanicisi api profile get customer data endpointinden donen responsei kaydeder
-    * The api user verifies the data in the response body returned from the api profile get customer data endpoint.
-    # API kullanıcı api profile get customer data endpointinden donen response bodydeki datalari doğrular.
+    * The api user verifies the content of the data <wallet_running_balance>, <wallet_pending_balance>, <total_coupon>, <total_wishlist>, <total_cancel_order> in the response body.
+    # API kullanicisi response bodydeki data <wallet_running_balance>, <wallet_pending_balance>, <total_coupon>, <total_wishlist>, <total_cancel_order> içeriklerini doğrular.
+
+    Examples:
+      | wallet_running_balance | wallet_pending_balance | total_coupon | total_wishlist | total_cancel_order |
+      | 0                      | 0                      | 0            | 0              | 0                  |
 
 
   Scenario: When a GET request is sent to the /api/profile/get-customer-data endpoint with invalid authorization credentials,

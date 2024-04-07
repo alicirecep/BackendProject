@@ -71,10 +71,10 @@ public class API_AdminStepdefinitions {
                         "user.name", equalTo(name));
     }
 
-    @Given("The api user prepares a GET request containing the incorrect customer id to send to the api get User endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_incorrect_customer_id_to_send_to_the_api_get_user_endpoint() {
+    @Given("The api user prepares a GET request containing the incorrect customer {int} to send to the api get User endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_incorrect_customer_to_send_to_the_api_get_user_endpoint(int id) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 21587);
+        requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
     }
 
@@ -136,10 +136,10 @@ public class API_AdminStepdefinitions {
         assertEquals(updated_at, jsonPath.getString("holidayDetails[0].updated_at"));
     }
 
-    @Given("The api user prepares a GET request containing the holiday ids that are not present in the system to send to the api holidayDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_holiday_ids_that_are_not_present_in_the_system_to_send_to_the_api_holiday_details_endpoint() {
+    @Given("The api user prepares a GET request containing the holiday {int} that are not present in the system to send to the api holidayDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_holiday_that_are_not_present_in_the_system_to_send_to_the_api_holiday_details_endpoint(int id) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 255);
+        requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
     }
 
@@ -155,12 +155,12 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //******************************************** api/holidayAdd ****************************************************
-    @Given("The api user prepares a POST request containing the necessary holiday data to send to the api holidayAdd endpoint.")
-    public void the_api_user_prepares_a_post_request_containing_the_necessary_holiday_data_to_send_to_the_api_holiday_add_endpoint() {
+    @Given("The api user prepares a POST request containing the {string}, {string}, and {string} data to send to the api holidayAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_and_data_to_send_to_the_api_holiday_add_endpoint(String year, String name, String date) {
         requestMap = new HashMap<>();
-        requestMap.put("year", "2024");
-        requestMap.put("name", "29 Ekim Cumhuriyet Bayramı");
-        requestMap.put("date", "2024-10-29");
+        requestMap.put("year", year);
+        requestMap.put("name", name);
+        requestMap.put("date", date);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -169,23 +169,23 @@ public class API_AdminStepdefinitions {
         API_Methods.postResponse(requestMap);
     }
 
-    @Given("The api user prepares a POST request containing the registered holiday data to send to the api holidayAdd endpoint.")
-    public void the_api_user_prepares_a_post_request_containing_the_registered_holiday_data_to_send_to_the_api_holiday_add_endpoint() {
+    @Given("The api user prepares a POST request containing the registered {string}, {string}, and {string} data to send to the api holidayAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_registered_and_data_to_send_to_the_api_holiday_add_endpoint(String year, String name, String date) {
         requestMap = new HashMap<>();
-        requestMap.put("year", "2024");
-        requestMap.put("name", "29 Ekim Cumhuriyet Bayramı");
-        requestMap.put("date", "2024-10-29");
+        requestMap.put("year", year);
+        requestMap.put("name", name);
+        requestMap.put("date", date);
         System.out.println("Request Body : " + requestMap);
     }
     // ***************************************************************************************************************
 
     //******************************************** api/holidayUpdate/{id} ****************************************************
-    @Given("The api user prepares a PATCH request containing the updated holiday data to send to the api holidayUpdate endpoint.")
-    public void the_api_user_prepares_a_patch_request_containing_the_updated_holiday_data_to_send_to_the_api_holiday_update_endpoint() {
+    @Given("The api user prepares a PATCH request containing the {string}, {string}, and {string} data to send to the api holidayUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_and_data_to_send_to_the_api_holiday_update_endpoint(String year, String name, String date) {
         requestMap = new HashMap<>();
-        requestMap.put("year", "2025");
-        requestMap.put("name", "Noel");
-        requestMap.put("date", "2025-01-01");
+        requestMap.put("year", year);
+        requestMap.put("name", name);
+        requestMap.put("date", date);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -194,12 +194,12 @@ public class API_AdminStepdefinitions {
         API_Methods.patchResponse(requestMap);
     }
 
-    @Given("The api user prepares a PATCH request containing the holiday data that matches the previous records to send to the api holidayUpdate endpoint.")
-    public void the_api_user_prepares_a_patch_request_containing_the_holiday_data_that_matches_the_previous_records_to_send_to_the_api_holiday_update_endpoint() {
+    @Given("The api user prepares a PATCH request containing the {string}, {string}, and {string} data that matches the previous records to send to the api holidayUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_and_data_that_matches_the_previous_records_to_send_to_the_api_holiday_update_endpoint(String year, String name, String date) {
         requestMap = new HashMap<>();
-        requestMap.put("year", "2025");
-        requestMap.put("name", "23 Nisan Ulusal Egemenlik ve Cocuk Bayram");
-        requestMap.put("date", "2025-04-23");
+        requestMap.put("year", year);
+        requestMap.put("name", name);
+        requestMap.put("date", date);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -207,13 +207,21 @@ public class API_AdminStepdefinitions {
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
         assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
     }
+
+    @Given("The api user verifies that the name information in the response body is {string}.")
+    public void the_api_user_verifies_that_the_name_information_in_the_response_body_is(String nameValue) {
+        API_Methods.response
+                .then()
+                .assertThat()
+                .body("holidayDetails[0].name", equalTo(nameValue));
+    }
     // ***************************************************************************************************************
 
     //****************************************** api/holidayDelete ***************************************************
-    @Given("The api user prepares a DELETE request containing the holiday ids to be deleted to send to the api holidayDelete endpoint.")
-    public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_to_be_deleted_to_send_to_the_api_holiday_delete_endpoint() {
+    @Given("The api user prepares a DELETE request containing the holiday {int} to be deleted to send to the api holidayDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_holiday_to_be_deleted_to_send_to_the_api_holiday_delete_endpoint(int id) {
         requestMap = new HashMap<>();
-        requestMap.put("id", 42);
+        requestMap.put("id", id);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -222,10 +230,10 @@ public class API_AdminStepdefinitions {
         API_Methods.deleteResponse(requestMap);
     }
 
-    @Given("The api user prepares a DELETE request containing the holiday ids that are not present in the system to send to the api holidayDelete endpoint.")
-    public void the_api_user_prepares_a_delete_request_containing_the_holiday_ids_that_are_not_present_in_the_system_to_send_to_the_api_holiday_delete_endpoint() {
+    @Given("The api user prepares a DELETE request containing the holiday {int} that are not present in the system to send to the api holidayDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_holiday_that_are_not_present_in_the_system_to_send_to_the_api_holiday_delete_endpoint(int id) {
         requestMap = new HashMap<>();
-        requestMap.put("id", 125);
+        requestMap.put("id", id);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -250,10 +258,10 @@ public class API_AdminStepdefinitions {
         assertEquals(requestMap.get("id"), deletedId);
     }
 
-    @Given("The api user prepares a GET request containing the Deleted id to send to the api holidayDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_holiday_details_endpoint() {
+    @Given("The api user prepares a GET request containing the Deleted {int} to send to the api holidayDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_to_send_to_the_api_holiday_details_endpoint(int id) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 42);
+        requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
@@ -303,10 +311,10 @@ public class API_AdminStepdefinitions {
         assertEquals(updated_at, jsonPath.getString("FaqsDetails[0].updated_at"));
     }
 
-    @Given("The api user prepares a GET request containing the FAQ ids that are not present in the system to send to the api faqsDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_faq_ids_that_are_not_present_in_the_system_to_send_to_the_api_faqs_details_endpoint() {
+    @Given("The api user prepares a GET request containing the FAQ {int} that are not present in the system to send to the api faqsDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_faq_that_are_not_present_in_the_system_to_send_to_the_api_faqs_details_endpoint(int id) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 256);
+        requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
     }
 
