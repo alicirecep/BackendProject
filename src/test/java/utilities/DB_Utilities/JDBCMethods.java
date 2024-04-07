@@ -1,51 +1,20 @@
 package utilities.DB_Utilities;
 
-import config_Requirements.ConfigReader;
+import helperDB.JDBC_Cons;
+import manage.Manage;
 
 import java.sql.*;
+import java.time.Instant;
 import java.util.*;
 
-public class JDBCMethods {
-    static Connection connection;
-    static Statement statement;
-    static ResultSet resultSet;
+import static helperDB.JDBC_Structure_Methods.*;
 
-    public static String query;
+public class JDBCMethods extends JDBC_Cons {
 
-    //BU METHOD COK KULLANACAGIZ
-    //createConnection database e baglanmak icin. Burda url, username, password u kullanarak database baglaniyoruz
-    //Database e ne zaman baglanmak isterse bu methodu cagrabiliriz
-    //Bu method u data cok BeforeMethod icinde setup icin kullanacagiz
-    String url = "jdbc:mysql://194.140.198.209/wonderworld_qa";
-    ;
-    String username = ConfigReader.getProperty("DBname","db");
-    String password = ConfigReader.getProperty("DBPassword","db");
+    //prepared statement timestamp instant döndürür.
+    static Instant instant = Instant.now();
 
 
-    public static void createConnection() {
-        String url = ConfigReader.getProperty("URL","db");
-        String username = ConfigReader.getProperty("USERNAME","db");
-        String password = ConfigReader.getProperty("PASSWORD","db");
-        try {
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-/*
-public static void createConnection() {
-        String url = ConfigReader.getProperty("URL");
-        String username = ConfigReader.getProperty("USERNAME");
-        String password = ConfigReader.getProperty("PASSWORD");
-        try {
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
- */
     public static void executeQuery(String query) {
         try {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -62,50 +31,18 @@ public static void createConnection() {
     }
 
     //Database baglantisini sonlandirmak icin. Bu Mehtod u test tamamladiktan sonra kullaniriz
-    public static void closeConnection() {
-        try {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     //Sonraki 3 methodu sadece connection,statement,resultset kullanmak istedigimizde kullaniriz
     //connection =>DBUtils.getConnection()
     //statement => DBUtils.getResultset()
     //resultSet => DBUtils.getResultset()
     //getStatement method statement object i olusturmak icin
-    public static Statement getStatement() {
-        try {
-            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return statement;
-    }
+
 
     //getConnection method Connection object i olusturmak icin. Bu method create createConnectiondan farkli olarak connection objesi return ediyor
 
 
     //getResultset method Resultset object i olusturmak icin.
-    public static ResultSet getResultset() {
-        try {
-            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return resultSet;
-    }
 
     //Table da kac satir var
     public static int getRowCount() throws Exception {
@@ -245,16 +182,6 @@ public static void createConnection() {
         st.close();
     }
 
-    public static PreparedStatement getPraperedStatement(String sqlQuery) {
-
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement(sqlQuery);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return preparedStatement;
-    }
 
     public static Integer randomIdGenerate() {
         // Random nesnesi oluştur
@@ -299,6 +226,10 @@ public static void createConnection() {
 
         return randomNumber;
     }
+    public static void bulk_device_token() throws SQLException {
+
+    }
+
 }
 
 
