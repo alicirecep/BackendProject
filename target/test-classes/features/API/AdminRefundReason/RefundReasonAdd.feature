@@ -20,7 +20,7 @@ Feature: As an administrator, I want to be able to add a new Refund&Reason recor
 
   Scenario Outline: The creation of the new Refund&Reason record via the API should be verified.
   (The creation of the record can be verified by sending a GET request to the /api/refundReasonDetails endpoint
-  with the added item id returned in the response body.)
+  with the added_item_id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur

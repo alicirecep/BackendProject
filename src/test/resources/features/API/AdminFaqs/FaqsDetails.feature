@@ -36,21 +36,25 @@ Feature: As an administrator, I want to be able to access the details of the FAQ
 
     Examples:
       | id | id | title                                | description                                                                 | status | created_at                  | updated_at                  |
-      | 2  | 2  | How do I know when my order is here? | A representative will call you                                              | 1      | 2024-01-22T23:18:58.000000Z | 2024-01-22T23:18:58.000000  |
+      | 2  | 2  | How do I know when my order is here? | A representative will call you                                              | 1      | 2024-01-22T23:18:58.000000Z | 2024-01-22T23:18:58.000000Z |
       | 4  | 4  | What if the item is out of stock?    | We hold our own inventory in our warehouses, so we rarely run out of stock. | 1      | 2024-01-22T23:18:58.000000Z | 2024-01-22T23:18:58.000000Z |
 
 
-  Scenario: When a GET request containing valid authorization credentials and an incorrect (non-existent in the system)
+  Scenario Outline: When a GET request containing valid authorization credentials and an incorrect (non-existent in the system)
   FAQ's id is sent to the /api/faqsDetails endpoint, the expected status code returned should be 404, and the
   message in the response body should confirm: "Faqs not found".
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/faqsDetails" path parameters
-    * The api user prepares a GET request containing the FAQ ids that are not present in the system to send to the api faqsDetails endpoint.
+    * The api user prepares a GET request containing the FAQ <id> that are not present in the system to send to the api faqsDetails endpoint.
     # Api kullanicisi api faqsDetails endpointine gondermek icin sistemde bulunmayan faqs idsini iceren bir get request hazirlar
     * The api user saves the response returned from the api faqsDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
     # Api kullanicisi api faqsDetails endpointinden donen responsei kaydeder, status codeun '404' ve reason phrase bilgisinin Not Found oldugunu dogrular
+
+    Examples:
+      | id  |
+      | 256 |
 
 
   Scenario Outline: When a GET request containing invalid authorization credentials and the id of the FAQ to be accessed is sent to

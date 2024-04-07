@@ -20,7 +20,7 @@ Feature: As an administrator, I want to be able to create a new FAQ record via A
 
   Scenario Outline: The creation of the new FAQ record via the API should be verified through the API itself.
   (The creation of the record can be verified by sending a GET request to the /api/faqsDetails endpoint with the
-  added item id returned in the response body.)
+  added_item_id returned in the response body.)
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur

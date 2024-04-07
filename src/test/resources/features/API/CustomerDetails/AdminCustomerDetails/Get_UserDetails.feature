@@ -40,17 +40,21 @@ Feature: As an administrator, I should be able to access detailed information of
       | 217 | 217 | aleynadilan | ciftcier  | 4       | dilannciftcier@buysellcycle.com | 0           | 1         | en        | 2           | USD           | aleynadilan ciftcier |
 
 
-  Scenario: When a GET request containing valid authorization credentials and incorrect customer id data is sent to the
+  Scenario Outline: When a GET request containing valid authorization credentials and incorrect customer id data is sent to the
   /api/get-user endpoint, the expected status code returned should be 404, and the message in the response
   body should confirm: "user not found".
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/get-user" path parameters
-    * The api user prepares a GET request containing the incorrect customer id to send to the api get User endpoint.
+    * The api user prepares a GET request containing the incorrect customer <id> to send to the api get User endpoint.
     # Api kullanicisi api get user endpointine gondermek icin yanlis customer idsini iceren bir get request hazirlar
     * The api user saves the response returned from the api get User endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
     # Api kullanicisi api get user endpointinden donen responsei kaydeder, status codeun '404' ve reason phrase bilgisinin Not Found oldugunu dogrular
+
+    Examples:
+      | id   |
+      | 2564 |
 
 
   Scenario Outline: When a GET request containing invalid authorization credentials and the customer id data for the desired
@@ -68,8 +72,4 @@ Feature: As an administrator, I should be able to access detailed information of
     Examples:
       | id  |
       | 217 |
-
-
-
-
 
