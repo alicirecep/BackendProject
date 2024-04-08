@@ -76,7 +76,7 @@ Feature: As an administrator, I want to be able to delete holiday information fo
       | id |
       | 42 |
 
-  @API
+
   Scenario Outline: The deletion of the holiday record via the API should be verified through the API itself.
   (The deletion of the record can be verified by sending a GET request to the /api/holidayDetails endpoint with the
   Deleted_Id returned in the response body.)

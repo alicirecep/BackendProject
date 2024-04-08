@@ -41,17 +41,21 @@ Feature: As an administrator, I want to access the details of the Refund&Reason 
       | 3  | 3  | Order wrong product | 2024-01-22T23:19:00.000000Z | 2024-01-22T23:19:00.000000Z |
 
 
-  Scenario: When a GET request containing valid authorization information and an incorrect (non-existent in the system)
+  Scenario Outline: When a GET request containing valid authorization information and an incorrect (non-existent in the system)
   refund&reason ID is sent to the /api/refundReasonDetails endpoint, the returned status code should be 404,
   and the message information should be validated as "refund Reason  not found".
 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/refundReasonDetails" path parameters
-    * The api user prepares a GET request containing the refund reason ids that are not present in the system to send to the api refundReasonDetails endpoint.
+    * The api user prepares a GET request containing the refund reason <id> that are not present in the system to send to the api refundReasonDetails endpoint.
     # Api kullanicisi api refundReasonDetails endpointine gondermek icin sistemde bulunmayan refund reason idsini iceren bir get request hazirlar
     * The api user saves the response returned from the api refundReasonDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
     # Api kullanicisi api refundReasonDetails endpointinden donen responsei kaydeder, status codeun '404' ve reason phrase bilgisinin Not Found oldugunu dogrular
+
+    Examples:
+      | id  |
+      | 256 |
 
 
   Scenario Outline: When a GET request body containing invalid authorization information and the refund&reason ID to access
