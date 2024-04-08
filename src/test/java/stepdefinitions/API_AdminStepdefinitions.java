@@ -329,12 +329,12 @@ public class API_AdminStepdefinitions {
     }
     // ***************************************************************************************************************
 
-    //******************************************* api/faqsDetails ****************************************************
-    @Given("The api user prepares a POST request containing the necessary information to send to the api faqsAdd endpoint.")
-    public void the_api_user_prepares_a_post_request_containing_the_necessary_information_to_send_to_the_api_faqs_add_endpoint() {
+    //******************************************** api/faqsAdd *******************************************************
+    @Given("The api user prepares a POST request containing the {string} and {string} information to send to the api faqsAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_and_information_to_send_to_the_api_faqs_add_endpoint(String title, String description) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("title", "How does the site work?");
-        requestJsonObject.put("description", "Select your items, add them to your cart, provide your address and choose the delivery time, then complete the order. There you go, your shopping is done!");
+        requestJsonObject.put("title", title);
+        requestJsonObject.put("description", description);
         System.out.println("Request Body : " + requestJsonObject);
     }
 
@@ -345,10 +345,10 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //***************************************** api/faqsUpdate/{id} **************************************************
-    @Given("The api user prepares a PATCH request containing the title information to send to the api faqsUpdate endpoint.")
-    public void the_api_user_prepares_a_patch_request_containing_the_title_information_to_send_to_the_api_faqs_update_endpoint() {
+    @Given("The api user prepares a PATCH request containing the {string} data to send to the api faqsUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_data_to_send_to_the_api_faqs_update_endpoint(String title) {
         requestMap = new HashMap<>();
-        requestMap.put("title", "How do I know when my order is here?");
+        requestMap.put("title", title);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -357,11 +357,11 @@ public class API_AdminStepdefinitions {
         API_Methods.patchResponse(requestMap);
     }
 
-    @Given("The api user prepares a PATCH request containing the title and description information to send to the api faqsUpdate endpoint.")
-    public void the_api_user_prepares_a_patch_request_containing_the_title_and_description_information_to_send_to_the_api_faqs_update_endpoint() {
+    @Given("The api user prepares a PATCH request containing the {string} and {string} information to send to the api faqsUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_and_information_to_send_to_the_api_faqs_update_endpoint(String title, String description) {
         requestMap = new HashMap<>();
-        requestMap.put("title", "How do I know when my order is here?");
-        requestMap.put("description", "A representative will call you as soon as they are at your house to let you know about your delivery.");
+        requestMap.put("title", title);
+        requestMap.put("description", description);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -394,10 +394,10 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //******************************************** api/faqsDelete ****************************************************
-    @Given("The api user prepares a DELETE request containing the FAQ ids to be deleted to send to the api faqsDelete endpoint.")
-    public void the_api_user_prepares_a_delete_request_containing_the_faq_ids_to_be_deleted_to_send_to_the_api_faqs_delete_endpoint() {
+    @Given("The api user prepares a DELETE request containing the FAQ {int} to be deleted to send to the api faqsDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_faq_to_be_deleted_to_send_to_the_api_faqs_delete_endpoint(int id) {
         requestMap = new HashMap<>();
-        requestMap.put("id", 22);
+        requestMap.put("id", id);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -406,10 +406,10 @@ public class API_AdminStepdefinitions {
         API_Methods.deleteResponse(requestMap);
     }
 
-    @Given("The api user prepares a DELETE request containing the FAQ ids that are not present in the system to send to the api faqsDelete endpoint.")
-    public void the_api_user_prepares_a_delete_request_containing_the_faq_ids_that_are_not_present_in_the_system_to_send_to_the_api_faqs_delete_endpoint() {
+    @Given("The api user prepares a DELETE request containing the FAQ {int} that are not present in the system to send to the api faqsDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_faq_that_are_not_present_in_the_system_to_send_to_the_api_faqs_delete_endpoint(int id) {
         requestMap = new HashMap<>();
-        requestMap.put("id", 256);
+        requestMap.put("id", id);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -423,10 +423,10 @@ public class API_AdminStepdefinitions {
         assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
     }
 
-    @Given("The api user prepares a GET request containing the Deleted id to send to the api faqsDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_faqs_details_endpoint() {
+    @Given("The api user prepares a GET request containing the Deleted {int} to send to the api faqsDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_to_send_to_the_api_faqs_details_endpoint(int id) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 22);
+        requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
@@ -473,10 +473,10 @@ public class API_AdminStepdefinitions {
         assertEquals(updated_at, jsonPath.getString("refundReasonDetails[0].updated_at"));
     }
 
-    @Given("The api user prepares a GET request containing the refund reason ids that are not present in the system to send to the api refundReasonDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_refund_reason_ids_that_are_not_present_in_the_system_to_send_to_the_api_refund_reason_details_endpoint() {
+    @Given("The api user prepares a GET request containing the refund reason {int} that are not present in the system to send to the api refundReasonDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_refund_reason_that_are_not_present_in_the_system_to_send_to_the_api_refund_reason_details_endpoint(int id) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 256);
+        requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
     }
 
@@ -492,10 +492,10 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //****************************************** api/refundReasonAdd *************************************************
-    @Given("The api user prepares a POST request containing the necessary information to send to the api refundReasonAdd endpoint.")
-    public void the_api_user_prepares_a_post_request_containing_the_necessary_information_to_send_to_the_api_refund_reason_add_endpoint() {
+    @Given("The api user prepares a POST request containing the {string} information to send to the api refundReasonAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_information_to_send_to_the_api_refund_reason_add_endpoint(String reason) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("reason", "product mismatch");
+        requestJsonObject.put("reason", reason);
         System.out.println("Request Body : " + requestJsonObject);
     }
 
@@ -506,10 +506,10 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //************************************** api/refundReasonUpdate/{id} *********************************************
-    @Given("The api user prepares a PATCH request containing the necessary data to send to the api refundReasonUpdate endpoint.")
-    public void the_api_user_prepares_a_patch_request_containing_the_necessary_data_to_send_to_the_api_refund_reason_update_endpoint() {
+    @Given("The api user prepares a PATCH request containing the {string} data to send to the api refundReasonUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_the_data_to_send_to_the_api_refund_reason_update_endpoint(String reason) {
         requestMap = new HashMap<>();
-        requestMap.put("reason", "Product arrived lately");
+        requestMap.put("reason", reason);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -537,10 +537,10 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //***************************************** api/refundReasonDelete ***********************************************
-    @Given("The api user prepares a DELETE request containing the refund reason ids to be deleted to send to the api refundReasonDelete endpoint.")
-    public void the_api_user_prepares_a_delete_request_containing_the_refund_reason_ids_to_be_deleted_to_send_to_the_api_refund_reason_delete_endpoint() {
+    @Given("The api user prepares a DELETE request containing the refund reason {int} to be deleted to send to the api refundReasonDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_refund_reason_to_be_deleted_to_send_to_the_api_refund_reason_delete_endpoint(int id) {
         requestMap = new HashMap<>();
-        requestMap.put("id", 18);
+        requestMap.put("id", id);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -549,10 +549,10 @@ public class API_AdminStepdefinitions {
         API_Methods.deleteResponse(requestMap);
     }
 
-    @Given("The api user prepares a DELETE request containing the refund reason ids that are not present in the system to send to the api refundReasonDelete endpoint.")
-    public void the_api_user_prepares_a_delete_request_containing_the_refund_reason_ids_that_are_not_present_in_the_system_to_send_to_the_api_refund_reason_delete_endpoint() {
+    @Given("The api user prepares a DELETE request containing the refund reason {int} that are not present in the system to send to the api refundReasonDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_refund_reason_ids_that_are_not_present_in_the_system_to_send_to_the_api_refund_reason_delete_endpoint(int id) {
         requestMap = new HashMap<>();
-        requestMap.put("id", 356);
+        requestMap.put("id", id);
         System.out.println("Request Body : " + requestMap);
     }
 
@@ -566,10 +566,10 @@ public class API_AdminStepdefinitions {
         assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
     }
 
-    @Given("The api user prepares a GET request containing the Deleted id to send to the api refundReasonDetails endpoint.")
-    public void the_api_user_prepares_a_get_request_containing_the_deleted_id_to_send_to_the_api_refund_reason_details_endpoint() {
+    @Given("The api user prepares a GET request containing the Deleted {int} to send to the api refundReasonDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_to_send_to_the_api_refund_reason_details_endpoint(int id) {
         requestJsonObject = new JSONObject();
-        requestJsonObject.put("id", 18);
+        requestJsonObject.put("id", id);
         System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="8.624">
-    <testcase classname="As an administrator, I want to be able to delete holiday information for the specified id number via API connection." name="The deletion of the holiday record via the API should be verified through the API itself." time="7.695">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="8.881">
+    <testcase classname="As an administrator, I want to be able to update the Refund&amp;Reason information with the specified ID number via the" name="The update of the desired Refund&amp;Reason record via the API should be validated from the API." time="7.973">
         <system-out><![CDATA[* The api user constructs the base url with the "admin" token...............passed
-* The api user sets "api/holidayDetails" path parameters....................passed
-* The api user prepares a GET request containing the Deleted 42 to send to the api holidayDetails endpoint..passed
-* The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found..passed
+* The api user sets "api/refundReasonDetails" path parameters...............passed
+* The api user prepares a GET request containing the refund reason 19 for which details are to be accessed, to send to the api refundReasonDetails endpoint..passed
+* The api user sends a GET request and saves the response returned from the api refundReasonDetails endpoint..passed
+* The api user verifies that the reason information in the response body is "Product arrived lately"..passed
 ]]></system-out>
     </testcase>
 </testsuite>
