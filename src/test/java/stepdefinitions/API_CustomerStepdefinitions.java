@@ -38,7 +38,7 @@ public class API_CustomerStepdefinitions {
 
     @Given("The api user saves the response returned from the api customerGetUser endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_customer_get_user_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGet().equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 
@@ -62,7 +62,7 @@ public class API_CustomerStepdefinitions {
 
     @Given("The api user saves the response returned from the api profile get customer data endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_profile_get_customer_data_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGet().equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 

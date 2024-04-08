@@ -79,7 +79,7 @@ Feature: As an administrator, I want to be able to update the Refund&Reason info
       | id | reason                 |
       | 19 | Product arrived lately |
 
-  @API
+
   Scenario Outline: The update of the desired Refund&Reason record via the API should be validated from the API.
   (The update of the record can be confirmed by sending a GET request to the /api/refundReasonDetails endpoint
   with the updated_Id returned in the response body.)

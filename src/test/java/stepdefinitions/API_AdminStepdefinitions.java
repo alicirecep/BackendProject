@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import config_Requirements.ConfigReader;
 import io.cucumber.java.en.Given;
 import io.restassured.path.json.JsonPath;
 import org.json.JSONObject;
@@ -36,7 +37,7 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api get users endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_get_users_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_Unauthorized() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGet().equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 
@@ -80,12 +81,12 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api get User endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_get_user_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
     }
 
     @Given("The api user saves the response returned from the api get User endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_get_user_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
 
     }
     // ***************************************************************************************************************
@@ -106,7 +107,7 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api holidayList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_list_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGet().equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 
@@ -145,12 +146,12 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
     }
 
     @Given("The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 
@@ -205,7 +206,7 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api holidayUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
 
     @Given("The api user verifies that the name information in the response body is {string}.")
@@ -239,13 +240,13 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api holidayDelete endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
 
     }
 
     @Given("The api user saves the response returned from the api holidayDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_holiday_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
 
     @Given("The api user verifies that the Deleted id information in the response body is the same as the id information in the request body.")
@@ -281,7 +282,7 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api faqsList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_faqs_list_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGet().equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 
@@ -320,12 +321,12 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api faqsDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_faqs_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
     }
 
     @Given("The api user saves the response returned from the api faqsDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_faqs_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 
@@ -367,12 +368,12 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api faqsUpdate endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_faqs_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
     }
 
     @Given("The api user saves the response returned from the api faqsUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_faqs_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
 
     @Given("The api user verifies that the updated id information in the response body matches the id path parameter specified in the endpoint.")
@@ -415,12 +416,12 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api faqsDelete endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_faqs_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
     }
 
     @Given("The api user saves the response returned from the api faqsDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_faqs_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
 
     @Given("The api user prepares a GET request containing the Deleted {int} to send to the api faqsDetails endpoint.")
@@ -446,7 +447,7 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api refundReasonList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_list_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGet().equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGet().equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 
@@ -482,12 +483,12 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api refundReasonDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
     }
 
     @Given("The api user saves the response returned from the api refundReasonDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchGetBody(requestJsonObject.toString()).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
     // ***************************************************************************************************************
 
@@ -520,12 +521,12 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api refundReasonUpdate endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
     }
 
     @Given("The api user saves the response returned from the api refundReasonUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchPatch(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
 
     @Given("The api user verifies that the reason information in the response body is {string}.")
@@ -558,12 +559,12 @@ public class API_AdminStepdefinitions {
 
     @Given("The api user saves the response returned from the api refundReasonDelete endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
     public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
-        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 404, reason phrase: Not Found"));
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals(ConfigReader.getProperty("notFoundExceptionMessage","api")));
     }
 
     @Given("The api user saves the response returned from the api refundReasonDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_refund_reason_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
-        assertTrue(API_Methods.tryCatchDelete(requestMap).equals("status code: 401, reason phrase: Unauthorized"));
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage","api")));
     }
 
     @Given("The api user prepares a GET request containing the Deleted {int} to send to the api refundReasonDetails endpoint.")

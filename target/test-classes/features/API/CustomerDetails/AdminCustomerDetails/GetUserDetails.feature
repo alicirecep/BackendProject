@@ -39,7 +39,7 @@ Feature: As an administrator, I should be able to access detailed information of
       | id  | id  | first_name  | last_name | role_id | email                           | is_verified | is_active | lang_code | currency_id | currency_code | name                 |
       | 217 | 217 | aleynadilan | ciftcier  | 4       | dilannciftcier@buysellcycle.com | 0           | 1         | en        | 2           | USD           | aleynadilan ciftcier |
 
-
+  @API
   Scenario Outline: When a GET request containing valid authorization credentials and incorrect customer id data is sent to the
   /api/get-user endpoint, the expected status code returned should be 404, and the message in the response
   body should confirm: "user not found".

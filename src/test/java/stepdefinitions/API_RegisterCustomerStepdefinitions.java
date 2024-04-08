@@ -55,16 +55,16 @@ public class API_RegisterCustomerStepdefinitions {
         System.out.println("sayi : " + id);
     }
 
-    @Given("The api user prepares a POST request consisting of valid data to send to the api register endpoint.")
-    public void the_api_user_prepares_a_post_request_consisting_of_valid_data_to_send_to_the_api_register_endpoint() {
+    @Given("The api user prepares a POST request containing the data {string}, {string}, {string}, {string}, {string}, {string} and {string} to send to the api register endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_data_and_to_send_to_the_api_register_endpoint(String first_name, String last_name, String email, String password, String password_confirmation, String user_type, String referral_code) {
         requestBody = new JSONObject();
-        requestBody.put("first_name", "aleynadilan");
-        requestBody.put("last_name", "ciftcier");
-        requestBody.put("email", "dilannciftcier@buysellcycle.com");
-        requestBody.put("password", "123123123");
-        requestBody.put("password_confirmation", "123123123");
-        requestBody.put("user_type", "customer");
-        requestBody.put("referral_code", "0101010101");
+        requestBody.put("first_name", first_name);
+        requestBody.put("last_name", last_name);
+        requestBody.put("email", email);
+        requestBody.put("password", password);
+        requestBody.put("password_confirmation", password_confirmation);
+        requestBody.put("user_type", user_type);
+        requestBody.put("referral_code", referral_code);
         System.out.println("Request Body : " + requestBody);
     }
 
@@ -84,7 +84,7 @@ public class API_RegisterCustomerStepdefinitions {
     }
 
     @Given("The api user confirms that the customer record has been created.")
-    public void the_api_user_confirms_that_the_customer_record_has_been_created() { //195
+    public void the_api_user_confirms_that_the_customer_record_has_been_created() {
         jsonPath = API_Methods.response.jsonPath();
         assertEquals(ConfigReader.getProperty("customerEmail", "api"), jsonPath.getString("user[195].email"));
     }
