@@ -52,7 +52,7 @@ public class API_RegisterCustomerStepdefinitions {
 
         fullPath = tempPath.toString();
         System.out.println("fullPath = " + fullPath);
-        System.out.println("sayi : " + id);
+        System.out.println("id : " + id);
     }
 
     @Given("The api user prepares a POST request containing the data {string}, {string}, {string}, {string}, {string}, {string} and {string} to send to the api register endpoint.")

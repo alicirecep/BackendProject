@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="8.455">
-    <testcase classname="As an administrator, I should be able to access detailed information of the user with the" name="When a GET request containing valid authorization credentials and incorrect customer id data is sent to the" time="7.665">
-        <system-out><![CDATA[* The api user constructs the base url with the "admin" token...............passed
-* The api user sets "api/get-user" path parameters..........................passed
-* The api user prepares a GET request containing the incorrect customer 2564 to send to the api get User endpoint..passed
-* The api user saves the response returned from the api get User endpoint and confirms that the status code is '404' and the reason phrase is Not Found..passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="7.107">
+    <testcase classname="As an administrator, I want to be able to access coupon information via the API connection." name="When a GET request body containing invalid authorization information is sent to the /api/coupon/couponList" time="6.18">
+        <system-out><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
+* The api user sets "api/coupon/couponList" path parameters.................passed
+* The api user saves the response returned from the api coupon couponList endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized..passed
 ]]></system-out>
     </testcase>
 </testsuite>
