@@ -30,7 +30,7 @@ Feature: As an administrator, I want to be able to access coupon information via
       | 0         | New User  | New2024CBO  | 2024-02-04 | 2024-09-01 |
       | 7         | Alisveris | 741852963   | 2024-03-29 | 2024-05-11 |
 
-  @API
+
   Scenario: When a GET request body containing invalid authorization information is sent to the /api/coupon/couponList
   endpoint, the returned status code should be 401, and the message information should be verified as "Unauthenticated.".
 
