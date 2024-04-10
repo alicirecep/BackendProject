@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="7.107">
-    <testcase classname="As an administrator, I want to be able to access coupon information via the API connection." name="When a GET request body containing invalid authorization information is sent to the /api/coupon/couponList" time="6.18">
-        <system-out><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
-* The api user sets "api/coupon/couponList" path parameters.................passed
-* The api user saves the response returned from the api coupon couponList endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized..passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="9.641">
+    <testcase classname="As a user, I want to view the addresses in my profile via the API connection." name="When a GET request body containing valid authorization information is sent to the" time="8.636">
+        <system-out><![CDATA[* The api user constructs the base url with the "customer" token............passed
+* The api user sets "api/profile/address-list" path parameters..............passed
+* The api user saves the response returned from the api profile address list endpoint..passed
+* The api user verifies that the status code is 200.........................passed
+* The api user verifies that the message information in the response body is "success".passed
 ]]></system-out>
     </testcase>
 </testsuite>

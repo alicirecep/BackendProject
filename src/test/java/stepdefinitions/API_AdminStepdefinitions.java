@@ -4,6 +4,8 @@ import config_Requirements.ConfigReader;
 import io.cucumber.java.en.Given;
 import io.restassured.path.json.JsonPath;
 import org.json.JSONObject;
+import pojos.CouponAddPojo;
+import pojos.CouponUpdatePojo;
 import utilities.API_Utilities.API_Methods;
 
 import java.util.HashMap;
@@ -18,6 +20,8 @@ public class API_AdminStepdefinitions {
     HashMap<String, Object> requestMap;
     JsonPath jsonPath;
     HashMap<String, Object> responseMap;
+    CouponAddPojo requestAddCouponPojo;
+    CouponUpdatePojo requestUpdateCouponPojo;
 
     //******************************************* api/get-users ******************************************************
     @Given("The api user saves the response returned from the api get users endpoint.")
@@ -758,6 +762,141 @@ public class API_AdminStepdefinitions {
     @Given("The api user saves the response returned from the api coupon couponList endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_returned_from_the_api_coupon_coupon_list_endpoint_confirming_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
         assertTrue(API_Methods.tryCatchGet().equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+    // ***************************************************************************************************************
+
+    //**************************************** api/coupon/couponDetails **********************************************
+    @Given("The api user prepares a GET request containing the details of the coupon {int} to be accessed for sending to the api coupon couponDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_details_of_the_coupon_to_be_accessed_for_sending_to_the_api_coupon_coupon_details_endpoint(int id) {
+        requestMap = new HashMap<>();
+        requestMap.put("id", id);
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user sends a GET request and saves the response returned from the api coupon couponDetails endpoint.")
+    public void the_api_user_sends_a_get_request_and_saves_the_response_returned_from_the_api_coupon_coupon_details_endpoint() {
+        API_Methods.getBodyResponse(requestMap);
+    }
+
+    @Given("The api user verifies the contents of the data in the response body, including the {int}, {string}, {string}, {int}, {string}, {string}, {int}, {int}, {int}, {int}, {int}, {int}, {string} and {string} fields.")
+    public void the_api_user_verifies_the_contents_of_the_data_in_the_response_body_including_the_and_fields(int id, String title, String coupon_code, int coupon_type, String start_date, String end_date, int discount, int discount_type, int created_by, int updated_by, int is_expire, int is_multiple_buy, String created_at, String updated_at) {
+        jsonPath = API_Methods.response.jsonPath();
+
+        assertEquals(id, jsonPath.getInt("couponDetails[0].id"));
+        assertEquals(title, jsonPath.getString("couponDetails[0].title"));
+        assertEquals(coupon_code, jsonPath.getString("couponDetails[0].coupon_code"));
+        assertEquals(coupon_type, jsonPath.getInt("couponDetails[0].coupon_type"));
+        assertEquals(start_date, jsonPath.getString("couponDetails[0].start_date"));
+        assertEquals(end_date, jsonPath.getString("couponDetails[0].end_date"));
+        assertEquals(discount, jsonPath.getInt("couponDetails[0].discount"));
+        assertEquals(discount_type, jsonPath.getInt("couponDetails[0].discount_type"));
+        assertNull(jsonPath.get("couponDetails[0].minimum_shopping"));
+        assertNull(jsonPath.get("couponDetails[0].maximum_discount"));
+        assertEquals(created_by, jsonPath.getInt("couponDetails[0].created_by"));
+        assertEquals(updated_by, jsonPath.getInt("couponDetails[0].updated_by"));
+        assertEquals(is_expire, jsonPath.getInt("couponDetails[0].is_expire"));
+        assertEquals(is_multiple_buy, jsonPath.getInt("couponDetails[0].is_multiple_buy"));
+        assertNull(jsonPath.get("couponDetails[0].multiple_buy_limit"));
+        assertEquals(created_at, jsonPath.getString("couponDetails[0].created_at"));
+        assertEquals(updated_at, jsonPath.getString("couponDetails[0].updated_at"));
+    }
+
+    @Given("The api user prepares a GET request containing the nonexistent coupon {int} to send to the api coupon couponDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_nonexistent_coupon_to_send_to_the_api_coupon_coupon_details_endpoint(int id) {
+        requestMap = new HashMap<>();
+        requestMap.put("id", id);
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user records the response from the api coupon couponDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_records_the_response_from_the_api_coupon_coupon_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchGetBody(requestMap).equals(ConfigReader.getProperty("notFoundExceptionMessage", "api")));
+    }
+
+    @Given("The api user records the response from the api coupon couponDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_records_the_response_from_the_api_coupon_coupon_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchGetBody(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+    // ***************************************************************************************************************
+
+    //****************************************** api/coupon/couponAdd ************************************************
+    @Given("The api user prepares a POST request to send to the api coupon couponAdd endpoint, containing the information {string}, {string}, {int}, {string}, {string}, {int}, {int}, {int}, {int}, {int} and {int}.")
+    public void the_api_user_prepares_a_post_request_to_send_to_the_api_coupon_coupon_add_endpoint_containing_the_information_and(String title, String coupon_code, int coupon_type, String start_date, String end_date, int discount, int discount_type, int minimum_shopping, int maximum_discount, int is_expire, int is_multiple_buy) {
+        requestAddCouponPojo = new CouponAddPojo(title, coupon_code, coupon_type, start_date, end_date, discount, discount_type, minimum_shopping, maximum_discount, is_expire, is_multiple_buy);
+        System.out.println("Request Body : " + requestAddCouponPojo);
+    }
+
+    @Given("The api user sends a POST request and saves the response returned from the api coupon couponAdd endpoint.")
+    public void the_api_user_sends_a_post_request_and_saves_the_response_returned_from_the_api_coupon_coupon_add_endpoint() {
+        API_Methods.postResponse(requestAddCouponPojo);
+    }
+    // ***************************************************************************************************************
+
+    //************************************** api/coupon/couponUpdate/{id} ********************************************
+    @Given("The api user prepares a PATCH request to send to the api coupon couponUpdate endpoint, containing the data {string}, {string}, {int}, {string}, {string}, {int}, {int}, {int}, {int}, {int} and {int}.")
+    public void the_api_user_prepares_a_patch_request_to_send_to_the_api_coupon_coupon_update_endpoint_containing_the_data_and(String title, String coupon_code, int coupon_type, String start_date, String end_date, int discount, int discount_type, int minimum_shopping, int maximum_discount, int is_expire, int is_multiple_buy) {
+        requestUpdateCouponPojo = new CouponUpdatePojo(title, coupon_code, coupon_type, start_date, end_date, discount, discount_type, minimum_shopping, maximum_discount, is_expire, is_multiple_buy);
+        System.out.println("Request Body : " + requestUpdateCouponPojo);
+    }
+
+    @Given("The api user sends a PATCH request and saves the response returned from the api coupon couponUpdate endpoint.")
+    public void the_api_user_sends_a_patch_request_and_saves_the_response_returned_from_the_api_coupon_coupon_update_endpoint() {
+        API_Methods.patchResponse(requestUpdateCouponPojo);
+    }
+
+    @Given("The api user saves the response returned from the api coupon couponUpdate endpoint, confirming that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_returned_from_the_api_coupon_coupon_update_endpoint_confirming_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchPatch(requestUpdateCouponPojo).equals(ConfigReader.getProperty("notFoundExceptionMessage", "api")));
+    }
+
+    @Given("The api user saves the response returned from the api coupon couponUpdat endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_returned_from_the_api_coupon_coupon_updat_endpoint_confirming_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchPatch(requestUpdateCouponPojo).equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+
+    @Given("The api user confirms that the title value in the response body is {string}.")
+    public void the_api_user_confirms_that_the_title_value_in_the_response_body_is(String titleValue) {
+        API_Methods.response.then()
+                .assertThat()
+                .body("couponDetails[0].title", equalTo(titleValue));
+    }
+    // ***************************************************************************************************************
+
+    //**************************************** api/coupon/couponDelete ***********************************************
+    @Given("The api user prepares a DELETE request containing the coupon {int} to be deleted to send to the api coupon couponDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_coupon_to_be_deleted_to_send_to_the_api_coupon_coupon_delete_endpoint(int id) {
+        requestMap = new HashMap<>();
+        requestMap.put("id", id);
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user sends a DELETE request and saves the response returned from the api coupon couponDelete endpoint.")
+    public void the_api_user_sends_a_delete_request_and_saves_the_response_returned_from_the_api_coupon_coupon_delete_endpoint() {
+        API_Methods.deleteResponse(requestMap);
+    }
+
+    @Given("The api user prepares a DELETE request containing the coupon {int} that is not present in the system to send to the api coupon couponDelete endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_coupon_that_is_not_present_in_the_system_to_send_to_the_api_coupon_coupon_delete_endpoint(int id) {
+        requestMap = new HashMap<>();
+        requestMap.put("id", id);
+        System.out.println("Request Body : " + requestMap);
+    }
+
+    @Given("The api user records the response from the api coupon couponDelete endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_records_the_response_from_the_api_coupon_coupon_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals(ConfigReader.getProperty("notFoundExceptionMessage", "api")));
+    }
+
+    @Given("The api user records the response from the api coupon couponDelete endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_records_the_response_from_the_api_coupon_coupon_delete_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchDelete(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+
+    @Given("The api user prepares a GET request containing the deleted {int} to send to the api coupon couponDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_to_send_to_the_api_coupon_coupon_details_endpoint(int id) {
+        requestMap = new HashMap<>();
+        requestMap.put("id", id);
+        System.out.println("Request Body : " + requestMap);
     }
     // ***************************************************************************************************************
 }
