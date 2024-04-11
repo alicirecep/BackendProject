@@ -63,7 +63,7 @@ Feature: As a user, I want to add a new address record to my profile via API con
       | name   | email           | address              | phone      | city        | state    | country | postal_code | address_type |
       | Aleyna | aleynagmail.com | Sultanbeyli Istanbul | 5478526698 | Sultanbeyli | Istanbul | Turkey  | 38000       | 11           |
 
-  @API
+
   Scenario Outline: When an invalid POST body containing necessary data (name, email, address, phone, city, state, country,
   postal_code, address_type) and invalid authorization credentials are sent to the /api/profile/address-store endpoint,
   the returned status code should be validated as 401, and the message information in the response body should confirm
@@ -85,9 +85,5 @@ Feature: As a user, I want to add a new address record to my profile via API con
     Examples:
       | name   | email            | address              | phone      | city        | state    | country | postal_code | address_type |
       | Aleyna | aleyna@gmail.com | Sultanbeyli Istanbul | 5478526698 | Sultanbeyli | Istanbul | Turkey  | 38000       | 11           |
-
-
-
-
 
 

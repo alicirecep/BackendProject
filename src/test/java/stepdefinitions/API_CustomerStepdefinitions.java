@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.restassured.path.json.JsonPath;
 import org.json.JSONObject;
 import pojos.CustomerAddAdressPojo;
+import pojos.CustomerAddressUpdatePojo;
 import utilities.API_Utilities.API_Methods;
 
 
@@ -20,6 +21,7 @@ public class API_CustomerStepdefinitions {
     HashMap<String, Object> requestBodyMap;
     JSONObject requestJsonObject;
     CustomerAddAdressPojo requestAddAdressPojo;
+    CustomerAddressUpdatePojo requestAddressUpdatePojo;
 
     //************************************* api/customerGetUser ***************************************************
     @Given("The api user constructs the base url with the {string} token.")
@@ -203,6 +205,92 @@ public class API_CustomerStepdefinitions {
     public void the_api_user_prepares_a_post_request_containing_invalid_and_information_to_send_to_the_api_profile_address_store_endpoint(String email, String name, String address, String phone, String city, String state, String country, String postal_code, String address_type) {
         requestAddAdressPojo = new CustomerAddAdressPojo(name, email, address, phone, city, state, country, postal_code, address_type);
         System.out.println("Request Body : " + requestAddAdressPojo);
+    }
+    // ***************************************************************************************************************
+
+    //********************************* api/profile/customerAddressUpdate/{id} ***************************************
+    @Given("The api user prepares a PATCH request containing {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string} and {string} data to send to the api profile customerAddressUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_and_data_to_send_to_the_api_profile_customer_address_update_endpoint(String name, String email, String address, String phone, String city, String state, String country, String postal_code, String address_type) {
+        requestAddressUpdatePojo = new CustomerAddressUpdatePojo(name, email, address, phone, city, state, country, postal_code, address_type);
+        System.out.println("Request Body : " + requestAddressUpdatePojo);
+    }
+
+    @Given("The api user sends the PATCH request and records the response from the api profile customerAddressUpdate endpoint.")
+    public void the_api_user_sends_the_patch_request_and_records_the_response_from_the_api_profile_customer_address_update_endpoint() {
+        API_Methods.patchResponse(requestAddressUpdatePojo);
+    }
+
+    @Given("The api user records the response from the api profile customerAddressUpdate endpoint and verifies that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_records_the_response_from_the_api_profile_customer_address_update_endpoint_and_verifies_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchPatch(requestAddressUpdatePojo).equals(ConfigReader.getProperty("notFoundExceptionMessage", "api")));
+    }
+
+    @Given("The api user prepares a PATCH request containing invalid {string} and {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string} information to send to the api profile customerAddressUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_invalid_and_information_to_send_to_the_api_profile_customer_address_update_endpoint(String email, String name, String address, String phone, String city, String state, String country, String postal_code, String address_type) {
+        requestAddressUpdatePojo = new CustomerAddressUpdatePojo(name, email, address, phone, city, state, country, postal_code, address_type);
+        System.out.println("Request Body : " + requestAddressUpdatePojo);
+    }
+
+    @Given("The api user records the response from the api profile customerAddressUpdate endpoint, verifying that the status code is '422' and the reason phrase is Unprocessable Entity.")
+    public void the_api_user_records_the_response_from_the_api_profile_customer_address_update_endpoint_verifying_that_the_status_code_is_and_the_reason_phrase_is_unprocessable_entity() {
+        assertTrue(API_Methods.tryCatchPatch(requestAddressUpdatePojo).equals(ConfigReader.getProperty("unprocessableEntityExceptionMessage", "api")));
+    }
+
+    @Given("The api user records the response from the api profile customerAddressUpdate endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_records_the_response_from_the_api_profile_customer_address_update_endpoint_confirming_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchPatch(requestAddressUpdatePojo).equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+
+    @Given("The api user verifies that the email information in the response body is {string}.")
+    public void the_api_user_verifies_that_the_email_information_in_the_response_body_is(String emailValue) {
+        API_Methods.response.then()
+                .assertThat()
+                .body("addresses[0].email", equalTo(emailValue));
+    }
+    // ***************************************************************************************************************
+
+    //************************************ api/profile/customerDeleteAddress *****************************************
+    @Given("The api user prepares a DELETE request containing the address {int} to be deleted to send to the api profile customerDeleteAddress endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_address_to_be_deleted_to_send_to_the_api_profile_customer_delete_address_endpoint(int id) {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user sends the DELETE request and records the response returned from the api profile customerDeleteAddress endpoint.")
+    public void the_api_user_sends_the_delete_request_and_records_the_response_returned_from_the_api_profile_customer_delete_address_endpoint() {
+        API_Methods.deleteResponse(requestJsonObject.toString());
+    }
+
+    @Given("The api user prepares a DELETE request containing the address {int} that is not present in the system to send to the api profile customerDeleteAddress endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_address_that_is_not_present_in_the_system_to_send_to_the_api_profile_customer_delete_address_endpoint(int id) {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user records the response from the api profile customerDeleteAddress endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_records_the_response_from_the_api_profile_customer_delete_address_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchDelete(requestJsonObject.toString()).equals(ConfigReader.getProperty("notFoundExceptionMessage", "api")));
+    }
+
+    @Given("The api user records the response from the api profile customerDeleteAddress endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_records_the_response_from_the_api_profile_customer_delete_address_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchDelete(requestJsonObject.toString()).equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+
+    @Given("The api user verifies that the Deleted id in the response body matches the id information in the delete request body.")
+    public void the_api_user_verifies_that_the_deleted_id_in_the_response_body_matches_the_id_information_in_the_delete_request_body() {
+        jsonPath = API_Methods.response.jsonPath();
+
+        assertEquals(requestJsonObject.get("id"), jsonPath.getInt("Deleted_Id"));
+    }
+
+    @Given("The api user prepares a GET request containing the Deleted {int} to send to the api profile customerDetailsAddress endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_to_send_to_the_api_profile_customer_details_address_endpoint(int id) {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
     }
     // ***************************************************************************************************************
 }
