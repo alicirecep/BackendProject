@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="9.641">
-    <testcase classname="As a user, I want to view the addresses in my profile via the API connection." name="When a GET request body containing valid authorization information is sent to the" time="8.636">
-        <system-out><![CDATA[* The api user constructs the base url with the "customer" token............passed
-* The api user sets "api/profile/address-list" path parameters..............passed
-* The api user saves the response returned from the api profile address list endpoint..passed
-* The api user verifies that the status code is 200.........................passed
-* The api user verifies that the message information in the response body is "success".passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="7.915">
+    <testcase classname="As a user, I want to add a new address record to my profile via API connection." name="When an invalid POST body containing necessary data (name, email, address, phone, city, state, country," time="6.926">
+        <system-out><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
+* The api user sets "api/profile/address-store" path parameters.............passed
+* The api user prepares a POST request containing the "Aleyna", "aleyna@gmail.com", "Sultanbeyli Istanbul", "5478526698", "Sultanbeyli", "Istanbul", "Turkey", "38000" and "11" information to send to the api profile address store endpoint..passed
+* The api user sends a POST request and records the response from the api profile address store endpoint..passed
+* The api user verifies that the status code is 401.........................passed
+* The api user verifies that the message information in the response body is "Unauthenticated.".passed
 ]]></system-out>
     </testcase>
 </testsuite>
