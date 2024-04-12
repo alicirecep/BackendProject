@@ -79,7 +79,7 @@ Feature: As a user, I want to be able to delete the information of the address i
       | id  |
       | 170 |
 
-  @API
+
   Scenario Outline: The deletion of the address record via the API should be confirmed through the API itself.
   (The Deleted_Id returned in the response body can be used to send a GET request to the /api/profile/customerDetailsAddress
   endpoint to confirm that the record has been deleted.)
@@ -88,14 +88,12 @@ Feature: As a user, I want to be able to delete the information of the address i
     # APi kullanicisi "customer" token ile base urli olusturur
     * The api user sets "api/profile/customerDetailsAddress" path parameters
     * The api user prepares a GET request containing the Deleted <id> to send to the api profile customerDetailsAddress endpoint.
-    # Api kullanicisi "api/profile/customerDetailsAddress" endpointine gondermek icin sildiği Deleted Idyi iceren bir get request hazirlar
+    # Api kullanicisi api profile customerDetailsAddress endpointine gondermek icin sildiği Deleted Idyi iceren bir get request hazirlar
     * The api user records the response from the api profile customerDetailsAddress endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
     # Api kullanicisi api profile customerDetailsAddress endpointinden donen responsei kaydeder, status codeun '404' ve reason phrase bilgisinin Not Found oldugunu dogrular
 
     Examples:
       | id  |
       | 170 |
-
-
 
 

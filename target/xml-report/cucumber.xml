@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="10.343">
-    <testcase classname="As a user, I want to be able to delete the information of the address in my profile with the specified" name="The deletion of the address record via the API should be confirmed through the API itself." time="9.097">
-        <system-out><![CDATA[* The api user constructs the base url with the "customer" token............passed
-* The api user sets "api/profile/customerDetailsAddress" path parameters....passed
-* The api user prepares a GET request containing the Deleted 170 to send to the api profile customerDetailsAddress endpoint..passed
-* The api user records the response from the api profile customerDetailsAddress endpoint and confirms that the status code is '404' and the reason phrase is Not Found..passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="7.269">
+    <testcase classname="As an administrator, I want to be able to access the address information of a customer with a" name="When a GET request body containing invalid authorization credentials and the desired address id to" time="6.05">
+        <system-out><![CDATA[* The api user constructs the base url with the "invalid" token.............passed
+* The api user sets "api/profile/addressDetails" path parameters............passed
+* The api user prepares a GET request containing the address 171 to be accessed for the api profile addressDetails endpoint..passed
+* The api user saves the response from the api profile addressDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized..passed
 ]]></system-out>
     </testcase>
 </testsuite>
