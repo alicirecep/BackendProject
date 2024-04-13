@@ -4,8 +4,7 @@ import config_Requirements.ConfigReader;
 import io.cucumber.java.en.Given;
 import io.restassured.path.json.JsonPath;
 import org.json.JSONObject;
-import pojos.CouponAddPojo;
-import pojos.CouponUpdatePojo;
+import pojos.*;
 import utilities.API_Utilities.API_Methods;
 
 import java.util.HashMap;
@@ -22,6 +21,8 @@ public class API_AdminStepdefinitions {
     HashMap<String, Object> responseMap;
     CouponAddPojo requestAddCouponPojo;
     CouponUpdatePojo requestUpdateCouponPojo;
+    AdminAddressAddPojo requestAddressAddPojo;
+    AdminAddressUpdatePojo requestAddressUpdatePojo;
 
     //******************************************* api/get-users ******************************************************
     @Given("The api user saves the response returned from the api get users endpoint.")
@@ -1070,6 +1071,93 @@ public class API_AdminStepdefinitions {
     @Given("The api user saves the response from the api profile addressDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
     public void the_api_user_saves_the_response_from_the_api_profile_address_details_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
         assertTrue(API_Methods.tryCatchGetBody(requestMap).equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+    // ***************************************************************************************************************
+
+    //**************************************** api/profile/addressAdd ************************************************
+    @Given("The api user prepares a POST request containing the {int}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string} and {string} information to send to the api profile addressAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_the_and_information_to_send_to_the_api_profile_address_add_endpoint(int customer_id, String name, String email, String address, String phone, String city, String state, String country, String postal_code, String address_type) {
+        requestAddressAddPojo = new AdminAddressAddPojo(customer_id, name, email, address, phone, city, state, country, postal_code, address_type);
+        System.out.println("Request Body : " + requestAddressAddPojo);
+    }
+
+    @Given("The api user sends a POST request and records the response returned from the api profile addressAdd endpoint.")
+    public void the_api_user_sends_a_post_request_and_records_the_response_returned_from_the_api_profile_address_add_endpoint() {
+        API_Methods.postResponse(requestAddressAddPojo);
+    }
+
+    @Given("The api user prepares a POST request containing invalid {string} and {int}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string} information to send to the api profile addressAdd endpoint.")
+    public void the_api_user_prepares_a_post_request_containing_invalid_and_information_to_send_to_the_api_profile_address_add_endpoint(String email, int customer_id, String name, String address, String phone, String city, String state, String country, String postal_code, String address_type) {
+        requestAddressAddPojo = new AdminAddressAddPojo(customer_id, name, email, address, phone, city, state, country, postal_code, address_type);
+        System.out.println("Request Body : " + requestAddressAddPojo);
+    }
+    // ***************************************************************************************************************
+
+    //************************************ api/profile/addressUpdate/{id} ********************************************
+    @Given("The api user prepares a PATCH request containing {int}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string} and {string} information to send to the api profile addressUpdate endpoint.")
+    public void the_api_user_prepares_a_patch_request_containing_and_information_to_send_to_the_api_profile_address_update_endpoint(int customer_id, String name, String email, String address, String phone, String city, String state, String country, String postal_code, String address_type) {
+        requestAddressUpdatePojo = new AdminAddressUpdatePojo(customer_id, name, email, address, phone, city, state, country, postal_code, address_type);
+        System.out.println("Request Body : " + requestAddressUpdatePojo);
+    }
+
+    @Given("The api user sends a PATCH request and records the response from the api profile addressUpdate endpoint.")
+    public void the_api_user_sends_a_patch_request_and_records_the_response_from_the_api_profile_address_update_endpoint() {
+        API_Methods.patchResponse(requestAddressUpdatePojo);
+    }
+
+    @Given("The api user records the response from the api profile addressUpdate endpoint and confirms that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_records_the_response_from_the_api_profile_address_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchPatch(requestAddressUpdatePojo).equals(ConfigReader.getProperty("notFoundExceptionMessage", "api")));
+    }
+
+    @Given("The api user saves the response from the api profile addressUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_from_the_api_profile_address_update_endpoint_and_confirms_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchPatch(requestAddressUpdatePojo).equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+
+    @Given("The api user verifies that the address information in the response body is {string}.")
+    public void the_api_user_verifies_that_the_address_information_in_the_response_body_is(String addressValue) {
+        API_Methods.response.then()
+                .assertThat()
+                .body("addresses[0].address", equalTo(addressValue));
+    }
+    // ***************************************************************************************************************
+
+    //***************************************** api/profile/deleteAddress ********************************************
+    @Given("The api user prepares a delete request containing the address {int} to be deleted to send to the api profile deleteAddress endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_address_to_be_deleted_to_send_to_the_api_profile_delete_address_endpoint(int id) {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user sends a delete request and records the response from the api profile deleteAddress endpoint.")
+    public void the_api_user_sends_a_delete_request_and_records_the_response_from_the_api_profile_delete_address_endpoint() {
+        API_Methods.deleteResponse(requestJsonObject.toString());
+    }
+
+    @Given("The api user prepares a DELETE request containing the address {int} that are not present in the system to send to the api profile deleteAddress endpoint.")
+    public void the_api_user_prepares_a_delete_request_containing_the_address_that_are_not_present_in_the_system_to_send_to_the_api_profile_delete_address_endpoint(int id) {
+        requestJsonObject = new JSONObject();
+        requestJsonObject.put("id", id);
+        System.out.println("Request Body : " + requestJsonObject);
+    }
+
+    @Given("The api user records the response from the api profile deleteAddress endpoint, confirming that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_records_the_response_from_the_api_profile_delete_address_endpoint_confirming_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchDelete(requestJsonObject.toString()).equals(ConfigReader.getProperty("notFoundExceptionMessage", "api")));
+    }
+
+    @Given("The api user saves the response from the api profile deleteAddress endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized.")
+    public void the_api_user_saves_the_response_from_the_api_profile_delete_address_endpoint_confirming_that_the_status_code_is_and_the_reason_phrase_is_unauthorized() {
+        assertTrue(API_Methods.tryCatchDelete(requestJsonObject.toString()).equals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api")));
+    }
+
+    @Given("The api user prepares a GET request containing the Deleted {int} to send to the api profile addressDetails endpoint.")
+    public void the_api_user_prepares_a_get_request_containing_the_deleted_to_send_to_the_api_profile_address_details_endpoint(int id) {
+        requestMap = new HashMap<>();
+        requestMap.put("id", id);
+        System.out.println("Request Body : " + requestMap);
     }
     // ***************************************************************************************************************
 }

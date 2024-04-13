@@ -57,7 +57,7 @@ Feature: As an administrator, I want to be able to access the address informatio
       | id  |
       | 587 |
 
-  @API
+
   Scenario Outline: When a GET request body containing invalid authorization credentials and the desired address id to
   access detailed information is sent to the /api/profile/addressDetails endpoint, the returned status code should be
   validated as 401, and the message information in the response body should confirm as "Unauthenticated.".
@@ -73,6 +73,5 @@ Feature: As an administrator, I want to be able to access the address informatio
     Examples:
       | id  |
       | 171 |
-
 
 
