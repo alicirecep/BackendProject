@@ -11,14 +11,17 @@ Feature: As a user/administrator, I should be able to create a new customer reco
     # Api kullanicisi api register endpointine gondermek icin "<first_name>", "<last_name>", "<email>", "<password>", "<password_confirmation>", "user_type>", "<referral_code>" datalarından olusan bir post request hazirlar
     * The api user sends a POST request and saves the response from the api register endpoint.
     # Api kullanicisi post request gonderir ve api register endpointinden donen responsei kaydeder
-    * The api user verifies that the status code is 200
+    * The api user verifies that the status code is 201
     # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the message information in the response body is "Successfully registered"
     # Api kullanicisi response bodydeki message bilgisinin "Successfully registered" oldugunu dogrular
+    * The api user verifies that the data in the response returned from the api register endpoint matches the data sent in the request body.
+    # Api kullanicisi api register endpointinden donen responsedaki datalarin request body de gonderilen datalar ile ayni oldugunu dogrular.
 
     Examples:
       | first_name  | last_name | email                           | password  | password_confirmation | user_type | referral_code |
       | aleynadilan | ciftcier  | dilannciftcier@buysellcycle.com | 123123123 | 123123123             | customer  | 0101010101    |
+
 
 
   Scenario: The creation of a customer via API should be verified to confirm whether the customer exists in the customer
@@ -31,27 +34,9 @@ Feature: As a user/administrator, I should be able to create a new customer reco
     * The api user saves the response returned from the api get users endpoint.
     # Api kullanicisi api get users endpointinden donen responsei kaydeder
     * The api user confirms that the customer record has been created.
-    # Api kullanicisi customer kaydiniin olusturuldugunu dogrular.
+    # Api kullanicisi customer kaydinin olusturuldugunu dogrular.
 
-
-  Scenario Outline: When a valid POST body containing data fields (first_name, last_name, email, password,
-  password_confirmation, user_type, referral_code) is sent to the /api/register endpoint, the data in the
-  response body (first_name, last_name, email) should be verified to match the data sent in the request body.
-
-    * The api user creates the base url.
-    * The api user sets "api/register" path parameters
-    * The api user prepares a POST request containing the data "<first_name>", "<last_name>", "<email>", "<password>", "<password_confirmation>", "<user_type>" and "<referral_code>" to send to the api register endpoint.
-    # Api kullanicisi api register endpointine gondermek icin "<first_name>", "<last_name>", "<email>", "<password>", "<password_confirmation>", "user_type>", "<referral_code>" datalarından olusan bir post request hazirlar
-    * The api user sends a POST request and saves the response from the api register endpoint.
-    # Api kullanicisi post request gonderir ve api register endpointinden donen responsei kaydeder
-    * The api user verifies that the data in the response returned from the api register endpoint matches the data sent in the request body.
-    # Api kullanicisi api register endpointinden donen responsedaki datalarin request body de gonderilen datalar ile ayni oldugunu dogrular.
-
-    Examples:
-      | first_name  | last_name | email                           | password  | password_confirmation | user_type | referral_code |
-      | aleynadilan | ciftcier  | dilannciftcier@buysellcycle.com | 123123123 | 123123123             | customer  | 0101010101    |
-
-
+  @API
   Scenario:When an invalid email (an existing email) from the data is sent in the POST body (first_name, last_name, email,
   password, password_confirmation, user_type, referral_code) to the /api/register endpoint, the expected status
   code returned should be 422, and the response message should confirm: "The email has already been taken.".
