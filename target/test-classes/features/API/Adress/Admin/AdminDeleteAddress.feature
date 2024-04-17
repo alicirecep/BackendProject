@@ -78,7 +78,7 @@ Feature: As an administrator, I want to be able to delete the address informatio
       | id  |
       | 175 |
 
-  @API
+
   Scenario Outline: The deletion of the address record should be verified through the API.
   (The deletion of the record can be confirmed by sending a GET request to the /api/profile/addressDetails endpoint
   with the Deleted_Id obtained from the response body.)

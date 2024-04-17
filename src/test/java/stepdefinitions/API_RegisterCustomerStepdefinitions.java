@@ -86,7 +86,7 @@ public class API_RegisterCustomerStepdefinitions {
     @Given("The api user confirms that the customer record has been created.")
     public void the_api_user_confirms_that_the_customer_record_has_been_created() {
         jsonPath = API_Methods.response.jsonPath();
-        assertEquals(ConfigReader.getProperty("customerEmail", "api"), jsonPath.getString("user[195].email"));
+        assertEquals(ConfigReader.getProperty("customerEmail", "api"), jsonPath.getString("user[194].email"));
     }
 
     @Given("The api user verifies that the data in the response returned from the api register endpoint matches the data sent in the request body.")
