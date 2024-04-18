@@ -36,7 +36,7 @@ Feature: As a user/administrator, I should be able to create a new customer reco
     * The api user confirms that the customer record has been created.
     # Api kullanicisi customer kaydinin olusturuldugunu dogrular.
 
-  @API
+
   Scenario:When an invalid email (an existing email) from the data is sent in the POST body (first_name, last_name, email,
   password, password_confirmation, user_type, referral_code) to the /api/register endpoint, the expected status
   code returned should be 422, and the response message should confirm: "The email has already been taken.".
