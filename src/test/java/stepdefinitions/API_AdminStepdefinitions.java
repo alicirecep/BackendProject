@@ -11,7 +11,6 @@ import java.util.HashMap;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
-import static stepdefinitions.API_RegisterCustomerStepdefinitions.id;
 
 public class API_AdminStepdefinitions {
 
@@ -186,7 +185,7 @@ public class API_AdminStepdefinitions {
     // ***************************************************************************************************************
 
     //******************************************** api/holidayUpdate/{id} ****************************************************
-    @Given("The api user prepares a PATCH request containing the {string}, {string}, and {string} data to send to the api holidayUpdate endpoint.")
+    @Given("The api user prepares a PATCH request containing the {string}, {string} and {string} data to send to the api holidayUpdate endpoint.")
     public void the_api_user_prepares_a_patch_request_containing_the_and_data_to_send_to_the_api_holiday_update_endpoint(String year, String name, String date) {
         requestMap = new HashMap<>();
         requestMap.put("year", year);
@@ -200,13 +199,9 @@ public class API_AdminStepdefinitions {
         API_Methods.patchResponse(requestMap);
     }
 
-    @Given("The api user prepares a PATCH request containing the {string}, {string}, and {string} data that matches the previous records to send to the api holidayUpdate endpoint.")
-    public void the_api_user_prepares_a_patch_request_containing_the_and_data_that_matches_the_previous_records_to_send_to_the_api_holiday_update_endpoint(String year, String name, String date) {
-        requestMap = new HashMap<>();
-        requestMap.put("year", year);
-        requestMap.put("name", name);
-        requestMap.put("date", date);
-        System.out.println("Request Body : " + requestMap);
+    @Given("The api user saves the response from the api holidayUpdate endpoint and verifies that the status code is '404' and the reason phrase is Not Found.")
+    public void the_api_user_saves_the_response_from_the_api_holiday_update_endpoint_and_verifies_that_the_status_code_is_and_the_reason_phrase_is_not_found() {
+        assertTrue(API_Methods.tryCatchPatch(requestMap).equals(ConfigReader.getProperty("notFoundExceptionMessage", "api")));
     }
 
     @Given("The api user saves the response returned from the api holidayUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.")
@@ -388,7 +383,7 @@ public class API_AdminStepdefinitions {
         double responseValue = (double) responseMap.get("updated_Id");
         int updatedId = (int) responseValue;
 
-        assertEquals(id, updatedId);
+        assertEquals(API_Methods.id, updatedId);
     }
 
     @Given("The api user verifies that the title information in the response body is {string}.")
@@ -688,7 +683,7 @@ public class API_AdminStepdefinitions {
     public void the_api_user_verifies_that_the_updated_id_information_in_the_returned_response_body_matches_the_id_specified_in_the_endpoints_path_parameter() {
         jsonPath = API_Methods.response.jsonPath();
 
-        assertEquals(id, jsonPath.getInt("updated_Id"));
+        assertEquals(API_Methods.id, jsonPath.getInt("updated_Id"));
     }
 
     @Given("The api user confirms that the name information in the response body is {string}.")

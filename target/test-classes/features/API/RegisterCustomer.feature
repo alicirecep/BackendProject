@@ -23,7 +23,6 @@ Feature: As a user/administrator, I should be able to create a new customer reco
       | aleynadilan | ciftcier  | dilannciftcier@buysellcycle.com | 123123123 | 123123123             | customer  | 0101010101    |
 
 
-
   Scenario: The creation of a customer via API should be verified to confirm whether the customer exists in the customer
   list using API connection.(The existence of a customer record can be confirmed by comparing the id returned in the
   response body of the /api/register endpoint with the customer records returned in the response body of the /api/get-users endpoint.)
@@ -37,14 +36,14 @@ Feature: As a user/administrator, I should be able to create a new customer reco
     # Api kullanicisi customer kaydinin olusturuldugunu dogrular.
 
 
-  Scenario:When an invalid email (an existing email) from the data is sent in the POST body (first_name, last_name, email,
+  Scenario Outline:When an invalid email (an existing email) from the data is sent in the POST body (first_name, last_name, email,
   password, password_confirmation, user_type, referral_code) to the /api/register endpoint, the expected status
   code returned should be 422, and the response message should confirm: "The email has already been taken.".
 
     * The api user creates the base url.
     * The api user sets "api/register" path parameters
-    * The api user prepares a POST request to send to the api register endpoint using an invalid email.
-    # Api kullanicisi api register endpointine gondermek icin gecersiz emailden olusan bir post request hazirlar
+    * The api user prepares a POST request with invalid "<email>" and "<first_name>", "<last_name>", "<password>", "<password_confirmation>", "<user_type>", "<referral_code>" data to send to the api register endpoint.
+    # Api kullanicisi api register endpointine gondermek icin gecersiz "<email>" ve "<first_name>", "<last_name>", "<password>", "<password_confirmation>", "user_type>", "<referral_code>" datalarından olusan bir post request hazirlar
     * The api user sends a POST request and saves the response from the api register endpoint.
     # Api kullanicisi post request gonderir ve api register endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 422
@@ -52,15 +51,19 @@ Feature: As a user/administrator, I should be able to create a new customer reco
     * The api user verifies that the message information in the response body is "The email has already been taken."
     # Api kullanicisi response bodydeki message bilgisinin "The email has already been taken." oldugunu dogrular
 
+    Examples:
+      | first_name  | last_name | email                           | password  | password_confirmation | user_type | referral_code |
+      | aleynadilan | ciftcier  | dilannciftcier@buysellcycle.com | 123123123 | 123123123             | customer  | 0101010101    |
 
-  Scenario: When a POST body with incomplete data (missing email) consisting of (first_name, last_name, email, password,
+
+  Scenario Outline: When a POST body with incomplete data (missing email) consisting of (first_name, last_name, email, password,
   password_confirmation, user_type, referral_code) is sent to the /api/register endpoint, the expected status
   code returned should be 422, and the response message should confirm: "The email field is required.".
 
     * The api user creates the base url.
     * The api user sets "api/register" path parameters
-    * The api user prepares a POST request with a missing email to send to the api register endpoint.
-    # Api kullanicisi api register endpointine gondermek icin eksik email iceren bir post request hazirlar
+    * The api user prepares a POST request with missing email and "<first_name>", "<last_name>", "<password>", "<password_confirmation>", "<user_type>", "<referral_code>" data to send to the api register endpoint.
+    # Api kullanicisi api register endpointine gondermek icin eksik email ve "<first_name>", "<last_name>", "<password>", "<password_confirmation>", "user_type>", "<referral_code>" datalarını iceren bir post request hazirlar
     * The api user sends a POST request and saves the response from the api register endpoint.
     # Api kullanicisi post request gonderir ve api register endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 422
@@ -68,22 +71,30 @@ Feature: As a user/administrator, I should be able to create a new customer reco
     * The api user verifies that the message information in the response body is "The email field is required."
     # Api kullanicisi response bodydeki message bilgisinin "The email field is required." oldugunu dogrular
 
+    Examples:
+      | first_name  | last_name | password  | password_confirmation | user_type | referral_code |
+      | aleynadilan | ciftcier  | 123123123 | 123123123             | customer  | 0101010101    |
 
-  Scenario: When a POST body with incomplete data (missing password) consisting of (first_name, last_name, email,
+
+  Scenario Outline: When a POST body with incomplete data (missing password) consisting of (first_name, last_name, email,
   password, password_confirmation, user_type, referral_code) is sent to the /api/register endpoint, the expected
   status code returned should be 422, and the response message should confirm:
   "The password field is required.".
 
     * The api user creates the base url.
     * The api user sets "api/register" path parameters
-    * The api user prepares a POST request with a missing password to send to the api register endpoint.
-    # Api kullanicisi api register endpointine gondermek icin eksik password iceren bir post request hazirlar
+    * The api user prepares a POST request with missing password and "<first_name>", "<last_name>", "<email>", "<password_confirmation>", "<user_type>", "<referral_code>" data to send to the api register endpoint.
+    # Api kullanicisi api register endpointine gondermek icin eksik password ve "<first_name>", "<last_name>", "<email>", "<password_confirmation>", "user_type>", "<referral_code>" datalarını iceren bir post request hazirlar
     * The api user sends a POST request and saves the response from the api register endpoint.
     # Api kullanicisi post request gonderir ve api register endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 422
     # Api kullanicisi status codeun 422 oldugunu dogrular
     * The api user verifies that the message information in the response body is "The password field is required."
     # Api kullanicisi response bodydeki message bilgisinin "The password field is required." oldugunu dogrular
+
+    Examples:
+      | first_name  | last_name | email                           | password_confirmation | user_type | referral_code |
+      | aleynadilan | ciftcier  | dilannciftcier@buysellcycle.com | 123123123             | customer  | 0101010101    |
 
 
   Scenario: When a POST body containing mismatched password and password_confirmation is sent to the /api/register

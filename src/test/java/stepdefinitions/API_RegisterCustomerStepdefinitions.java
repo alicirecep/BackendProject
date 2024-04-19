@@ -7,52 +7,26 @@ import io.restassured.path.json.JsonPath;
 import org.json.JSONObject;
 import utilities.API_Utilities.API_Methods;
 
-import java.util.Arrays;
 
 import static hooks.HooksAPI.spec;
 import static org.junit.Assert.*;
 
 public class API_RegisterCustomerStepdefinitions {
 
-    public static int id;
-    public static String fullPath;
     JSONObject requestBody;
     JsonPath jsonPath;
 
 
     @Given("The api user creates the base url.")
     public void the_api_user_creates_the_base_url() {
-        spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url", "api")).build();
+        spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url", "api"))
+                .addHeader("Accept", "application/json")
+                .build();
     }
 
     @Given("The api user sets {string} path parameters")
     public void the_api_user_sets_path_parameters(String rawPaths) {
-        String[] paths = rawPaths.split("/");
-
-        System.out.println(Arrays.toString(paths));
-
-        StringBuilder tempPath = new StringBuilder("/{");
-
-
-        for (int i = 0; i < paths.length; i++) {
-
-            String key = "pp" + i;
-            String value = paths[i].trim();
-
-            spec.pathParam(key, value);
-
-            tempPath.append(key + "}/{");
-
-            if (value.matches("\\d+")) {  // value.matches("\\d+") burada value rakam iceriyorsa dedik
-                id = Integer.parseInt(value);
-            }
-        }
-        tempPath.deleteCharAt(tempPath.lastIndexOf("/"));
-        tempPath.deleteCharAt(tempPath.lastIndexOf("{"));
-
-        fullPath = tempPath.toString();
-        System.out.println("fullPath = " + fullPath);
-        System.out.println("id : " + id);
+        API_Methods.pathParam(rawPaths);
     }
 
     @Given("The api user prepares a POST request containing the data {string}, {string}, {string}, {string}, {string}, {string} and {string} to send to the api register endpoint.")
@@ -98,40 +72,41 @@ public class API_RegisterCustomerStepdefinitions {
         assertEquals(requestBody.get("email"), jsonPath.getString("user.email"));
     }
 
-    @Given("The api user prepares a POST request to send to the api register endpoint using an invalid email.")
-    public void the_api_user_prepares_a_post_request_to_send_to_the_api_register_endpoint_using_an_invalid_email() {
+    @Given("The api user prepares a POST request with invalid {string} and {string}, {string}, {string}, {string}, {string}, {string} data to send to the api register endpoint.")
+    public void the_api_user_prepares_a_post_request_with_invalid_and_data_to_send_to_the_api_register_endpoint(String email, String first_name, String last_name, String password, String password_confirmation, String user_type, String referral_code) {
         requestBody = new JSONObject();
-        requestBody.put("first_name", "aleynadilan");
-        requestBody.put("last_name", "ciftcier");
-        requestBody.put("email", "dilannciftcier@buysellcycle.com");
-        requestBody.put("password", "123123123");
-        requestBody.put("password_confirmation", "123123123");
-        requestBody.put("user_type", "customer");
-        requestBody.put("referral_code", "0101010101");
+        requestBody.put("first_name", first_name);
+        requestBody.put("last_name", last_name);
+        requestBody.put("email", email);
+        requestBody.put("password", password);
+        requestBody.put("password_confirmation", password_confirmation);
+        requestBody.put("user_type", user_type);
+        requestBody.put("referral_code", referral_code);
         System.out.println("Request Body : " + requestBody);
     }
 
-    @Given("The api user prepares a POST request with a missing email to send to the api register endpoint.")
-    public void the_api_user_prepares_a_post_request_with_a_missing_email_to_send_to_the_api_register_endpoint() {
+    @Given("The api user prepares a POST request with missing email and {string}, {string}, {string}, {string}, {string}, {string} data to send to the api register endpoint.")
+    public void the_api_user_prepares_a_post_request_with_missing_email_and_data_to_send_to_the_api_register_endpoint(String first_name, String last_name, String password, String password_confirmation, String user_type, String referral_code) {
         requestBody = new JSONObject();
-        requestBody.put("first_name", "aleynadilan");
-        requestBody.put("last_name", "ciftcier");
-        requestBody.put("password", "123123123");
-        requestBody.put("password_confirmation", "123123123");
-        requestBody.put("user_type", "customer");
-        requestBody.put("referral_code", "0101010101");
+        requestBody.put("first_name", first_name);
+        requestBody.put("last_name", last_name);
+        requestBody.put("password", password);
+        requestBody.put("password_confirmation", password_confirmation);
+        requestBody.put("user_type", user_type);
+        requestBody.put("referral_code", referral_code);
         System.out.println("Request Body : " + requestBody);
     }
 
-    @Given("The api user prepares a POST request with a missing password to send to the api register endpoint.")
-    public void the_api_user_prepares_a_post_request_with_a_missing_password_to_send_to_the_api_register_endpoint() {
+
+    @Given("The api user prepares a POST request with missing password and {string}, {string}, {string}, {string}, {string}, {string} data to send to the api register endpoint.")
+    public void the_api_user_prepares_a_post_request_with_missing_password_and_data_to_send_to_the_api_register_endpoint(String first_name, String last_name, String email, String password_confirmation, String user_type, String referral_code) {
         requestBody = new JSONObject();
-        requestBody.put("first_name", "aleynadilan");
-        requestBody.put("last_name", "ciftcier");
-        requestBody.put("email", "dilannciftcier@buysellcycle.com");
-        requestBody.put("password_confirmation", "123123123");
-        requestBody.put("user_type", "customer");
-        requestBody.put("referral_code", "0101010101");
+        requestBody.put("first_name", first_name);
+        requestBody.put("last_name", last_name);
+        requestBody.put("email", email);
+        requestBody.put("password_confirmation", password_confirmation);
+        requestBody.put("user_type", user_type);
+        requestBody.put("referral_code", referral_code);
         System.out.println("Request Body : " + requestBody);
     }
 

@@ -1,5 +1,5 @@
 Feature: As an administrator, I want to be able to access coupon information via the API connection.
-  @API
+
   Scenario: When a GET request body containing valid authorization information is sent to the /api/coupon/couponList endpoint,
   the returned status code should be 200, and the message information should be verified as "success".
 
