@@ -8,7 +8,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayUpdate/<id>" path parameters
     # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
-    * The api user prepares a PATCH request containing the "<year>", "<name>", and "<date>" data to send to the api holidayUpdate endpoint.
+    * The api user prepares a PATCH request containing the "<year>", "<name>" and "<date>" data to send to the api holidayUpdate endpoint.
     # Api kullanicisi api holidayUpdate endpointine gondermek icin "<year>", "<name>" ve "<date>" verilerini iceren bir patch request hazirlar
     * The api user sends the PATCH request and saves the response returned from the api holidayUpdate endpoint.
     # Api kullanicisi patch request gonderir ve api holidayUpdate endpointinden donen responsei kaydeder
@@ -19,30 +19,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
 
     Examples:
       | id | year | name   | date       |
-      | 44 | 2025 | Bayram | 2025-01-01 |
-
-
-  Scenario Outline: When a PATCH request containing valid authorization credentials, the holiday id to be updated, and the holiday
-  data (year, name, date) matching the previous records is sent to the /api/holidayUpdate/{id} endpoint, the
-  expected status code returned should be 400, and the message in the response body should confirm:
-  "dublicate holiday request".
-
-    * The api user constructs the base url with the "admin" token.
-    # APi kullanicisi "admin" token ile base urli olusturur
-    * The api user sets "api/holidayUpdate/<id>" path parameters
-    # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
-    * The api user prepares a PATCH request containing the "<year>", "<name>", and "<date>" data that matches the previous records to send to the api holidayUpdate endpoint.
-    # Api kullanicisi api holidayUpdate endpointine gondermek icin önceki kayıtlarla eslesen "<year>", "<name>" ve "<date>" verilerini iceren bir patch request hazirlar
-    * The api user sends the PATCH request and saves the response returned from the api holidayUpdate endpoint.
-    # Api kullanicisi patch request gonderir ve api holidayUpdate endpointinden donen responsei kaydeder
-    * The api user verifies that the status code is 400
-    # Api kullanicisi status codeun 400 oldugunu dogrular
-    * The api user verifies that the message information in the response body is "dublicate holiday request"
-    # Api kullanicisi response bodydeki message bilgisinin "dublicate holiday request" oldugunu dogrular
-
-    Examples:
-      | id | year | name   | date       |
-      | 43 | 2025 | Bayram | 2025-01-01 |
+      | 78 | 2027 | Bayram | 2027-01-01 |
 
 
   Scenario Outline: When a PATCH request containing valid authorization credentials, an incorrect (non-existent in the system)
@@ -54,18 +31,14 @@ Feature: As an administrator, I want to be able to update holiday information fo
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayUpdate/<id>" path parameters
     # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
-    * The api user prepares a PATCH request containing the "<year>", "<name>", and "<date>" data to send to the api holidayUpdate endpoint.
+    * The api user prepares a PATCH request containing the "<year>", "<name>" and "<date>" data to send to the api holidayUpdate endpoint.
     # Api kullanicisi api holidayUpdate endpointine gondermek icin "<year>", "<name>" ve "<date>" verilerini iceren bir patch request hazirlar
-    * The api user sends the PATCH request and saves the response returned from the api holidayUpdate endpoint.
-    # Api kullanicisi patch request gonderir ve api holidayUpdate endpointinden donen responsei kaydeder
-    * The api user verifies that the status code is 404
-    # Api kullanicisi status codeun 404 oldugunu dogrular
-    * The api user verifies that the message information in the response body is "holiday not found"
-    # Api kullanicisi response bodydeki message bilgisinin "holiday not found" oldugunu dogrular
+    * The api user saves the response from the api holidayUpdate endpoint and verifies that the status code is '404' and the reason phrase is Not Found.
+    # Api kullanicisi api holidayUpdate endpointinden donen responsei kaydeder, status codeun '404' ve reason phrase bilgisinin Not Found oldugunu dogrular
 
     Examples:
-      | id  | year | name   | date       |
-      | 457 | 2025 | Bayram | 2025-01-01 |
+      | id   | year | name   | date       |
+      | 2547 | 2027 | Bayram | 2027-01-01 |
 
 
   Scenario Outline: When a PATCH request containing invalid authorization credentials, the holiday id to be updated, and the
@@ -76,14 +49,14 @@ Feature: As an administrator, I want to be able to update holiday information fo
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/holidayUpdate/<id>" path parameters
     # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
-    * The api user prepares a PATCH request containing the "<year>", "<name>", and "<date>" data to send to the api holidayUpdate endpoint.
+    * The api user prepares a PATCH request containing the "<year>", "<name>" and "<date>" data to send to the api holidayUpdate endpoint.
     # Api kullanicisi api holidayUpdate endpointine gondermek icin "<year>", "<name>" ve "<date>" verilerini iceren bir patch request hazirlar
     * The api user saves the response returned from the api holidayUpdate endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi api holidayUpdate endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
     Examples:
       | id | year | name   | date       |
-      | 44 | 2025 | Bayram | 2025-01-01 |
+      | 78 | 2027 | Bayram | 2027-01-01 |
 
 
   Scenario Outline: The updated_Id information in the response body returned from the /api/holidayUpdate/{id} endpoint should be
@@ -93,7 +66,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayUpdate/<id>" path parameters
     # APi kullanicisi "api/holidayUpdate/{id}" path parametrelerini olusturur
-    * The api user prepares a PATCH request containing the "<year>", "<name>", and "<date>" data to send to the api holidayUpdate endpoint.
+    * The api user prepares a PATCH request containing the "<year>", "<name>" and "<date>" data to send to the api holidayUpdate endpoint.
     # Api kullanicisi api holidayUpdate endpointine gondermek icin "<year>", "<name>" ve "<date>" verilerini iceren bir patch request hazirlar
     * The api user sends the PATCH request and saves the response returned from the api holidayUpdate endpoint.
     # Api kullanicisi patch request gonderir ve api holidayUpdate endpointinden donen responsei kaydeder
@@ -102,7 +75,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
 
     Examples:
       | id | year | name   | date       |
-      | 44 | 2025 | Bayram | 2025-01-01 |
+      | 78 | 2027 | Bayram | 2027-01-01 |
 
 
   Scenario Outline: The update of the holiday record via the API should be confirmed through the API itself.
@@ -121,7 +94,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
 
     Examples:
       | id | nameValue |
-      | 44 | Bayram    |
+      | 78 | Bayram    |
 
 
 

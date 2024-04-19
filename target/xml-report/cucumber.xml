@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="17.206">
-    <testcase classname="As an administrator, I want to be able to access coupon information via the API connection." name="When a GET request body containing valid authorization information is sent to the /api/coupon/couponList endpoint," time="14.53">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="10.017">
+    <testcase classname="As an administrator, I want to be able to update holiday information for the specified id number via API connection." name="The update of the holiday record via the API should be confirmed through the API itself." time="8.827">
         <system-out><![CDATA[* The api user constructs the base url with the "admin" token...............passed
-* The api user sets "api/coupon/couponList" path parameters.................passed
-* The api user saves the response returned from the api coupon couponList endpoint..passed
-* The api user verifies that the status code is 200.........................passed
-* The api user verifies that the message information in the response body is "success".passed
+* The api user sets "api/holidayDetails" path parameters....................passed
+* The api user prepares a GET request containing the holiday 78 for which details are to be accessed, to send to the api holidayDetails endpoint..passed
+* The api user sends a GET request and saves the response returned from the api holidayDetails endpoint..passed
+* The api user verifies that the name information in the response body is "Bayram"..passed
 ]]></system-out>
     </testcase>
 </testsuite>
