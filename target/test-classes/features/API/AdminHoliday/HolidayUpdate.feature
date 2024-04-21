@@ -19,7 +19,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
 
     Examples:
       | id | year | name   | date       |
-      | 78 | 2024 | Bayram | 2024-01-01 |
+      | 78 | 2027 | Bayram | 2027-01-01 |
 
 
   Scenario Outline: When a PATCH request containing valid authorization credentials, an incorrect (non-existent in the system)
@@ -77,7 +77,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
       | id | year | name   | date       |
       | 78 | 2027 | Bayram | 2027-01-01 |
 
-  @API
+
   Scenario Outline: The update of the holiday record via the API should be confirmed through the API itself.
   (The update of the record can be verified by sending a GET request to the /api/holidayDetails endpoint with the
   updated_Id returned in the response body.)
@@ -85,6 +85,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayDetails" path parameters
+    # APi kullanicisi "api/holidayDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the holiday <id> for which details are to be accessed, to send to the api holidayDetails endpoint.
     # Api kullanicisi api holidayDetails endpointine gondermek icin detaylarina erisilmek istenen holiday idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api holidayDetails endpoint.

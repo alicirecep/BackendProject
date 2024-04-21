@@ -29,11 +29,13 @@ Feature: As an administrator, I want to be able to create a new FAQ record via A
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/faqsDetails" path parameters
+    # Api kullanicisi "api/faqsDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the FAQ <id> for which details are to be accessed, to send to the api faqsDetails endpoint.
     # Api kullanicisi api faqsDetails endpointine gondermek icin detaylarina erisilmek istenen faqs idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api faqsDetails endpoint.
     # Api kullanicisi get request gonderir ve api faqsDetails endpointinden donen responsei kaydeder
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id |

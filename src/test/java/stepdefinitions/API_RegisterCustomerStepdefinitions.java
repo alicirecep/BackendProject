@@ -10,12 +10,14 @@ import utilities.API_Utilities.API_Methods;
 
 import static hooks.HooksAPI.spec;
 import static org.junit.Assert.*;
+import static utilities.API_Utilities.API_Methods.faker;
 
 public class API_RegisterCustomerStepdefinitions {
 
     JSONObject requestBody;
     JsonPath jsonPath;
-
+    public static String registerEmail;
+    public static String registerPassword;
 
     @Given("The api user creates the base url.")
     public void the_api_user_creates_the_base_url() {
@@ -29,16 +31,18 @@ public class API_RegisterCustomerStepdefinitions {
         API_Methods.pathParam(rawPaths);
     }
 
-    @Given("The api user prepares a POST request containing the data {string}, {string}, {string}, {string}, {string}, {string} and {string} to send to the api register endpoint.")
-    public void the_api_user_prepares_a_post_request_containing_the_data_and_to_send_to_the_api_register_endpoint(String first_name, String last_name, String email, String password, String password_confirmation, String user_type, String referral_code) {
+    @Given("The api user prepares a POST request to send to the api register endpoint.")
+    public void the_api_user_prepares_a_post_request_to_send_to_the_api_register_endpoint() {
+        registerPassword = faker.internet().password();
+
         requestBody = new JSONObject();
-        requestBody.put("first_name", first_name);
-        requestBody.put("last_name", last_name);
-        requestBody.put("email", email);
-        requestBody.put("password", password);
-        requestBody.put("password_confirmation", password_confirmation);
-        requestBody.put("user_type", user_type);
-        requestBody.put("referral_code", referral_code);
+        requestBody.put("first_name", faker.name().firstName());
+        requestBody.put("last_name", faker.name().lastName());
+        requestBody.put("email", faker.internet().emailAddress());
+        requestBody.put("password", registerPassword);
+        requestBody.put("password_confirmation", registerPassword);
+        requestBody.put("user_type", "customer");
+        requestBody.put("referral_code", "0101010101");
         System.out.println("Request Body : " + requestBody);
     }
 
@@ -57,10 +61,16 @@ public class API_RegisterCustomerStepdefinitions {
         API_Methods.messageAssert(message);
     }
 
+    @Given("The api user creates a customer record.")
+    public void the_api_user_creates_a_customer_record() {
+        registerEmail = API_Methods.registerEmail();
+    }
+
     @Given("The api user confirms that the customer record has been created.")
     public void the_api_user_confirms_that_the_customer_record_has_been_created() {
         jsonPath = API_Methods.response.jsonPath();
-        assertEquals(ConfigReader.getProperty("customerEmail", "api"), jsonPath.getString("user[194].email"));
+        int lastIndex = jsonPath.getList("user").size() - 1;
+        assertEquals(registerEmail, jsonPath.getString("user[" + lastIndex + "].email"));
     }
 
     @Given("The api user verifies that the data in the response returned from the api register endpoint matches the data sent in the request body.")
@@ -85,39 +95,41 @@ public class API_RegisterCustomerStepdefinitions {
         System.out.println("Request Body : " + requestBody);
     }
 
-    @Given("The api user prepares a POST request with missing email and {string}, {string}, {string}, {string}, {string}, {string} data to send to the api register endpoint.")
-    public void the_api_user_prepares_a_post_request_with_missing_email_and_data_to_send_to_the_api_register_endpoint(String first_name, String last_name, String password, String password_confirmation, String user_type, String referral_code) {
+    @Given("The api user prepares a POST request with missing email data to send to the api register endpoint.")
+    public void the_api_user_prepares_a_post_request_with_missing_email_data_to_send_to_the_api_register_endpoint() {
+        registerPassword = faker.internet().password();
+
         requestBody = new JSONObject();
-        requestBody.put("first_name", first_name);
-        requestBody.put("last_name", last_name);
-        requestBody.put("password", password);
-        requestBody.put("password_confirmation", password_confirmation);
-        requestBody.put("user_type", user_type);
-        requestBody.put("referral_code", referral_code);
+        requestBody.put("first_name", faker.name().firstName());
+        requestBody.put("last_name", faker.name().lastName());
+        requestBody.put("password", registerPassword);
+        requestBody.put("password_confirmation", registerPassword);
+        requestBody.put("user_type", "customer");
+        requestBody.put("referral_code", "0101010101");
         System.out.println("Request Body : " + requestBody);
     }
 
 
-    @Given("The api user prepares a POST request with missing password and {string}, {string}, {string}, {string}, {string}, {string} data to send to the api register endpoint.")
-    public void the_api_user_prepares_a_post_request_with_missing_password_and_data_to_send_to_the_api_register_endpoint(String first_name, String last_name, String email, String password_confirmation, String user_type, String referral_code) {
+    @Given("The api user prepares a POST request with missing password data to send to the api register endpoint.")
+    public void the_api_user_prepares_a_post_request_with_missing_password_data_to_send_to_the_api_register_endpoint() {
         requestBody = new JSONObject();
-        requestBody.put("first_name", first_name);
-        requestBody.put("last_name", last_name);
-        requestBody.put("email", email);
-        requestBody.put("password_confirmation", password_confirmation);
-        requestBody.put("user_type", user_type);
-        requestBody.put("referral_code", referral_code);
+        requestBody.put("first_name", faker.name().firstName());
+        requestBody.put("last_name", faker.name().lastName());
+        requestBody.put("email", faker.internet().emailAddress());
+        requestBody.put("password_confirmation", faker.internet().password());
+        requestBody.put("user_type", "customer");
+        requestBody.put("referral_code", "0101010101");
         System.out.println("Request Body : " + requestBody);
     }
 
     @Given("The api user prepares a POST request with mismatched password and password confirmation to send to the api register endpoint.")
     public void the_api_user_prepares_a_post_request_with_mismatched_password_and_password_confirmation_to_send_to_the_api_register_endpoint() {
         requestBody = new JSONObject();
-        requestBody.put("first_name", "aleynadilan");
-        requestBody.put("last_name", "ciftcier");
-        requestBody.put("email", "dilannciftcier@buysellcycle.com");
-        requestBody.put("password", "123123123");
-        requestBody.put("password_confirmation", "123123123111");
+        requestBody.put("first_name", faker.name().firstName());
+        requestBody.put("last_name", faker.name().lastName());
+        requestBody.put("email", faker.internet().emailAddress());
+        requestBody.put("password", faker.internet().password());
+        requestBody.put("password_confirmation", faker.internet().password());
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
         System.out.println("Request Body : " + requestBody);
@@ -125,12 +137,14 @@ public class API_RegisterCustomerStepdefinitions {
 
     @Given("The api user prepares a POST request with a password containing fewer than '8' characters to send to the api register endpoint.")
     public void the_api_user_prepares_a_post_request_with_a_password_containing_fewer_than_characters_to_send_to_the_api_register_endpoint() {
+        registerPassword = faker.internet().password(1,6);
+
         requestBody = new JSONObject();
-        requestBody.put("first_name", "aleynadilan");
-        requestBody.put("last_name", "ciftcier");
-        requestBody.put("email", "dilannciftcier@buysellcycle.com");
-        requestBody.put("password", "123");
-        requestBody.put("password_confirmation", "123");
+        requestBody.put("first_name", faker.name().lastName());
+        requestBody.put("last_name", faker.name().lastName());
+        requestBody.put("email", faker.internet().emailAddress());
+        requestBody.put("password", registerPassword);
+        requestBody.put("password_confirmation", registerPassword);
         requestBody.put("user_type", "customer");
         requestBody.put("referral_code", "0101010101");
         System.out.println("Request Body : " + requestBody);

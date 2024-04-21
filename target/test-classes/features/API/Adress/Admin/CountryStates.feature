@@ -8,12 +8,15 @@ Feature: As an administrator, I want to be able to access the state information 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/profile/countryStates" path parameters
+    # APi kullanicisi "api/profile/countryStates" path parametrelerini olusturur
     * The api user prepares a GET request containing the country <id> for which state information is to be accessed to send to the api profile countryStates endpoint.
     # Api kullanicisi api profile countryStates endpointine gondermek icin state bilgilerine erisilmek istenen country idsini iceren bir get request hazirlar
     * The api user sends a GET request and records the response returned from the api profile countryStates endpoint.
     # Api kullanicisi get request gonderir ve api profile countryStates endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 200
+    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id  |
@@ -27,6 +30,7 @@ Feature: As an administrator, I want to be able to access the state information 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/profile/countryStates" path parameters
+    # APi kullanicisi "api/profile/countryStates" path parametrelerini olusturur
     * The api user prepares a GET request containing the country <id> for which state information is to be accessed to send to the api profile countryStates endpoint.
     # Api kullanicisi api profile countryStates endpointine gondermek icin state bilgilerine erisilmek istenen country idsini iceren bir get request hazirlar
     * The api user sends a GET request and records the response returned from the api profile countryStates endpoint.
@@ -47,6 +51,7 @@ Feature: As an administrator, I want to be able to access the state information 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/profile/countryStates" path parameters
+    # APi kullanicisi "api/profile/countryStates" path parametrelerini olusturur
     * The api user prepares a GET request containing the country <id> that do not exist in the system to send to the api profile countryStates endpoint.
     # Api kullanicisi api profile countryStates endpointine gondermek icin sistemde bulunmayan country idsini iceren bir get request hazirlar
     * The api user records the response from the api profile countryStates endpoint, confirming that the status code is '404' and the reason phrase is Not Found.
@@ -64,6 +69,7 @@ Feature: As an administrator, I want to be able to access the state information 
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/profile/countryStates" path parameters
+    # APi kullanicisi "api/profile/countryStates" path parametrelerini olusturur
     * The api user prepares a GET request containing the country <id> for which state information is to be accessed to send to the api profile countryStates endpoint.
     # Api kullanicisi api profile countryStates endpointine gondermek icin state bilgilerine erisilmek istenen country idsini iceren bir get request hazirlar
     * The api user records the response from the api profile countryStates endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized.

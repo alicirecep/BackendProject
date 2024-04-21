@@ -30,11 +30,13 @@ Feature: As a user, I want to add a new address record to my profile via API con
     * The api user constructs the base url with the "customer" token.
     # APi kullanicisi "customer" token ile base urli olusturur
     * The api user sets "api/profile/customerDetailsAddress" path parameters
+    # APi kullanicisi ""api/profile/customerDetailsAddress" path parametrelerini olusturur
     * The api user prepares a GET request containing the address <id> to be accessed for the api profile customerDetailsAddress endpoint.
     # Api kullanicisi api profile customerDetailsAddress endpointine gondermek icin detaylarina erisilmek istenen address idsini iceren bir get request hazirlar
     * The api user sends the GET request and records the response returned from the api profile customerDetailsAddress endpoint.
     # Api kullanicisi get request gonderir ve api profile customerDetailsAddress endpointinden donen responsei kaydeder
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id  |

@@ -84,6 +84,7 @@ Feature: As an administrator, I want to be able to delete coupon information wit
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/coupon/couponDetails" path parameters
+    # Api kullanicisi "api/coupon/couponDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the deleted <id> to send to the api coupon couponDetails endpoint.
     # Api kullanicisi api coupon couponDetails endpointine gondermek icin sildiği Deleted Idyi iceren bir get request hazirlar
     * The api user records the response from the api coupon couponDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.

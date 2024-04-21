@@ -87,6 +87,7 @@ Feature: As a user, I want to be able to delete the information of the address i
     * The api user constructs the base url with the "customer" token.
     # APi kullanicisi "customer" token ile base urli olusturur
     * The api user sets "api/profile/customerDetailsAddress" path parameters
+    # Api kullanicisi "api/profile/customerDetailsAddress" path parametrelerini olusturur
     * The api user prepares a GET request containing the Deleted <id> to send to the api profile customerDetailsAddress endpoint.
     # Api kullanicisi api profile customerDetailsAddress endpointine gondermek icin sildiği Deleted Idyi iceren bir get request hazirlar
     * The api user records the response from the api profile customerDetailsAddress endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
