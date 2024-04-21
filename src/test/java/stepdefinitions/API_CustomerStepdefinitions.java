@@ -23,12 +23,12 @@ public class API_CustomerStepdefinitions {
     CustomerAddAdressPojo requestAddAdressPojo;
     CustomerAddressUpdatePojo requestAddressUpdatePojo;
 
-    //************************************* api/customerGetUser ***************************************************
     @Given("The api user constructs the base url with the {string} token.")
     public void the_api_user_constructs_the_base_url_with_the_token(String userType) {
         HooksAPI.setUpApi(userType);
     }
 
+    //************************************* api/customerGetUser ***************************************************
     @Given("The api user saves the response returned from the api customerGetUser endpoint.")
     public void the_api_user_saves_the_response_returned_from_the_api_customer_get_user_endpoint() {
         API_Methods.getResponse();

@@ -32,11 +32,13 @@ Feature: As an administrator, I want to be able to add a new address record for 
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/profile/addressDetails" path parameters
+    # APi kullanicisi "api/profile/addressDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the address <id> to be accessed for the api profile addressDetails endpoint.
     # Api kullanicisi api profile addressDetails endpointine gondermek icin detaylarina erisilmek istenen address idsini iceren bir get request hazirlar
     * The api user sends a GET request and records the response from the api profile addressDetails endpoint.
     # Api kullanicisi get request gonderir ve api profile addressDetails endpointinden donen responsei kaydeder
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id  |

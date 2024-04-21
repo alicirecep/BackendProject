@@ -6,10 +6,13 @@ Feature: As an administrator, I want to be able to access departments via the AP
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/departmentList" path parameters
+    # Api kullanicisi "api/departmentList" path parametrelerini olusturur
     * The api user saves the response returned from the api departmentList endpoint.
     # Api kullanicisi api departmentList endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 200
+    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
 
   Scenario Outline: When a GET request containing valid authorization information is sent to the /api/departmentList endpoint, the
@@ -19,6 +22,7 @@ Feature: As an administrator, I want to be able to access departments via the AP
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/departmentList" path parameters
+    # Api kullanicisi "api/departmentList" path parametrelerini olusturur
     * The api user saves the response returned from the api departmentList endpoint.
     # Api kullanicisi api departmentList endpointinden donen responsei kaydeder
     * The api user verifies that the "<name>" and "<details>" information of the data with the index <dataIndex> in the response body is correct.
@@ -37,6 +41,7 @@ Feature: As an administrator, I want to be able to access departments via the AP
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/departmentList" path parameters
+    # Api kullanicisi "api/departmentList" path parametrelerini olusturur
     * The api user saves the response returned from the api departmentList endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi api departmentList endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 

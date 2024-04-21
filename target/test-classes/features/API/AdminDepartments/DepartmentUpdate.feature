@@ -21,7 +21,7 @@ Feature: As an administrator, I want to be able to update department information
 
     Examples:
       | id | name      | details              | status |
-      | 16 | Marketing | Marketing Department | 1      |
+      | 66 | Marketing | Marketing Department | 1      |
 
 
   Scenario Outline: When a PATCH request body containing valid authorization information and an incorrect (non-existent in the
@@ -88,6 +88,7 @@ Feature: As an administrator, I want to be able to update department information
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/departmentDetails" path parameters
+    # APi kullanicisi "api/departmentDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the department <id> to access their details from the api departmentDetails endpoint.
     # Api kullanicisi api departmentDetails endpointine gondermek icin detaylarina erisilmek istenen department idsini iceren bir get request hazirlar
     * The api user sends a GET request and records the response returned from the api departmentDetails endpoint.

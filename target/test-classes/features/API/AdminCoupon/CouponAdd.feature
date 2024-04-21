@@ -30,11 +30,13 @@ Feature: As an administrator, I want to be able to create a new coupon record vi
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/coupon/couponDetails" path parameters
+    # Api kullanicisi "api/coupon/couponDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the details of the coupon <id> to be accessed for sending to the api coupon couponDetails endpoint.
     # Api kullanicisi api coupon couponDetails endpointine gondermek icin detaylarina erisilmek istenen coupon idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api coupon couponDetails endpoint.
     # Api kullanicisi get request gonderir ve api coupon couponDetails endpointinden donen responsei kaydeder
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id |

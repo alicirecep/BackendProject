@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="10.017">
-    <testcase classname="As an administrator, I want to be able to update holiday information for the specified id number via API connection." name="The update of the holiday record via the API should be confirmed through the API itself." time="8.827">
-        <system-out><![CDATA[* The api user constructs the base url with the "admin" token...............passed
-* The api user sets "api/holidayDetails" path parameters....................passed
-* The api user prepares a GET request containing the holiday 78 for which details are to be accessed, to send to the api holidayDetails endpoint..passed
-* The api user sends a GET request and saves the response returned from the api holidayDetails endpoint..passed
-* The api user verifies that the name information in the response body is "Bayram"..passed
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="8.37">
+    <testcase classname="As a user/administrator, I should be able to create a new customer record in the system via API connection." name="When a POST body containing a password with fewer than 8 characters is sent to the /api/register endpoint" time="7.115">
+        <system-out><![CDATA[* The api user creates the base url.........................................passed
+* The api user sets "api/register" path parameters..........................passed
+* The api user prepares a POST request with a password containing fewer than '8' characters to send to the api register endpoint..passed
+* The api user sends a POST request and saves the response from the api register endpoint..passed
+* The api user verifies that the status code is 422.........................passed
+* The api user verifies that the message information in the response body is "The password field minimum 8 character.".passed
 ]]></system-out>
     </testcase>
 </testsuite>
