@@ -21,7 +21,7 @@ Feature: As an administrator, I want to be able to update department information
 
     Examples:
       | id | name      | details              | status |
-      | 16 | Marketing | Marketing Department | 1      |
+      | 66 | Marketing | Marketing Department | 1      |
 
 
   Scenario Outline: When a PATCH request body containing valid authorization information and an incorrect (non-existent in the

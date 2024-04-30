@@ -19,7 +19,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
 
     Examples:
       | id | year | name   | date       |
-      | 78 | 2024 | Bayram | 2024-01-01 |
+      | 78 | 2027 | Bayram | 2027-01-01 |
 
 
   Scenario Outline: When a PATCH request containing valid authorization credentials, an incorrect (non-existent in the system)
@@ -77,7 +77,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
       | id | year | name   | date       |
       | 78 | 2027 | Bayram | 2027-01-01 |
 
-  @API
+
   Scenario Outline: The update of the holiday record via the API should be confirmed through the API itself.
   (The update of the record can be verified by sending a GET request to the /api/holidayDetails endpoint with the
   updated_Id returned in the response body.)
