@@ -7,10 +7,13 @@ Feature: As a user, I want to view the addresses in my profile via the API conne
     * The api user constructs the base url with the "customer" token.
     # APi kullanicisi "customer" token ile base urli olusturur
     * The api user sets "api/profile/address-list" path parameters
+    # APi kullanicisi "api/profile/address-list" path parametrelerini olusturur
     * The api user saves the response returned from the api profile address list endpoint.
     # Api kullanicisi api profile address list endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 200
+    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
 
   Scenario Outline: When a GET request body containing valid authorization information is sent to the
@@ -21,6 +24,7 @@ Feature: As a user, I want to view the addresses in my profile via the API conne
     * The api user constructs the base url with the "customer" token.
     # APi kullanicisi "customer" token ile base urli olusturur
     * The api user sets "api/profile/address-list" path parameters
+    # APi kullanicisi "api/profile/address-list" path parametrelerini olusturur
     * The api user saves the response returned from the api profile address list endpoint.
     # Api kullanicisi api profile address list endpointinden donen responsei kaydeder
     * The api user verifies the <customer_id>, "<name>", "<email>", "<phone>", "<address>", "<city>", "<state>", "<country>", "<postal_code>", <is_shipping_default>, <is_billing_default>, "<created_at>" and "<updated_at>" information of the item at the <dataIndex> index in the response body.
@@ -38,6 +42,7 @@ Feature: As a user, I want to view the addresses in my profile via the API conne
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/profile/address-list" path parameters
+    # APi kullanicisi "api/profile/address-list" path parametrelerini olusturur
     * The api user records the response from the api profile address list endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi "api/profile/address-list" endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 

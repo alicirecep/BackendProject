@@ -85,6 +85,7 @@ Feature: As an administrator, I want to be able to update holiday information fo
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayDetails" path parameters
+    # APi kullanicisi "api/holidayDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the holiday <id> for which details are to be accessed, to send to the api holidayDetails endpoint.
     # Api kullanicisi api holidayDetails endpointine gondermek icin detaylarina erisilmek istenen holiday idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api holidayDetails endpoint.

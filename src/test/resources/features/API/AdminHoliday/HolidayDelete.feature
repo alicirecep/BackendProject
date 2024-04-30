@@ -84,6 +84,7 @@ Feature: As an administrator, I want to be able to delete holiday information fo
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayDetails" path parameters
+    # APi kullanicisi "api/holidayDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the Deleted <id> to send to the api holidayDetails endpoint.
     # Api kullanicisi api holidayDetails endpointine gondermek icin sildiği Deleted Idyi iceren bir get request hazirlar
     * The api user saves the response returned from the api holidayDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.

@@ -8,12 +8,15 @@ Feature: As an administrator, I want to be able to access detailed information a
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/departmentDetails" path parameters
+    # Api kullanicisi "api/departmentDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the department <id> to access their details from the api departmentDetails endpoint.
     # Api kullanicisi api departmentDetails endpointine gondermek icin detaylarina erisilmek istenen department idsini iceren bir get request hazirlar
     * The api user sends a GET request and records the response returned from the api departmentDetails endpoint.
     # Api kullanicisi get request gonderir ve api departmentDetails endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 200
+    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id |
@@ -27,6 +30,7 @@ Feature: As an administrator, I want to be able to access detailed information a
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/departmentDetails" path parameters
+    # Api kullanicisi "api/departmentDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the department <id> to access their details from the api departmentDetails endpoint.
     # Api kullanicisi api departmentDetails endpointine gondermek icin detaylarina erisilmek istenen department idsini iceren bir get request hazirlar
     * The api user sends a GET request and records the response returned from the api departmentDetails endpoint.
@@ -47,6 +51,7 @@ Feature: As an administrator, I want to be able to access detailed information a
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/departmentDetails" path parameters
+    # Api kullanicisi "api/departmentDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the department <id> that are not present in the system to send to the api departmentDetails endpoint.
     # Api kullanicisi api departmentDetails endpointine gondermek icin sistemde bulunmayan department idsini iceren bir get request hazirlar
     * The api user records the response returned from the api departmentDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
@@ -64,6 +69,7 @@ Feature: As an administrator, I want to be able to access detailed information a
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/departmentDetails" path parameters
+    # Api kullanicisi "api/departmentDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the department <id> to access their details from the api departmentDetails endpoint.
     # Api kullanicisi api departmentDetails endpointine gondermek icin detaylarina erisilmek istenen department idsini iceren bir get request hazirlar
     * The api user records the response returned from the api departmentDetails endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.
