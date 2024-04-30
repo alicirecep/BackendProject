@@ -29,11 +29,13 @@ Feature: As an administrator, I want to add a new holiday record for staff via A
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/holidayDetails" path parameters
+    # APi kullanicisi "api/holidayDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the holiday <id> for which details are to be accessed, to send to the api holidayDetails endpoint.
     # Api kullanicisi api holidayDetails endpointine gondermek icin detaylarina erisilmek istenen holiday idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api holidayDetails endpoint.
     # Api kullanicisi get request gonderir ve api holidayDetails endpointinden donen responsei kaydeder
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id |
@@ -75,7 +77,9 @@ Feature: As an administrator, I want to add a new holiday record for staff via A
     * The api user sends the POST request and saves the response returned from the api holidayAdd endpoint.
     # Api kullanicisi post request gonderir ve api holidayAdd endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 401
+    # Api kullanicisi status codeun 401 oldugunu dogrular
     * The api user verifies that the message information in the response body is "Unauthenticated."
+    # Api kullanicisi response bodydeki message bilgisinin "Unauthenticated." oldugunu dogrular
 
     Examples:
       | year | name                       | date       |

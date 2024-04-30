@@ -6,10 +6,13 @@ Feature: As an administrator, I want to be able to access coupon information via
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/coupon/couponList" path parameters
+    # Api kullanicisi "api/coupon/couponList" path parametrelerini olusturur
     * The api user saves the response returned from the api coupon couponList endpoint.
     # Api kullanicisi api coupon couponList endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 200
+    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
 
   Scenario Outline: When a GET request body containing valid authorization information is sent to the /api/coupon/couponList
@@ -19,6 +22,7 @@ Feature: As an administrator, I want to be able to access coupon information via
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/coupon/couponList" path parameters
+    # Api kullanicisi "api/coupon/couponList" path parametrelerini olusturur
     * The api user saves the response returned from the api coupon couponList endpoint.
     # Api kullanicisi api coupon couponList endpointinden donen responsei kaydeder
     * The api user verifies the "<title>", "<coupon_code>", "<start_date>" and "<end_date>" information of the item at the <dataIndex> index in the response body.
@@ -37,5 +41,6 @@ Feature: As an administrator, I want to be able to access coupon information via
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/coupon/couponList" path parameters
+    # Api kullanicisi "api/coupon/couponList" path parametrelerini olusturur
     * The api user saves the response returned from the api coupon couponList endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized.
     # Api kullanicisi api coupon couponList endpointinden donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular

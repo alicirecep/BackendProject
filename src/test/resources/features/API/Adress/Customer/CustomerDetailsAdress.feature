@@ -8,12 +8,15 @@ Feature: As a user, I should be able to access detailed information about the ad
     * The api user constructs the base url with the "customer" token.
     # APi kullanicisi "customer" token ile base urli olusturur
     * The api user sets "api/profile/customerDetailsAddress" path parameters
+    # Api kullanicisi "api/profile/customerDetailsAddress" path parametrelerini olusturur
     * The api user prepares a GET request containing the address <id> to be accessed for the api profile customerDetailsAddress endpoint.
     # Api kullanicisi api profile customerDetailsAddress endpointine gondermek icin detaylarina erisilmek istenen address idsini iceren bir get request hazirlar
     * The api user sends the GET request and records the response returned from the api profile customerDetailsAddress endpoint.
     # Api kullanicisi get request gonderir ve api profile customerDetailsAddress endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 200
+    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id  |
@@ -28,6 +31,7 @@ Feature: As a user, I should be able to access detailed information about the ad
     * The api user constructs the base url with the "customer" token.
     # APi kullanicisi "customer" token ile base urli olusturur
     * The api user sets "api/profile/customerDetailsAddress" path parameters
+    # Api kullanicisi "api/profile/customerDetailsAddress" path parametrelerini olusturur
     * The api user prepares a GET request containing the address <id> to be accessed for the api profile customerDetailsAddress endpoint.
     # Api kullanicisi api profile customerDetailsAddress endpointine gondermek icin detaylarina erisilmek istenen address idsini iceren bir get request hazirlar
     * The api user sends the GET request and records the response returned from the api profile customerDetailsAddress endpoint.
@@ -47,6 +51,7 @@ Feature: As a user, I should be able to access detailed information about the ad
     * The api user constructs the base url with the "customer" token.
     # APi kullanicisi "customer" token ile base urli olusturur
     * The api user sets "api/profile/customerDetailsAddress" path parameters
+    # Api kullanicisi "api/profile/customerDetailsAddress" path parametrelerini olusturur
     * The api user prepares a GET request containing the non-existing address <id> to send to the api profile customerDetailsAddress endpoint.
     # Api kullanicisi api profile customerDetailsAddress endpointine gondermek icin sistemde bulunmayan address idsini iceren bir get request hazirlar
     * The api user records the response from the api profile customerDetailsAddress endpoint and confirms that the status code is '404' and the reason phrase is Not Found.
@@ -64,6 +69,7 @@ Feature: As a user, I should be able to access detailed information about the ad
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/profile/customerDetailsAddress" path parameters
+    # Api kullanicisi "api/profile/customerDetailsAddress" path parametrelerini olusturur
     * The api user prepares a GET request containing the address <id> to be accessed for the api profile customerDetailsAddress endpoint.
     # Api kullanicisi api profile customerDetailsAddress endpointine gondermek icin detaylarina erisilmek istenen address idsini iceren bir get request hazirlar
     * The api user records the response from the api profile customerDetailsAddress endpoint and confirms that the status code is '401' and the reason phrase is Unauthorized.

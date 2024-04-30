@@ -86,6 +86,7 @@ Feature: As an administrator, I want to be able to delete department information
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/departmentDetails" path parameters
+    # Api kullanicisi "api/departmentDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the Deleted <id> to access the department details via the api departmentDetails endpoint.
     # Api kullanicisi api departmentDetails endpointine gondermek icin sildiği Deleted Idyi iceren bir get request hazirlar
     * The api user records the response returned from the api departmentDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.

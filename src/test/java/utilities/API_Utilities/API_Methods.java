@@ -1,7 +1,12 @@
 package utilities.API_Utilities;
 
+import com.github.javafaker.Faker;
+import config_Requirements.ConfigReader;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 
 import java.util.Arrays;
 
@@ -15,6 +20,9 @@ public class API_Methods {
 
     public static int id;
     public static String fullPath;
+    public static Faker faker = new Faker();
+    public static JSONObject requestBody;
+
 
     public static void pathParam(String rawPaths) {
         String[] paths = rawPaths.split("/");
@@ -43,6 +51,37 @@ public class API_Methods {
         fullPath = tempPath.toString();
         System.out.println("fullPath = " + fullPath);
         System.out.println("id : " + id);
+    }
+
+    public static String registerEmail() {
+        spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url", "api")).build();
+        spec.pathParams("pp1", "api", "pp2", "register");
+
+        String password = faker.internet().password();
+
+        requestBody = new JSONObject();
+        requestBody.put("first_name", faker.name().firstName());
+        requestBody.put("last_name", faker.name().lastName());
+        requestBody.put("email", faker.internet().emailAddress());
+        requestBody.put("password", password);
+        requestBody.put("password_confirmation", password);
+        requestBody.put("user_type", "customer");
+        requestBody.put("referral_code", "0101010101");
+
+        Response response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .header("Accept", "application/json")
+                .when()
+                .body(requestBody.toString())
+                .post("/{pp1}/{pp2}");
+
+        JsonPath repJP = response.jsonPath();
+
+        String email = repJP.getString("user.email");
+        System.out.println("email = " + email);
+
+        return email;
     }
 
     public static Response getResponse() {

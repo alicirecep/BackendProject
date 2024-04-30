@@ -84,6 +84,7 @@ Feature: As an administrator, I want to be able to delete the record specified b
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/faqsDetails" path parameters
+    # Api kullanicisi "api/faqsDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the Deleted <id> to send to the api faqsDetails endpoint.
     # Api kullanicisi api faqsDetails endpointine gondermek icin sildiği Deleted Idyi iceren bir get request hazirlar
     * The api user saves the response returned from the api faqsDetails endpoint and confirms that the status code is '404' and the reason phrase is Not Found.

@@ -8,12 +8,15 @@ Feature: As an administrator, I want to be able to access the city information r
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/profile/stateCities" path parameters
+    # APi kullanicisi "api/profile/stateCities" path parametrelerini olusturur
     * The api user prepares a GET request containing the state <id> to access city information for the api profile stateCities endpoint.
     # Api kullanicisi api profile stateCities endpointine gondermek icin city bilgilerine erisilmek istenen state_idsini iceren bir get request hazirlar
     * The api user sends a GET request and records the response from the api profile stateCities endpoint.
     # Api kullanicisi get request gonderir ve api profile stateCities endpointinden donen responsei kaydeder
     * The api user verifies that the status code is 200
+    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the message information in the response body is "success"
+    # Api kullanicisi response bodydeki message bilgisinin "success" oldugunu dogrular
 
     Examples:
       | id   |
@@ -27,13 +30,13 @@ Feature: As an administrator, I want to be able to access the city information r
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/profile/stateCities" path parameters
+    # APi kullanicisi "api/profile/stateCities" path parametrelerini olusturur
     * The api user prepares a GET request containing the state <id> to access city information for the api profile stateCities endpoint.
     # Api kullanicisi api profile stateCities endpointine gondermek icin city bilgilerine erisilmek istenen state_idsini iceren bir get request hazirlar
     * The api user sends a GET request and records the response from the api profile stateCities endpoint.
     # Api kullanicisi get request gonderir ve api profile stateCities endpointinden donen responsei kaydeder
     * The api user verifies the "<name>" information of the city with the id '40325' in the response body.
     # API kullanıcısi response body icindeki idsi 40325 olan cityin "<name>" bilgisini doğrular.
-
 
     Examples:
       | id   | name         |
@@ -48,6 +51,7 @@ Feature: As an administrator, I want to be able to access the city information r
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/profile/stateCities" path parameters
+    # APi kullanicisi "api/profile/stateCities" path parametrelerini olusturur
     * The api user prepares a GET request containing the non-existent state <id> to send to the api profile stateCities endpoint.
     # Api kullanicisi api profile stateCities endpointine gondermek icin sistemde bulunmayan state_id sini iceren bir get request hazirlar
     * The api user records the response from the api profile stateCities endpoint, confirming that the status code is '404' and the reason phrase is Not Found.
@@ -65,6 +69,7 @@ Feature: As an administrator, I want to be able to access the city information r
     * The api user constructs the base url with the "invalid" token.
     # APi kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/profile/stateCities" path parameters
+    # APi kullanicisi "api/profile/stateCities" path parametrelerini olusturur
     * The api user prepares a GET request containing the state <id> to access city information for the api profile stateCities endpoint.
     # Api kullanicisi api profile stateCities endpointine gondermek icin city bilgilerine erisilmek istenen state_idsini iceren bir get request hazirlar
     * The api user records the response from the api profile stateCities endpoint, confirming that the status code is '401' and the reason phrase is Unauthorized.

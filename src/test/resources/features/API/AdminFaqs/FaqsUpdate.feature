@@ -107,6 +107,7 @@ Feature: As an administrator, I want to be able to update the information of the
     * The api user constructs the base url with the "admin" token.
     # APi kullanicisi "admin" token ile base urli olusturur
     * The api user sets "api/faqsDetails" path parameters
+    # APi kullanicisi "api/faqsDetails" path parametrelerini olusturur
     * The api user prepares a GET request containing the FAQ <id> for which details are to be accessed, to send to the api faqsDetails endpoint.
     # Api kullanicisi api faqsDetails endpointine gondermek icin detaylarina erisilmek istenen faqs idsini iceren bir get request hazirlar
     * The api user sends a GET request and saves the response returned from the api faqsDetails endpoint.
